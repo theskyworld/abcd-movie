@@ -1,0 +1,49 @@
+.container {
+  width: 420px;
+  height: max-content;
+  background-color: #25252b;
+  padding : {
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+  }
+  border-radius: 5px;
+}
+
+h5 {
+  color: #6c6c6d;
+  font-size: 0.9em;
+  margin: 0;
+}
+
+.content ul {
+  padding: 0;
+}
+.content li {
+  display: inline-block;
+  font-size: 0.7em;
+  color: #fff;
+  background-color: #32323c;
+  width: max-content;
+  padding: 6px;
+  border-radius: 5px;
+  margin: 10px {
+    left: 0;
+  }
+  cursor: pointer;
+
+  &.hot {
+    background-color: #ffddd5;
+    color: #f96518;
+  }
+
+  & .icon {
+    fill: #fc6a1b;
+    width: 1.2em;
+    height: 1.2em;
+    margin : {
+      right: 5px;
+    }
+  }
+}
