@@ -35,7 +35,7 @@ const searchAdvisers = ref([
 ]);
 </script>
 <template>
-  <div class="container">
+  <div class="search-advise-container">
     <h5>大家都在搜</h5>
     <div class="content">
       <ul>
