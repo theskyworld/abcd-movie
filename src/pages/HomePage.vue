@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import NavBar from "../components/navBar/NavBar.vue";
-import SideMenus from "../components/sideMenus/SideMenus.vue";
+import SideMenus from "../components/base/sideMenus/SideMenus.vue";
 </script>
 
 <template>
