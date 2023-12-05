@@ -4,6 +4,10 @@
   display: flex;
   flex-direction: row;
 
+  &:hover .title {
+    color: #fb6a1b;
+  }
+
   & .img img {
     width: 80px;
     height: 50px;
