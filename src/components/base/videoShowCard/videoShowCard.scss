@@ -1,0 +1,63 @@
+.video-show-card-container {
+  color: #fff;
+  .img-wrapper {
+    width: 210px;
+    height: 120px;
+    position: relative;
+    border-radius: 10px;
+    cursor: pointer;
+    // 避免图像放大时超出其容器
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 100%;
+      transition: transform 0.5s ease;
+      &:hover {
+        // opacity: 0.8;
+        transform: scale(1.1);
+      }
+    }
+
+    .label {
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      font-size: 10px;
+      padding: 5px;
+      border-radius: 5px;
+      background-color: #fa711a;
+    }
+
+    .episodes {
+      position: absolute;
+      left: 0px;
+      bottom: 0px;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 5px;
+      border-radius: 5px;
+    }
+
+    .score {
+      position: absolute;
+      right: 0px;
+      bottom: 0px;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 5px;
+      border-radius: 5px;
+      color: #fa711a;
+    }
+  }
+  .video-info-wrapper {
+    margin-top: 10px;
+    .title {
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+    .watch-percent {
+      font-size: 10px;
+      color: #6c6c6d;
+    }
+  }
+}
