@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import NavBar from "@/components/navBar/NavBar.vue";
 import SideMenus from "@/components/base/sideMenus/SideMenus.vue";
+import BingeWatch from "@/components/bingeWatch/BingeWatch.vue";
+import BestMoviesInWeek from "@/components/bestMoviesInWeek/BestMoviesInWeek.vue";
+import BestMoviesInMonth from "@/components/bestMoviesInMonth/BestMoviesInMonth.vue";
+import NetflixHot from "@/components/netflixHot/NetflixHot.vue";
 </script>
 
 <template>
@@ -8,10 +12,20 @@ import SideMenus from "@/components/base/sideMenus/SideMenus.vue";
     <div class="nav-bar-wrapper">
       <NavBar />
     </div>
-    <div class="side-menus-wrapper">
-      <SideMenus />
+    <div class="main-wrapper">
+      <div class="side-menus-wrapper">
+        <SideMenus />
+      </div>
+      <div class="main-content-wrapper">
+        <div class="video-swiper-wrapper"></div>
+        <div class="video-shows-wrapper">
+          <BingeWatch />
+          <BestMoviesInWeek />
+          <BestMoviesInMonth />
+          <NetflixHot />
+        </div>
+      </div>
     </div>
-    <div class="main-content-wrapper"></div>
   </div>
 </template>
 

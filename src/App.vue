@@ -1,9 +1,12 @@
 <script setup lang="ts">
-import Weekly from "@/components/weekly/Weekly.vue";
+import BestMoviesInMonth from "./components/bestMoviesInMonth/BestMoviesInMonth.vue";
+import BestMoviesInWeek from "./components/bestMoviesInWeek/BestMoviesInWeek.vue";
+import NetflixHot from "./components/netflixHot/NetflixHot.vue";
+import HomePage from "./pages/homePage/HomePage.vue";
 </script>
 
 <template>
-  <Weekly />
+  <HomePage />
 </template>
 
 <style scoped></style>

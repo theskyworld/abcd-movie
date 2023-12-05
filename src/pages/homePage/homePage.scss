@@ -1,0 +1,24 @@
+.home-page-container {
+  width: 100vw;
+  height: 100vh;
+
+  .main-wrapper {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    margin : {
+      top: 5px;
+    }
+    overflow: hidden;
+
+    .main-content-wrapper {
+      margin : {
+        top: 5px;
+        left : 10px;
+      }
+      height: 90vh;
+      overflow-y: scroll;
+      overflow-x: hidden;
+    }
+  }
+}
