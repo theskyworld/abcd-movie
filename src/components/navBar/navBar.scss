@@ -38,6 +38,13 @@
         display: flex;
         align-items: center;
         justify-content: center;
+
+        &:hover {
+          color: #fb6a1b;
+          .icon {
+            fill : #fb6a1b;
+          }
+        }
         .icon {
           width: 1.2em;
           height: 1.2em;
