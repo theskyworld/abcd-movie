@@ -1,0 +1,76 @@
+<script setup lang="ts">
+import { ref, computed, Ref } from "vue";
+
+const img = "https://m.ykimg.com/0541010160F63EBA04CD829CF4BB9E9C";
+const title = "神话12";
+const watchPercent = 12;
+const watchTime: Ref<number | Date> = ref(new Date());
+
+// 判断是否为今天
+function isToday(time: Ref<number | Date>) {
+  if (typeof time.value === "number") time.value = new Date(time.value);
+
+  const now = new Date();
+  const todayYear = now.getFullYear();
+  const todayMonth = now.getMonth();
+  const todayDate = now.getDate();
+  const year = time.value.getFullYear();
+  const month = time.value.getMonth();
+  const date = time.value.getDate();
+  const hour = time.value.getHours();
+  if (
+    todayYear === year &&
+    todayMonth === month &&
+    todayDate === date &&
+    hour <= 24
+  )
+    return true;
+  return false;
+}
+// 格式化观看时间
+function formatWatchTime(time: Ref<number | Date>) {
+  if (typeof time.value === "number") time.value = new Date(time.value);
+
+  const date = time.value.getDate();
+  const month = time.value.getMonth() + 1;
+  const hour = time.value.getHours();
+  if (isToday(time)) {
+    return `今天  ${hour}:00`;
+  } else {
+    return `${month}-${date}  ${hour}:00`;
+  }
+}
+
+// 格式化观看进度
+function formatWatchPercent(watchPercent: number) {
+  if (watchPercent <= 1) {
+    return "观看不足1%";
+  } else if (watchPercent > 1 && watchPercent < 99) {
+    return `观看至${watchPercent}%`;
+  } else {
+    return "已看完";
+  }
+}
+
+const formattedWatchPercent = computed(() => formatWatchPercent(watchPercent));
+const forMattedWatchTime = computed(() => formatWatchTime(watchTime));
+
+// const props = defineProps(["id", "img", "title", "watchPercent", "watchTime"]);
+</script>
+<template>
+  <div class="watch-history-card-container">
+    <div class="img">
+      <img :src="img" :alt="title" />
+    </div>
+    <div class="watch-infos">
+      <div class="title">{{ title }}</div>
+      <div class="watch-details">
+        <span class="watch-percent">{{ formattedWatchPercent }}</span>
+        <span class="watch-time">{{ forMattedWatchTime }}</span>
+      </div>
+    </div>
+  </div>
+</template>
+<style scoped lang="scss">
+@use "./watchHistoryPartCard.scss";
+</style>
