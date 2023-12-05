@@ -3,6 +3,7 @@ import { onMounted } from 'vue';
 import Logo from "../base/logo/Logo.vue";
 import Search from "../search/Search.vue";
 import WatchHistoryPart from "../WatchHistoryPart/WatchHistoryPart.vue";
+import Profile from "@/components/base/profile/Profile.vue";
 import { ref, onMounted } from "vue";
 
 const watchHistoryToggleElemRef = ref();
@@ -14,6 +15,8 @@ onMounted(() => {
     isShowWatchHistory.value = true;
   };
 });
+
+const imgURL = ref("https://m.ykimg.com/0541010160F63EBA04CD829CF4BB9E9C");
 </script>
 <template>
   <div class="nav-bar-container">
@@ -40,6 +43,9 @@ onMounted(() => {
         >
           <WatchHistoryPart />
         </div>
+      </div>
+      <div class="profile-wrapper">
+        <Profile :img-URL="imgURL" />
       </div>
     </div>
   </div>

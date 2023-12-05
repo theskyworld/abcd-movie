@@ -19,8 +19,11 @@
   }
 
   .right {
+    display: flex;
+    flex-direction: row;
+    transform: translateY(250px);
+    position: relative;
     .watch-history-wrapper {
-      transform: translateY(250px);
       position: relative;
       width: 285px;
       height: 550px;
@@ -59,6 +62,11 @@
           background-color: #25252b;
         }
       }
+    }
+    .profile-wrapper {
+      position: absolute;
+      right: 10px;
+      top: 5px;
     }
   }
 }
