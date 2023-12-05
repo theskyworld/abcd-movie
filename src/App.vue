@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import HomePage from "./pages/homePage/HomePage.vue";
+import Weekly from "@/components/weekly/Weekly.vue";
 </script>
 
 <template>
-  <HomePage />
+  <Weekly />
 </template>
 
 <style scoped></style>
