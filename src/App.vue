@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import WatchHistoryPart from "./components/WatchHistoryPart/WatchHistoryPart.vue";
+import NavBar from "./components/navBar/NavBar.vue";
 </script>
 
 <template>
-  <WatchHistoryPart />
+  <NavBar />
 </template>
 
 <style scoped></style>

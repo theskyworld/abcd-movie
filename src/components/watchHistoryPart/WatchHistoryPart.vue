@@ -2,41 +2,41 @@
 import { ref } from "vue";
 import WatchHistortPartCard from "@/components/base/watchHistoryPartCard/WatchHistoryPartCard.vue";
 const watchedVideos = ref([
-  // {
-  //   id: 1,
-  //   imgURL: "https://m.ykimg.com/0541010160F63EBA04CD829CF4BB9E9C",
-  //   title: "神话12",
-  //   watchTime: new Date(),
-  //   watchPercent: 12,
-  // },
-  // {
-  //   id: 2,
-  //   imgURL: "https://m.ykimg.com/0541010160F63EBA04CD829CF4BB9E9C",
-  //   title: "神话12",
-  //   watchTime: new Date(),
-  //   watchPercent: 12,
-  // },
-  // {
-  //   id: 3,
-  //   imgURL: "https://m.ykimg.com/0541010160F63EBA04CD829CF4BB9E9C",
-  //   title: "神话12",
-  //   watchTime: new Date(),
-  //   watchPercent: 12,
-  // },
-  // {
-  //   id: 4,
-  //   imgURL: "https://m.ykimg.com/0541010160F63EBA04CD829CF4BB9E9C",
-  //   title: "神话12",
-  //   watchTime: new Date(),
-  //   watchPercent: 12,
-  // },
-  // {
-  //   id: 5,
-  //   imgURL: "https://m.ykimg.com/0541010160F63EBA04CD829CF4BB9E9C",
-  //   title: "神话12",
-  //   watchTime: new Date(),
-  //   watchPercent: 12,
-  // },
+  {
+    id: 1,
+    imgURL: "https://m.ykimg.com/0541010160F63EBA04CD829CF4BB9E9C",
+    title: "神话12",
+    watchTime: new Date(),
+    watchPercent: 12,
+  },
+  {
+    id: 2,
+    imgURL: "https://m.ykimg.com/0541010160F63EBA04CD829CF4BB9E9C",
+    title: "神话12",
+    watchTime: new Date(),
+    watchPercent: 12,
+  },
+  {
+    id: 3,
+    imgURL: "https://m.ykimg.com/0541010160F63EBA04CD829CF4BB9E9C",
+    title: "神话12",
+    watchTime: new Date(),
+    watchPercent: 12,
+  },
+  {
+    id: 4,
+    imgURL: "https://m.ykimg.com/0541010160F63EBA04CD829CF4BB9E9C",
+    title: "神话12",
+    watchTime: new Date(),
+    watchPercent: 12,
+  },
+  {
+    id: 5,
+    imgURL: "https://m.ykimg.com/0541010160F63EBA04CD829CF4BB9E9C",
+    title: "神话12",
+    watchTime: new Date(),
+    watchPercent: 12,
+  },
 ]);
 
 const fadeDelay = ref(0.5);

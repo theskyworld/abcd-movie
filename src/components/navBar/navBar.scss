@@ -1,0 +1,64 @@
+.nav-bar-container {
+  width: 100vw;
+  height: 50px;
+  background-color: #25252b;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  .left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    div {
+      margin-right: 20px;
+    }
+  }
+
+  .right {
+    .watch-history-wrapper {
+      transform: translateY(250px);
+      position: relative;
+      width: 285px;
+      height: 550px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      span {
+        position: absolute;
+        text-align: center;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .icon {
+          width: 1.2em;
+          height: 1.2em;
+          margin-right: 10px;
+        }
+      }
+      .watch-history {
+        position: relative;
+        top: 56px;
+        &::before {
+          content: "";
+          // 生成一个三角形箭头
+          display: inline-block;
+          position: absolute;
+          top: -5px;
+          left: calc(50% - 7px);
+          width: 10px;
+          height: 10px;
+          border: solid 1px green;
+          border-color: #25252b transparent transparent #25252b;
+          transform: rotate(45deg);
+          background-color: #25252b;
+        }
+      }
+    }
+  }
+}
