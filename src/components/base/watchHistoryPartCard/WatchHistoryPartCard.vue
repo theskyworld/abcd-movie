@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import { ref, computed, Ref } from "vue";
 
-const img = "https://m.ykimg.com/0541010160F63EBA04CD829CF4BB9E9C";
-const title = "神话12";
-const watchPercent = 12;
-const watchTime: Ref<number | Date> = ref(new Date());
+const { imgURL, title, watchPercent, watchTime } = defineProps([
+  "id",
+  "imgURL",
+  "title",
+  "watchPercent",
+  "watchTime",
+]);
 
 // 判断是否为今天
 function isToday(time: Ref<number | Date>) {
@@ -54,13 +57,11 @@ function formatWatchPercent(watchPercent: number) {
 
 const formattedWatchPercent = computed(() => formatWatchPercent(watchPercent));
 const forMattedWatchTime = computed(() => formatWatchTime(watchTime));
-
-// const props = defineProps(["id", "img", "title", "watchPercent", "watchTime"]);
 </script>
 <template>
   <div class="watch-history-card-container">
     <div class="img">
-      <img :src="img" :alt="title" />
+      <img :src="imgURL" :alt="title" />
     </div>
     <div class="watch-infos">
       <div class="title">{{ title }}</div>
