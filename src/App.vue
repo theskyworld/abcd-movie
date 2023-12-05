@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import VideoShowCard from "./components/base/videoShowCard/VideoShowCard.vue";
-import HomePage from "./pages/HomePage.vue";
-import BingeWatch from "./components/bingeWatch/BingeWatch.vue";
+import HomePage from "./pages/homePage/HomePage.vue";
 </script>
 
 <template>
-  <BingeWatch />
+  <HomePage />
 </template>
 
 <style scoped></style>
