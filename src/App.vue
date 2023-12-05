@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import Search from "./components/base/search/Search.vue";
-import SearchAdvise from "./components/base/searchAdvise/SearchAdvise.vue";
-import WatchHistoryPartCard from "./components/base/watchHistoryPartCard/WatchHistoryPartCard.vue";
+import { ref } from "vue";
+import WatchHistoryPart from "./components/WatchHistoryPart/WatchHistoryPart.vue";
 </script>
 
 <template>
-  <WatchHistoryPartCard />
+  <WatchHistoryPart />
 </template>
 
 <style scoped></style>

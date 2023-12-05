@@ -8,19 +8,19 @@ const { imgURL, title, watchPercent, watchTime } = defineProps([
   "watchPercent",
   "watchTime",
 ]);
-
+console.log(imgURL, title, watchPercent, watchTime);
 // 判断是否为今天
-function isToday(time: Ref<number | Date>) {
-  if (typeof time.value === "number") time.value = new Date(time.value);
+function isToday(time: number | Date) {
+  if (typeof time === "number") time = new Date(time);
 
   const now = new Date();
   const todayYear = now.getFullYear();
   const todayMonth = now.getMonth();
   const todayDate = now.getDate();
-  const year = time.value.getFullYear();
-  const month = time.value.getMonth();
-  const date = time.value.getDate();
-  const hour = time.value.getHours();
+  const year = time.getFullYear();
+  const month = time.getMonth();
+  const date = time.getDate();
+  const hour = time.getHours();
   if (
     todayYear === year &&
     todayMonth === month &&
@@ -31,12 +31,12 @@ function isToday(time: Ref<number | Date>) {
   return false;
 }
 // 格式化观看时间
-function formatWatchTime(time: Ref<number | Date>) {
-  if (typeof time.value === "number") time.value = new Date(time.value);
+function formatWatchTime(time: number | Date) {
+  if (typeof time === "number") time = new Date(time);
 
-  const date = time.value.getDate();
-  const month = time.value.getMonth() + 1;
-  const hour = time.value.getHours();
+  const date = time.getDate();
+  const month = time.getMonth() + 1;
+  const hour = time.getHours();
   if (isToday(time)) {
     return `今天  ${hour}:00`;
   } else {

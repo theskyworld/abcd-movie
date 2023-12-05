@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
-import SearchAdvise from "../searchAdvise/SearchAdvise.vue";
+import SearchAdvise from "../base/searchAdvise/SearchAdvise.vue";
 
 const isInputElemFocus = ref(false);
 const inputElemRef = ref();
