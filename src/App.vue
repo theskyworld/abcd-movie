@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import NavBar from "./components/navBar/NavBar.vue";
-import SideMenus from "./components/sideMenus/SideMenus.vue";
+import HomePage from "./pages/HomePage.vue";
 </script>
 
 <template>
-  <NavBar />
-  <SideMenus />
+  <HomePage />
 </template>
 
 <style scoped></style>
