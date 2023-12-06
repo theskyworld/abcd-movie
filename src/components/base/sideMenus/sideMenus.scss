@@ -1,9 +1,7 @@
 .side-menus-container {
-  background-color: #16161a;
+  // background-color: #16161a;
   height: 91vh;
   width: 170px;
-
-  border-radius: 10px;
 
   .menus-content {
     position: relative;
@@ -16,6 +14,10 @@
         left: 30px;
       }
       transform: translateY(20px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height : 100%;
     }
     li {
       color: #fff;

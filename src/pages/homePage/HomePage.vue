@@ -13,21 +13,19 @@ import HomePageSwiper from "../../components/base/homePageSwiper/HomePageSwiper.
     <div class="nav-bar-wrapper">
       <NavBar />
     </div>
-    <div class="main-wrapper">
+    <Teleport to="body">
       <div class="side-menus-wrapper">
         <SideMenus />
       </div>
-      <div class="main-content-wrapper">
-        <div class="home-page-swiper-wrapper">
-          <HomePageSwiper />
-        </div>
-        <div class="video-shows-wrapper">
-          <BingeWatch />
-          <BestMoviesInWeek />
-          <BestMoviesInMonth />
-          <NetflixHot />
-        </div>
-      </div>
+    </Teleport>
+    <div class="home-page-swiper-wrapper">
+      <HomePageSwiper />
+    </div>
+    <div class="video-shows-wrapper">
+      <BingeWatch />
+      <BestMoviesInWeek />
+      <BestMoviesInMonth />
+      <NetflixHot />
     </div>
   </div>
 </template>

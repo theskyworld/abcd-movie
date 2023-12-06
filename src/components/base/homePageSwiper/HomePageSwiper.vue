@@ -30,7 +30,7 @@ const swiperOptions = ref({
     clickable: true,
   },
   // 使用导航按钮
-  navigation: true,
+  // navigation: true,
   modules: modules.value,
 });
 </script>
