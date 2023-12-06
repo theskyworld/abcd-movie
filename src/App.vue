@@ -3,10 +3,11 @@ import BestMoviesInMonth from "./components/bestMoviesInMonth/BestMoviesInMonth.
 import BestMoviesInWeek from "./components/bestMoviesInWeek/BestMoviesInWeek.vue";
 import NetflixHot from "./components/netflixHot/NetflixHot.vue";
 import HomePage from "./pages/homePage/HomePage.vue";
+import HomePageSwiper from "./components/base/homePageSwiper/HomePageSwiper.vue";
 </script>
 
 <template>
-  <HomePage />
+  <HomePageSwiper />
 </template>
 
 <style scoped></style>
