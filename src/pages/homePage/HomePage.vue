@@ -5,6 +5,7 @@ import BingeWatch from "@/components/bingeWatch/BingeWatch.vue";
 import BestMoviesInWeek from "@/components/bestMoviesInWeek/BestMoviesInWeek.vue";
 import BestMoviesInMonth from "@/components/bestMoviesInMonth/BestMoviesInMonth.vue";
 import NetflixHot from "@/components/netflixHot/NetflixHot.vue";
+import HomePageSwiper from "../../components/base/homePageSwiper/HomePageSwiper.vue";
 </script>
 
 <template>
@@ -17,7 +18,9 @@ import NetflixHot from "@/components/netflixHot/NetflixHot.vue";
         <SideMenus />
       </div>
       <div class="main-content-wrapper">
-        <div class="video-swiper-wrapper"></div>
+        <div class="home-page-swiper-wrapper">
+          <HomePageSwiper />
+        </div>
         <div class="video-shows-wrapper">
           <BingeWatch />
           <BestMoviesInWeek />

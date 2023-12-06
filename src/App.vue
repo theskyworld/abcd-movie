@@ -7,7 +7,7 @@ import HomePageSwiper from "./components/base/homePageSwiper/HomePageSwiper.vue"
 </script>
 
 <template>
-  <HomePageSwiper />
+  <HomePage />
 </template>
 
 <style scoped></style>

@@ -3,13 +3,13 @@ import { ref } from "vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 
 // 使用Navigation, Pagination, Autoplay模块
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
 // 使用对应的默认样式
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-const modules = ref([Navigation, Pagination, Autoplay]);
+const modules = ref([Autoplay, Navigation, Pagination]);
 // swiper配置选项
 const swiperOptions = ref({
   // 每页展示的滑片数量
@@ -20,7 +20,7 @@ const swiperOptions = ref({
   centeredSlides: true,
   // 自动播放
   autoplay: {
-    delay: 2500,
+    delay: 3_000,
     disableOnInteraction: false,
   },
   // 循环滑动
