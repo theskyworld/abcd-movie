@@ -36,7 +36,7 @@
 
   @include scroll();
   .nav-bar-wrapper {
-    position: absolute;
+    position: fixed;
     z-index: 10;
   }
   .side-menus-wrapper {

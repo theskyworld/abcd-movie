@@ -18,15 +18,13 @@ function intersectionObserverSwiper() {
     homePageContainerRef.value.onscroll = () => {
       // 如果swiper元素被滑动到了视口之外
       if (entries[0].intersectionRatio === 0) {
-        // 将navbar的背景颜色进行添加，将其定为改为固定定位
-        navBarWrapperRef.value.style.backgroundColor = "#25252b";
-        navBarWrapperRef.value.style.position = "fixed";
+        // 将navbar的背景颜色进行添加
+        navBarWrapperRef.value.style.backgroundColor = "#1A1C1F";
       }
       // 如果swiper元素被滑动重新进入了视口
       if (entries[0].intersectionRatio > 0) {
-        // 将navbar的样式改回
+        // 将navbar的背景颜色去除
         navBarWrapperRef.value.style.backgroundColor = "";
-        navBarWrapperRef.value.style.position = "";
       }
     };
   });
