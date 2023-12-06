@@ -14,6 +14,9 @@ onMounted(() => {
   watchHistoryToggleElemRef.value.onmouseover = () => {
     isShowWatchHistory.value = true;
   };
+  watchHistoryToggleElemRef.value.onmouseleave = () => {
+    isShowWatchHistory.value = false;
+  };
 });
 
 const imgURL = ref("https://m.ykimg.com/0541010160F63EBA04CD829CF4BB9E9C");
