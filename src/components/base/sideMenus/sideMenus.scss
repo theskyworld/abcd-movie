@@ -31,16 +31,16 @@
         position: absolute;
         left: 135px;
         content: "→";
-        color: #f96518;
+        color: var(--main-color);
         animation: arrowLeftToRight 0.5s ease-in-out;
       }
 
       &:hover {
         span {
-          color: #f96518;
+          color: var(--main-color);
         }
         .icon {
-          fill: #f96518;
+          color: var(--main-color);
         }
       }
 

@@ -5,7 +5,7 @@
   flex-direction: row;
 
   &:hover .title {
-    color: #fb6a1b;
+    color: var(--main-color);
   }
 
   & .img img {

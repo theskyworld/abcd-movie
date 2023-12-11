@@ -18,7 +18,7 @@
 
     &:focus {
       outline: none;
-      border: solid 1px #ff6b1b;
+      border: solid 1px var(--main-color);
       border-radius: 5px;
     }
   }
@@ -31,7 +31,7 @@
     cursor: pointer;
 
     &:hover {
-      fill: #ff6b1b;
+      color: var(--main-color);
     }
   }
 }
