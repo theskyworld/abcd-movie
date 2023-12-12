@@ -5,7 +5,7 @@ const datas = [{}, {}, {}, {}, {}];
 <template>
   <div class="binge-watch-container">
     <div class="title-wrapper">
-      <h3 class="title">猜你在追</h3>
+      <h3 class="title">专属推荐</h3>
     </div>
     <div class="video-show-card-wrapper">
       <VideoShowCard v-for="(video, index) in datas" :key="index" />
