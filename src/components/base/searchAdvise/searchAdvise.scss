@@ -38,12 +38,12 @@ h5 {
     color: #fff;
 
     &:hover {
-      color : var(--color-main)
+      color : var(--color-hover)
     }
   }
 
   & .icon {
-    fill: var(--color-main);
+    fill: var(--color-hover);
     width: 1.2em;
     height: 1.2em;
     margin : {

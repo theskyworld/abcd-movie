@@ -40,9 +40,9 @@
         justify-content: center;
 
         &:hover {
-          color: var(--color-main);
+          color: var(--color-hover);
           .icon {
-            color: var(--color-main);
+            color: var(--color-hover);
           }
         }
         .icon {
