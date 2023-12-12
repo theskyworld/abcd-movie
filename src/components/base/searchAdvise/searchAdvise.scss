@@ -34,12 +34,16 @@ h5 {
   cursor: pointer;
 
   &.hot {
-    background-color: #ffddd5;
-    color: #f96518;
+    background-color: var(--color-hot);
+    color: #fff;
+
+    &:hover {
+      color : var(--color-main)
+    }
   }
 
   & .icon {
-    fill: #fc6a1b;
+    fill: var(--color-main);
     width: 1.2em;
     height: 1.2em;
     margin : {
