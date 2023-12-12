@@ -10,7 +10,7 @@
     background-color: rgba(232, 226, 226, 0.1);
     padding: 10px;
     border: none;
-    color: #fff;
+    color: var(--color-main);
 
     &::placeholder {
       color: rgba(245, 241, 241, 0.7);

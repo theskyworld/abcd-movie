@@ -10,7 +10,7 @@
       .title {
         margin: 0;
         font-size: 1.3em;
-        color: #fff;
+        color: var(--color-main);
       }
     }
     .weeks-wrapper {
@@ -22,7 +22,7 @@
       }
       li {
         display: inline-block;
-        color: #fff;
+        color: var(--color-main);
         margin: 0 10px;
       }
 

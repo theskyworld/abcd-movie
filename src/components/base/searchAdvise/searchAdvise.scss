@@ -23,7 +23,7 @@ h5 {
 .content li {
   display: inline-block;
   font-size: 0.7em;
-  color: #fff;
+  color: var(--color-main);
   background-color: #32323c;
   width: max-content;
   padding: 6px;
@@ -35,7 +35,7 @@ h5 {
 
   &.hot {
     background-color: var(--color-hot);
-    color: #fff;
+    color: var(--color-main);
 
     &:hover {
       color : var(--color-hover)

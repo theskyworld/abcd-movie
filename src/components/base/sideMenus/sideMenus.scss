@@ -19,7 +19,7 @@
       height: 100%;
     }
     li {
-      color: #fff;
+      color: var(--color-main);
       font-size: 0.9em;
       margin-bottom: 20px;
       cursor: pointer;
@@ -46,7 +46,7 @@
 
       a {
         text-decoration: none;
-        color: #fff;
+        color: var(--color-main);
       }
       span {
         margin-left: 15px;

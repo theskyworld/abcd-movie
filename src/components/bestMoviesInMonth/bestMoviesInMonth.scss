@@ -12,7 +12,7 @@
       .title {
         margin: 0;
         font-size: 1.3em;
-        color: #fff;
+        color: var(--color-main);
       }
     }
     .more-wrapper {
@@ -22,7 +22,7 @@
 
       button {
         background-color: #25252b;
-        color: #fff;
+        color: var(--color-main);
         outline: none;
         border: none;
         font-size: 0.7em;
