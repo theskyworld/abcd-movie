@@ -13,6 +13,7 @@ import HotEuropeanAndAmerican from "@/components/hotEuropeanAndAmerican/HotEurop
 import HotHongKongAndTaiwan from "@/components/hotHongKongAndTaiwan/HotHongKongAndTaiwan.vue";
 import HotTVSeries from "@/components/hotTVSeries/HotTVSeries.vue";
 import HotAnime from "@/components/hotAnime/HotAnime.vue";
+import HotVariety from "@/components/hotVariety/HotVariety.vue";
 
 import { ref, onMounted } from "vue";
 
@@ -69,6 +70,7 @@ onMounted(() => {
       <HotHongKongAndTaiwan />
       <HotTVSeries />
       <HotAnime />
+      <HotVariety />
     </div>
   </div>
 </template>
