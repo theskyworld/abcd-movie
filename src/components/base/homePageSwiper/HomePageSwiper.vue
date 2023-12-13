@@ -64,6 +64,7 @@ function formatIndex(index: number) {
     <div class="swiper-wrapper">
       <Swiper v-bind="swiperOptions" class="mySwiper" @swiper="onSwiper">
         <swiper-slide v-for="(img, index) in bigImgURLs" :key="index">
+          <h2 class="video-title">{{ videoTitles[index] }}</h2>
           <img :src="img" :alt="videoTitles[index]" />
         </swiper-slide>
       </Swiper>
