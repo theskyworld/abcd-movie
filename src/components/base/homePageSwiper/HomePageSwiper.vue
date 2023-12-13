@@ -4,13 +4,15 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import { Props } from "./types";
 
 // 使用Navigation, Pagination, Autoplay模块
-import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { Autoplay, Navigation, Pagination, EffectFade } from "swiper/modules";
+// 卡片切换的特效
+import "swiper/css/effect-fade";
 // 使用对应的默认样式
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-const modules = ref([Autoplay, Navigation, Pagination]);
+const modules = ref([EffectFade, Autoplay, Navigation, Pagination]);
 // swiper配置选项
 const swiperOptions = ref({
   // 每页展示的滑片数量
@@ -33,6 +35,8 @@ const swiperOptions = ref({
   // 使用导航按钮
   // navigation: true,
   modules: modules.value,
+  // 卡片切换特效
+  effect: "fade",
 });
 
 const { imgList } = defineProps<Props>();
