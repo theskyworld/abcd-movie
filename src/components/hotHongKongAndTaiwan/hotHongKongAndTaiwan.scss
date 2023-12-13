@@ -1,0 +1,49 @@
+.hot-hongkong-and-taiwan-container {
+  width: 1200px;
+  height: max-content;
+
+  .header-wrapper {
+    width: 100%;
+    position: relative;
+    .title-wrapper {
+      margin : {
+        bottom: 20px;
+      }
+      .title {
+        margin: 0;
+        font-size: 1.3em;
+        color: var(--color-main);
+      }
+    }
+    .more-wrapper {
+      position: absolute;
+      right: 70px;
+      top: 5px;
+
+      button {
+        background-color: #25252b;
+        color: var(--color-main);
+        outline: none;
+        border: none;
+        font-size: 0.7em;
+        padding: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+
+        &:hover {
+          color: var(--color-hover);
+        }
+      }
+    }
+  }
+  .video-show-card-wrapper {
+    width: 100%;
+    height: max-content;
+    display: flex;
+    flex-direction: row;
+
+    div {
+      margin-right: 30px;
+    }
+  }
+}
