@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
+import { Props } from "./types";
 
 // 使用Navigation, Pagination, Autoplay模块
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
@@ -33,26 +34,15 @@ const swiperOptions = ref({
   // navigation: true,
   modules: modules.value,
 });
+
+const { imgList } = defineProps<Props>();
+const bigImgURLs = ref(imgList[0]);
 </script>
 <template>
   <Swiper v-bind="swiperOptions" class="mySwiper">
-    <swiper-slide>
-      <img
-        src="https://647bc185.szrtcpa.com/2023/11/10/3c95a1646f1da.jpg"
-        alt=""
-      />
+    <swiper-slide v-for="(img, index) in bigImgURLs" :key="index">
+      <img :src="img" alt="" />
     </swiper-slide>
-    <swiper-slide>
-      <img
-        src="https://647bc185.szrtcpa.com/2023/12/02/89e366ffcb035.jpg"
-        alt=""
-      />
-    </swiper-slide>
-    <swiper-slide
-      ><img
-        src="https://647bc185.szrtcpa.com/2023/10/22/3e3599eecebc9.jpg"
-        alt=""
-    /></swiper-slide>
   </Swiper>
 </template>
 <style scoped></style>

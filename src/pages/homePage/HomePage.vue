@@ -14,8 +14,9 @@ import HotHongKongAndTaiwan from "@/components/hotHongKongAndTaiwan/HotHongKongA
 import HotTVSeries from "@/components/hotTVSeries/HotTVSeries.vue";
 import HotAnime from "@/components/hotAnime/HotAnime.vue";
 import HotVariety from "@/components/hotVariety/HotVariety.vue";
+import getHomePageData from "@/server/getHomePageData.ts";
 
-import { ref, onMounted } from "vue";
+import { ref, onMounted, onBeforeMount } from "vue";
 
 const homeePageSwiperWrapperRef = ref();
 const homePageContainerRef = ref();
@@ -43,6 +44,13 @@ function intersectionObserverSwiper() {
 onMounted(() => {
   intersectionObserverSwiper();
 });
+
+const swiperDatas = ref({});
+
+onBeforeMount(async () => {
+  const datas = await getHomePageData();
+  swiperDatas.value = datas.items[0];
+});
 </script>
 
 <template>
@@ -56,7 +64,7 @@ onMounted(() => {
       </div>
     </Teleport>
     <div class="home-page-swiper-wrapper" ref="homeePageSwiperWrapperRef">
-      <HomePageSwiper />
+      <HomePageSwiper :img-list="(swiperDatas as any).imgURLs" />
     </div>
     <div class="video-shows-wrapper">
       <BingeWatch />

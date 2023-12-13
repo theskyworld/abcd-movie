@@ -5,11 +5,6 @@ const routes = [
   {
     path: "/",
     component: () => import("@/pages/homePage/HomePage.vue"),
-    // 进入前请求首页数据
-    beforeEnter: (from: any, to: any, next: any) => {
-      getHomePageData();
-      next();
-    },
   },
 ];
 
