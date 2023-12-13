@@ -24,6 +24,7 @@ const { videoTitles, imgURLs, videoEpisodes, videoScores } =
         :imgURL="imgURLs[index]"
         :score="videoScores[index]"
         :episode="videoEpisodes[index]"
+        is-row
       />
     </div>
   </div>

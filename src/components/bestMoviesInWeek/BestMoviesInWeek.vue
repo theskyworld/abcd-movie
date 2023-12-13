@@ -24,7 +24,6 @@ const { videoTitles, imgURLs, videoTags, videoScores } =
         :imgURL="imgURLs[index]"
         :tag="videoTags[index]"
         :score="videoScores[index]"
-        is-column
       />
     </div>
   </div>
