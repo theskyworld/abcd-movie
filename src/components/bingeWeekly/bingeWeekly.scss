@@ -1,0 +1,49 @@
+.binge-weekly-container {
+  width: 1200px;
+  height: max-content;
+
+  .header-wrapper {
+    width: 100%;
+    position: relative;
+    .title-wrapper {
+      margin : {
+        bottom: 20px;
+      }
+      .title {
+        margin: 0;
+        font-size: 1.3em;
+        color: var(--color-main);
+      }
+    }
+    .weeks-wrapper {
+      position: absolute;
+      right: 30px;
+      top: 8px;
+      border-radius: 5px;
+
+      ul {
+        font-size: 0.7em;
+        li {
+          display: inline-block;
+          color: var(--color-main);
+          margin: 0 10px;
+
+          &:hover {
+            color: var(--color-hover);
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+  .video-show-card-wrapper {
+    width: 100%;
+    height: max-content;
+    display: flex;
+    flex-direction: row;
+
+    div {
+      margin-right: 30px;
+    }
+  }
+}

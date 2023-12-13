@@ -7,6 +7,7 @@ import BestMoviesInMonth from "@/components/bestMoviesInMonth/BestMoviesInMonth.
 import NetflixHot from "@/components/netflixHot/NetflixHot.vue";
 import HotPlaying from "@/components/hotPlaying/HotPlaying.vue";
 import HomePageSwiper from "../../components/base/homePageSwiper/HomePageSwiper.vue";
+import BingeWeekly from "@/components/bingeWeekly/BingeWeekly.vue";
 
 import { ref, onMounted } from "vue";
 
@@ -54,6 +55,7 @@ onMounted(() => {
     <div class="video-shows-wrapper">
       <BingeWatch />
       <HotPlaying />
+      <BingeWeekly />
       <BestMoviesInWeek />
       <BestMoviesInMonth />
       <NetflixHot />
