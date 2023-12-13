@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import VideoShowCard from "@/components/base/videoShowCard/VideoShowCard.vue";
+import { BestMoviesInWeekProps } from "./types";
 
-const datas = ref([{}, {}, {}, {}, {}]);
+const { videoTitles, imgURLs, videoTags, videoScores } =
+  defineProps<BestMoviesInWeekProps>();
 </script>
 <template>
   <div class="best-movies-in-week-container">
@@ -15,7 +17,15 @@ const datas = ref([{}, {}, {}, {}, {}]);
       </div>
     </div>
     <div class="video-show-card-wrapper">
-      <VideoShowCard v-for="(video, index) in datas" :key="index" />
+      <VideoShowCard
+        v-for="(i, index) in videoTitles.length"
+        :key="index"
+        :title="videoTitles[index]"
+        :imgURL="imgURLs[index]"
+        :tag="videoTags[index]"
+        :score="videoScores[index]"
+        is-column
+      />
     </div>
   </div>
 </template>
