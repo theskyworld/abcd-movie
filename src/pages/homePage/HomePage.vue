@@ -11,6 +11,7 @@ import BingeWeekly from "@/components/bingeWeekly/BingeWeekly.vue";
 import HotJanpaneseAndKorean from "@/components/hotJanpaneseAndKorean/HotJanpaneseAndKorean.vue";
 import HotEuropeanAndAmerican from "@/components/hotEuropeanAndAmerican/HotEuropeanAndAmerican.vue";
 import HotHongKongAndTaiwan from "@/components/hotHongKongAndTaiwan/HotHongKongAndTaiwan.vue";
+import HotTVSeries from "@/components/hotTVSeries/HotTVSeries.vue";
 
 import { ref, onMounted } from "vue";
 
@@ -65,6 +66,7 @@ onMounted(() => {
       <HotJanpaneseAndKorean />
       <HotEuropeanAndAmerican />
       <HotHongKongAndTaiwan />
+      <HotTVSeries />
     </div>
   </div>
 </template>
