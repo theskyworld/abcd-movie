@@ -46,6 +46,8 @@ onMounted(() => {
 });
 
 const swiperDatas = ref({});
+const bingeWatchDatas: any = ref({});
+const hotPlayingDatas: any = ref({});
 const bingeWeeklyDatas: any = ref({});
 const bestMoviesInMonthDatas: any = ref({});
 const bestMoviesInWeekDatas: any = ref({});
@@ -60,16 +62,18 @@ const hotVarietyDatas: any = ref({});
 onBeforeMount(async () => {
   const datas = await getHomePageData();
   swiperDatas.value = datas.items[0];
-  bingeWeeklyDatas.value = datas.items[1];
-  bestMoviesInMonthDatas.value = datas.items[2];
-  bestMoviesInWeekDatas.value = datas.items[3];
-  netflixHotDatas.value = datas.items[4];
-  hotJanpaneseAndKoreanDatas.value = datas.items[5];
-  hotEuropeanAndAmericanDatas.value = datas.items[6];
-  hotHongKongAndTaiwanDatas.value = datas.items[7];
-  hotTVSeriesDatas.value = datas.items[8];
-  hotAnimeDatas.value = datas.items[9];
-  hotVarietyDatas.value = datas.items[10];
+  bingeWatchDatas.value = datas.items[1];
+  hotPlayingDatas.value = datas.items[2];
+  bingeWeeklyDatas.value = datas.items[3];
+  bestMoviesInMonthDatas.value = datas.items[4];
+  bestMoviesInWeekDatas.value = datas.items[5];
+  netflixHotDatas.value = datas.items[6];
+  hotJanpaneseAndKoreanDatas.value = datas.items[7];
+  hotEuropeanAndAmericanDatas.value = datas.items[8];
+  hotHongKongAndTaiwanDatas.value = datas.items[9];
+  hotTVSeriesDatas.value = datas.items[10];
+  hotAnimeDatas.value = datas.items[11];
+  hotVarietyDatas.value = datas.items[12];
 });
 </script>
 
@@ -87,8 +91,18 @@ onBeforeMount(async () => {
       <HomePageSwiper :img-list="(swiperDatas as any).imgURLs" />
     </div>
     <div class="video-shows-wrapper">
-      <BingeWatch />
-      <HotPlaying />
+      <BingeWatch
+        :video-titles="bingeWatchDatas.videoTitles"
+        :img-URLs="bingeWatchDatas.imgURLs"
+        :video-tags="bingeWatchDatas.videoTags"
+        :video-scores="bingeWatchDatas.videoScores"
+      />
+      <HotPlaying
+        :video-titles="hotPlayingDatas.videoTitles"
+        :img-URLs="hotPlayingDatas.imgURLs"
+        :video-tags="hotPlayingDatas.videoTags"
+        :video-scores="hotPlayingDatas.videoScores"
+      />
       <BingeWeekly
         :video-titles="bingeWeeklyDatas.videoTitles"
         :img-URLs="bingeWeeklyDatas.imgURLs"
