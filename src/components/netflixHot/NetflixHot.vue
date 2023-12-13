@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import VideoShowCard from "@/components/base/videoShowCard/VideoShowCard.vue";
+import { NetflixHotProps } from "./types";
 
-const datas = ref([{}, {}, {}, {}, {}]);
+const { videoTitles, imgURLs, videoEpisodes, videoScores } =
+  defineProps<NetflixHotProps>();
 </script>
 <template>
   <div class="netflix-hot-container">
@@ -15,7 +17,14 @@ const datas = ref([{}, {}, {}, {}, {}]);
       </div>
     </div>
     <div class="video-show-card-wrapper">
-      <VideoShowCard v-for="(video, index) in datas" :key="index" />
+      <VideoShowCard
+        v-for="(i, index) in videoTitles.length"
+        :key="index"
+        :title="videoTitles[index]"
+        :imgURL="imgURLs[index]"
+        :score="videoScores[index]"
+        :episode="videoEpisodes[index]"
+      />
     </div>
   </div>
 </template>
