@@ -138,8 +138,18 @@ onBeforeMount(async () => {
         :video-episodes="hotTVSeriesDatas.videoEpisodes"
         :video-scores="hotTVSeriesDatas.videoScores"
       />
-      <HotAnime />
-      <HotVariety />
+      <HotAnime
+        :video-titles="hotAnimeDatas.videoTitles"
+        :img-URLs="hotAnimeDatas.imgURLs"
+        :video-episodes="hotAnimeDatas.videoEpisodes"
+        :video-scores="hotAnimeDatas.videoScores"
+      />
+      <HotVariety
+        :video-titles="hotVarietyDatas.videoTitles"
+        :img-URLs="hotVarietyDatas.imgURLs"
+        :video-episodes="hotVarietyDatas.videoEpisodes"
+        :video-scores="hotVarietyDatas.videoScores"
+      />
     </div>
   </div>
 </template>
