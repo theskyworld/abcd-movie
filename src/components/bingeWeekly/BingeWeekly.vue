@@ -4,14 +4,16 @@ import VideoShowCard from "@/components/base/videoShowCard/VideoShowCard.vue";
 
 const datas = ref([{}, {}, {}, {}, {}]);
 const weeks = [
-  { date: "周日" },
   { date: "周一" },
   { date: "周二" },
   { date: "周三" },
   { date: "周四" },
   { date: "周五" },
   { date: "周六" },
+  { date: "周日" },
 ];
+
+const curDay = ref(new Date().getDay());
 </script>
 
 <template>
@@ -22,7 +24,11 @@ const weeks = [
       </div>
       <div class="weeks-wrapper">
         <ul>
-          <li v-for="(week, index) in weeks" :key="index">
+          <li
+            :class="{ curDay: index + 1 === curDay }"
+            v-for="(week, index) in weeks"
+            :key="index"
+          >
             <span>{{ week.date }}</span>
           </li>
         </ul>

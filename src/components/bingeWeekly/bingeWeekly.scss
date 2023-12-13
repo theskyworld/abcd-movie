@@ -18,7 +18,7 @@
     .weeks-wrapper {
       position: absolute;
       right: 30px;
-      top: 8px;
+      top: 3px;
       border-radius: 5px;
 
       ul {
@@ -27,7 +27,12 @@
           display: inline-block;
           color: var(--color-main);
           margin: 0 10px;
-
+          padding : 5px;
+          &.curDay {
+            background-color: #070708;
+            color: var(--color-hover);
+            border-radius: 5px;
+          }
           &:hover {
             color: var(--color-hover);
             cursor: pointer;
