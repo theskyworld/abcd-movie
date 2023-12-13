@@ -47,12 +47,14 @@ onMounted(() => {
 
 const swiperDatas = ref({});
 const bingeWeeklyDatas: any = ref({});
+const bestMoviesInMonthDatas: any = ref({});
 const bestMoviesInWeekDatas: any = ref({});
 
 onBeforeMount(async () => {
   const datas = await getHomePageData();
   swiperDatas.value = datas.items[0];
   bingeWeeklyDatas.value = datas.items[1];
+  bestMoviesInMonthDatas.value = datas.items[2];
   bestMoviesInWeekDatas.value = datas.items[3];
 });
 </script>
@@ -86,7 +88,12 @@ onBeforeMount(async () => {
         :video-tags="bestMoviesInWeekDatas.videoTags"
         :video-scores="bestMoviesInWeekDatas.videoScores"
       />
-      <BestMoviesInMonth />
+      <BestMoviesInMonth
+        :video-titles="bestMoviesInMonthDatas.videoTitles"
+        :img-URLs="bestMoviesInMonthDatas.imgURLs"
+        :video-tags="bestMoviesInMonthDatas.videoTags"
+        :video-scores="bestMoviesInMonthDatas.videoScores"
+      />
       <NetflixHot />
       <HotJanpaneseAndKorean />
       <HotEuropeanAndAmerican />

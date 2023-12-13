@@ -1,4 +1,6 @@
 .video-show-card-container {
+  min-width: 210px;
+  min-height: 250px;
   color: var(--color-main);
   .img-wrapper {
     width: 100%;
@@ -65,7 +67,7 @@
 // 用于横向向展示的图片
 .row {
   width: 256px;
-  height: 143px;
+  height: 170px;
 }
 
 // 用于竖向展示的图片
