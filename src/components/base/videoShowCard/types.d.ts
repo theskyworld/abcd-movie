@@ -5,5 +5,4 @@ export interface VideoShowCardProps {
   episode?: string;
   score?: string;
   isRow?: boolean;
-  isColumn?: boolean;
 }
