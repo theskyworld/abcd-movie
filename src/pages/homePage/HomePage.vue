@@ -132,7 +132,12 @@ onBeforeMount(async () => {
         :video-episodes="hotHongKongAndTaiwanDatas.videoEpisodes"
         :video-scores="hotHongKongAndTaiwanDatas.videoScores"
       />
-      <HotTVSeries />
+      <HotTVSeries
+        :video-titles="hotTVSeriesDatas.videoTitles"
+        :img-URLs="hotTVSeriesDatas.imgURLs"
+        :video-episodes="hotTVSeriesDatas.videoEpisodes"
+        :video-scores="hotTVSeriesDatas.videoScores"
+      />
       <HotAnime />
       <HotVariety />
     </div>
