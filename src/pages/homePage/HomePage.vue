@@ -51,6 +51,7 @@ const bestMoviesInMonthDatas: any = ref({});
 const bestMoviesInWeekDatas: any = ref({});
 const netflixHotDatas: any = ref({});
 const hotJanpaneseAndKoreanDatas: any = ref({});
+const hotEuropeanAndAmericanDatas: any = ref({});
 
 onBeforeMount(async () => {
   const datas = await getHomePageData();
@@ -60,6 +61,7 @@ onBeforeMount(async () => {
   bestMoviesInWeekDatas.value = datas.items[3];
   netflixHotDatas.value = datas.items[4];
   hotJanpaneseAndKoreanDatas.value = datas.items[5];
+  hotEuropeanAndAmericanDatas.value = datas.items[6];
 });
 </script>
 
@@ -110,7 +112,12 @@ onBeforeMount(async () => {
         :video-episodes="hotJanpaneseAndKoreanDatas.videoEpisodes"
         :video-scores="hotJanpaneseAndKoreanDatas.videoScores"
       />
-      <HotEuropeanAndAmerican />
+      <HotEuropeanAndAmerican
+        :video-titles="hotEuropeanAndAmericanDatas.videoTitles"
+        :img-URLs="hotEuropeanAndAmericanDatas.imgURLs"
+        :video-episodes="hotEuropeanAndAmericanDatas.videoEpisodes"
+        :video-scores="hotEuropeanAndAmericanDatas.videoScores"
+      />
       <HotHongKongAndTaiwan />
       <HotTVSeries />
       <HotAnime />
