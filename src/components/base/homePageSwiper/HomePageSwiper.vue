@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Props } from "./types";
 
@@ -23,7 +23,7 @@ const swiperOptions = ref({
   centeredSlides: true,
   // 自动播放
   autoplay: {
-    delay: 3_000,
+    delay: 6_000,
     disableOnInteraction: false,
   },
   // 循环滑动
@@ -39,14 +39,57 @@ const swiperOptions = ref({
   effect: "fade",
 });
 
-const { imgList } = defineProps<Props>();
+const { imgList, videoTitles, videoTags } = defineProps<Props>();
 const bigImgURLs = ref(imgList[0]);
+const smallImgURLs = ref(imgList[1]);
+
+let swiperInstance: any;
+
+const onSwiper = (swiper: any) => {
+  swiperInstance = swiper;
+};
+
+function formatIndex(index: number) {
+  if (index === 0) {
+    return 1;
+  } else if (index === smallImgURLs.value.length - 1) {
+    return 0;
+  } else {
+    return index + 1;
+  }
+}
 </script>
 <template>
-  <Swiper v-bind="swiperOptions" class="mySwiper">
-    <swiper-slide v-for="(img, index) in bigImgURLs" :key="index">
-      <img :src="img" alt="" />
-    </swiper-slide>
-  </Swiper>
+  <div class="home-page-swiper-container">
+    <div class="swiper-wrapper">
+      <Swiper v-bind="swiperOptions" class="mySwiper" @swiper="onSwiper">
+        <swiper-slide v-for="(img, index) in bigImgURLs" :key="index">
+          <img :src="img" :alt="videoTitles[index]" />
+        </swiper-slide>
+      </Swiper>
+    </div>
+    <div
+      class="swiper-small-wrapper"
+      v-for="(img, index) in smallImgURLs"
+      :key="index"
+      @mouseenter="
+        () => {
+          const i = formatIndex(index);
+          swiperInstance.slideTo(i);
+        }
+      "
+    >
+      <div class="img-wrapper">
+        <img :src="img" alt="" />
+      </div>
+      <div class="video-info-wrapper">
+        <div class="title">
+          <span>{{ videoTitles[index] }} </span>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
-<style scoped></style>
+<style scoped lang="scss">
+@use "./homePageSwiper.scss";
+</style>

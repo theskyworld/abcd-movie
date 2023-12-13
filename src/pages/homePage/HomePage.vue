@@ -45,7 +45,7 @@ onMounted(() => {
   intersectionObserverSwiper();
 });
 
-const swiperDatas = ref({});
+const swiperDatas: any = ref({});
 const bingeWatchDatas: any = ref({});
 const hotPlayingDatas: any = ref({});
 const bingeWeeklyDatas: any = ref({});
@@ -88,7 +88,11 @@ onBeforeMount(async () => {
       </div>
     </Teleport>
     <div class="home-page-swiper-wrapper" ref="homeePageSwiperWrapperRef">
-      <HomePageSwiper :img-list="(swiperDatas as any).imgURLs" />
+      <HomePageSwiper
+        :img-list="swiperDatas.imgURLs"
+        :video-titles="swiperDatas.videoTitles"
+        :video-tags="swiperDatas.videoTags"
+      />
     </div>
     <div class="video-shows-wrapper">
       <BingeWatch
