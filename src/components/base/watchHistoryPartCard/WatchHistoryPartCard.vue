@@ -8,7 +8,6 @@ const { imgURL, title, watchPercent, watchTime } = defineProps([
   "watchPercent",
   "watchTime",
 ]);
-console.log(imgURL, title, watchPercent, watchTime);
 // 判断是否为今天
 function isToday(time: number | Date) {
   if (typeof time === "number") time = new Date(time);

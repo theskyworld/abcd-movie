@@ -1,8 +1,11 @@
-<script setup>
-import { ref } from "vue";
+<script setup lang="ts">
+import { ref, computed } from "vue";
 import VideoShowCard from "@/components/base/videoShowCard/VideoShowCard.vue";
+import { BingeWeeklyProps } from "./types.d.ts";
 
-const datas = ref([{}, {}, {}, {}, {}]);
+const { videoTitles, imgURLs, videoTags, videoEpisodes, videoScores } =
+  defineProps<BingeWeeklyProps>();
+
 const weeks = [
   { date: "周一" },
   { date: "周二" },
@@ -14,6 +17,39 @@ const weeks = [
 ];
 
 const curDay = ref(new Date().getDay());
+
+// 根据接收到的所有的titles等以及curDay,计算出当前的titles
+// 更改curDay可以动态切换当前展示的为哪天的数据
+const curVideoTitles = computed(() =>
+  videoTitles.slice((curDay.value - 1) * 8, curDay.value * 8),
+);
+
+const curImgURLs = computed(() =>
+  imgURLs.slice((curDay.value - 1) * 8, curDay.value * 8),
+);
+
+const curVideoTags = computed(() =>
+  videoTags.slice((curDay.value - 1) * 8, curDay.value * 8),
+);
+
+const curVideoEpisodes = computed(() =>
+  videoEpisodes.slice((curDay.value - 1) * 8, curDay.value * 8),
+);
+
+const curVideoScores = computed(() =>
+  videoScores.slice((curDay.value - 1) * 8, curDay.value * 8),
+);
+
+// 计算当前的8张卡片中每张卡片中的数据,并用于传递给VideoShowCard
+function generateCurVideoShowCardProps(index: number) {
+  return {
+    title: curVideoTitles.value[index],
+    imgURL: curImgURLs.value[index],
+    tag: curVideoTags.value[index],
+    episode: curVideoEpisodes.value[index],
+    score: curVideoScores.value[index],
+  };
+}
 </script>
 
 <template>
@@ -27,6 +63,7 @@ const curDay = ref(new Date().getDay());
           <li
             :class="{ curDay: index + 1 === curDay }"
             v-for="(week, index) in weeks"
+            @click="curDay = index + 1"
             :key="index"
           >
             <span>{{ week.date }}</span>
@@ -35,7 +72,15 @@ const curDay = ref(new Date().getDay());
       </div>
     </div>
     <div class="video-show-card-wrapper">
-      <VideoShowCard v-for="(video, index) in datas" :key="index" />
+      <VideoShowCard
+        v-for="(i, index) in curVideoTitles.length"
+        :key="index"
+        :title="generateCurVideoShowCardProps(index).title"
+        :imgURL="generateCurVideoShowCardProps(index).imgURL"
+        :tag="generateCurVideoShowCardProps(index).tag"
+        :episode="generateCurVideoShowCardProps(index).episode"
+        :score="generateCurVideoShowCardProps(index).score"
+      />
     </div>
   </div>
 </template>

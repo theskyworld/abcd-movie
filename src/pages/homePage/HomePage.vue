@@ -46,10 +46,12 @@ onMounted(() => {
 });
 
 const swiperDatas = ref({});
+const bingeWeeklyDatas: any = ref({});
 
 onBeforeMount(async () => {
   const datas = await getHomePageData();
   swiperDatas.value = datas.items[0];
+  bingeWeeklyDatas.value = datas.items[1];
 });
 </script>
 
@@ -69,7 +71,13 @@ onBeforeMount(async () => {
     <div class="video-shows-wrapper">
       <BingeWatch />
       <HotPlaying />
-      <BingeWeekly />
+      <BingeWeekly
+        :video-titles="bingeWeeklyDatas.videoTitles"
+        :img-URLs="bingeWeeklyDatas.imgURLs"
+        :video-tags="bingeWeeklyDatas.videoTags"
+        :video-episodes="bingeWeeklyDatas.videoEpisodes"
+        :video-scores="bingeWeeklyDatas.videoScores"
+      />
       <BestMoviesInWeek />
       <BestMoviesInMonth />
       <NetflixHot />
