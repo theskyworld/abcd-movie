@@ -9,6 +9,7 @@ import HotPlaying from "@/components/hotPlaying/HotPlaying.vue";
 import HomePageSwiper from "../../components/base/homePageSwiper/HomePageSwiper.vue";
 import BingeWeekly from "@/components/bingeWeekly/BingeWeekly.vue";
 import HotJanpaneseAndKorean from "@/components/hotJanpaneseAndKorean/HotJanpaneseAndKorean.vue";
+import HotEuropeanAndAmerican from "@/components/hotEuropeanAndAmerican/HotEuropeanAndAmerican.vue";
 
 import { ref, onMounted } from "vue";
 
@@ -61,6 +62,7 @@ onMounted(() => {
       <BestMoviesInMonth />
       <NetflixHot />
       <HotJanpaneseAndKorean />
+      <HotEuropeanAndAmerican />
     </div>
   </div>
 </template>
