@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import MovieHome from "@/components/movieHome/MovieHome.vue";
 
 const activedTitle = ref("电影首页");
 </script>
@@ -20,6 +21,9 @@ const activedTitle = ref("电影首页");
       >
         电影库
       </h2>
+    </div>
+    <div class="content-wrapper">
+      <MovieHome />
     </div>
   </div>
 </template>
