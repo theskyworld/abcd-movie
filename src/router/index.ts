@@ -10,6 +10,10 @@ const routes = [
     path: "/netflix",
     component: () => import("@/pages/netflixPage/NetflixPage.vue"),
   },
+  {
+    path: "/movie",
+    component: () => import("@/pages/moviePage/MoviePage.vue"),
+  },
 ];
 
 const router = createRouter({
