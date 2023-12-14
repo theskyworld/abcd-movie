@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import VideoShowCard from "@/components/base/videoShowCard/VideoShowCard.vue";
+import Pagination from "@/components/base/pagination/Pagination.vue";
 import { ref } from "vue";
 
 const datas = ref({
@@ -61,6 +62,9 @@ const datas = ref({
         :score="datas.videoScores[index]"
         is-default
       />
+    </div>
+    <div class="pagination-wrapper">
+      <Pagination />
     </div>
   </div>
 </template>

@@ -55,8 +55,7 @@ onMounted(() => {
     <div class="dynamic-parts-wrapper">
       <router-view />
     </div> -->
-    <!-- <NetflixPage /> -->
-    <Pagination />
+    <NetflixPage />
   </div>
 </template>
 
