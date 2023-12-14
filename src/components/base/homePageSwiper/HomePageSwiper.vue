@@ -29,9 +29,9 @@ const swiperOptions = ref({
   // 循环滑动
   loop: true,
   // 使用分页按钮
-  pagination: {
-    clickable: true,
-  },
+  // pagination: {
+  //   clickable: true,
+  // },
   // 使用导航按钮
   // navigation: true,
   modules: modules.value,
