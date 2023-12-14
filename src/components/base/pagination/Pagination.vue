@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { nextTick, ref, onMounted } from "vue";
+import { nextTick, ref } from "vue";
+import { PaginationProps } from "./types";
 
 let i = 1,
   j = 1;
-const pageCounts = ref(10);
+const { pageCounts } = defineProps<PaginationProps>();
 const curBtnNum = ref(1);
 const spansWrapperElemRef = ref();
 // 每次最多显示6个带数字的按钮,当前显示的按钮中最大的数字为6
@@ -15,7 +16,7 @@ let translateXVal = -30 * 1 - 10 * 1;
 
 async function toNextPage() {
   // 切换页码
-  if (curBtnNum.value < pageCounts.value) {
+  if (curBtnNum.value < pageCounts) {
     curBtnNum.value = curBtnNum.value + 1;
   }
   // 显示下一个隐藏的按钮
@@ -23,10 +24,10 @@ async function toNextPage() {
 
   if (
     curMaxBtnNum.value - curBtnNum.value <= 2 &&
-    curMaxBtnNum.value < pageCounts.value
+    curMaxBtnNum.value < pageCounts
   ) {
     // 更新curMaxBtnNum
-    if (curMaxBtnNum.value < pageCounts.value) {
+    if (curMaxBtnNum.value < pageCounts) {
       curMaxBtnNum.value++;
     }
     spansWrapperElemRef.value.style.transform = `translateX(${translateXVal}px)`;
@@ -70,13 +71,15 @@ async function toFirstPage() {
 
 async function toLastPage() {
   // 切换页码
-  curBtnNum.value = pageCounts.value;
-  curMaxBtnNum.value = pageCounts.value;
-  curMinBtnNum.value = pageCounts.value - 6 + 1;
+  curBtnNum.value = pageCounts;
+  curMaxBtnNum.value = pageCounts;
+  curMinBtnNum.value = pageCounts - 6 + 1;
 
   await nextTick();
 
-  spansWrapperElemRef.value.style.transform = `translateX(-160px)`;
+  spansWrapperElemRef.value.style.transform = `translateX(${
+    (-30 - 10) * (pageCounts - 6)
+  }px)`;
 }
 
 function toTargetPage(num: number) {
