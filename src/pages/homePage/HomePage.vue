@@ -16,34 +16,7 @@ import HotAnime from "@/components/hotAnime/HotAnime.vue";
 import HotVariety from "@/components/hotVariety/HotVariety.vue";
 import getHomePageData from "@/server/getHomePageData.ts";
 
-import { ref, onMounted, onBeforeMount } from "vue";
-
-const homeePageSwiperWrapperRef = ref();
-const homePageContainerRef = ref();
-const navBarWrapperRef = ref();
-
-function intersectionObserverSwiper() {
-  const intersectionObserver = new IntersectionObserver((entries) => {
-    homePageContainerRef.value.onscroll = () => {
-      // 如果swiper元素被滑动到了视口之外
-      if (entries[0].intersectionRatio === 0) {
-        // 将navbar的背景颜色进行添加
-        navBarWrapperRef.value.style.backgroundColor = "#1A1C1F";
-      }
-      // 如果swiper元素被滑动重新进入了视口
-      if (entries[0].intersectionRatio > 0) {
-        // 将navbar的背景颜色去除
-        navBarWrapperRef.value.style.backgroundColor = "";
-      }
-    };
-  });
-
-  intersectionObserver.observe(homeePageSwiperWrapperRef.value);
-}
-
-onMounted(() => {
-  intersectionObserverSwiper();
-});
+import { ref, onBeforeMount } from "vue";
 
 const swiperDatas: any = ref({});
 const bingeWatchDatas: any = ref({});
@@ -78,97 +51,94 @@ onBeforeMount(async () => {
 </script>
 
 <template>
-  <div class="home-page-container" ref="homePageContainerRef">
-    <div class="nav-bar-wrapper" ref="navBarWrapperRef">
-      <NavBar />
-    </div>
-    <Teleport to="body">
-      <div class="side-menus-wrapper">
-        <SideMenus />
+  <div class="home-page-container">
+    <!-- 将以下内容传送至App.vue中指定的容器下 -->
+    <Teleport to=".home-page-swiper-container">
+      <div class="home-page-swiper-wrapper">
+        <HomePageSwiper
+          :img-list="swiperDatas.imgURLs"
+          :video-titles="swiperDatas.videoTitles"
+          :video-tags="swiperDatas.videoTags"
+        />
       </div>
     </Teleport>
-    <div class="home-page-swiper-wrapper" ref="homeePageSwiperWrapperRef">
-      <HomePageSwiper
-        :img-list="swiperDatas.imgURLs"
-        :video-titles="swiperDatas.videoTitles"
-        :video-tags="swiperDatas.videoTags"
-      />
-    </div>
-    <div class="video-shows-wrapper">
-      <BingeWatch
-        :video-titles="bingeWatchDatas.videoTitles"
-        :img-URLs="bingeWatchDatas.imgURLs"
-        :video-tags="bingeWatchDatas.videoTags"
-        :video-scores="bingeWatchDatas.videoScores"
-      />
-      <HotPlaying
-        :video-titles="hotPlayingDatas.videoTitles"
-        :img-URLs="hotPlayingDatas.imgURLs"
-        :video-tags="hotPlayingDatas.videoTags"
-        :video-scores="hotPlayingDatas.videoScores"
-      />
-      <BingeWeekly
-        :video-titles="bingeWeeklyDatas.videoTitles"
-        :img-URLs="bingeWeeklyDatas.imgURLs"
-        :video-tags="bingeWeeklyDatas.videoTags"
-        :video-episodes="bingeWeeklyDatas.videoEpisodes"
-        :video-scores="bingeWeeklyDatas.videoScores"
-      />
-      <BestMoviesInWeek
-        :video-titles="bestMoviesInWeekDatas.videoTitles"
-        :img-URLs="bestMoviesInWeekDatas.imgURLs"
-        :video-tags="bestMoviesInWeekDatas.videoTags"
-        :video-scores="bestMoviesInWeekDatas.videoScores"
-      />
-      <BestMoviesInMonth
-        :video-titles="bestMoviesInMonthDatas.videoTitles"
-        :img-URLs="bestMoviesInMonthDatas.imgURLs"
-        :video-tags="bestMoviesInMonthDatas.videoTags"
-        :video-scores="bestMoviesInMonthDatas.videoScores"
-      />
-      <NetflixHot
-        :video-titles="netflixHotDatas.videoTitles"
-        :img-URLs="netflixHotDatas.imgURLs"
-        :video-episodes="netflixHotDatas.videoEpisodes"
-        :video-scores="netflixHotDatas.videoScores"
-      />
-      <HotJanpaneseAndKorean
-        :video-titles="hotJanpaneseAndKoreanDatas.videoTitles"
-        :img-URLs="hotJanpaneseAndKoreanDatas.imgURLs"
-        :video-episodes="hotJanpaneseAndKoreanDatas.videoEpisodes"
-        :video-scores="hotJanpaneseAndKoreanDatas.videoScores"
-      />
-      <HotEuropeanAndAmerican
-        :video-titles="hotEuropeanAndAmericanDatas.videoTitles"
-        :img-URLs="hotEuropeanAndAmericanDatas.imgURLs"
-        :video-episodes="hotEuropeanAndAmericanDatas.videoEpisodes"
-        :video-scores="hotEuropeanAndAmericanDatas.videoScores"
-      />
-      <HotHongKongAndTaiwan
-        :video-titles="hotHongKongAndTaiwanDatas.videoTitles"
-        :img-URLs="hotHongKongAndTaiwanDatas.imgURLs"
-        :video-episodes="hotHongKongAndTaiwanDatas.videoEpisodes"
-        :video-scores="hotHongKongAndTaiwanDatas.videoScores"
-      />
-      <HotTVSeries
-        :video-titles="hotTVSeriesDatas.videoTitles"
-        :img-URLs="hotTVSeriesDatas.imgURLs"
-        :video-episodes="hotTVSeriesDatas.videoEpisodes"
-        :video-scores="hotTVSeriesDatas.videoScores"
-      />
-      <HotAnime
-        :video-titles="hotAnimeDatas.videoTitles"
-        :img-URLs="hotAnimeDatas.imgURLs"
-        :video-episodes="hotAnimeDatas.videoEpisodes"
-        :video-scores="hotAnimeDatas.videoScores"
-      />
-      <HotVariety
-        :video-titles="hotVarietyDatas.videoTitles"
-        :img-URLs="hotVarietyDatas.imgURLs"
-        :video-episodes="hotVarietyDatas.videoEpisodes"
-        :video-scores="hotVarietyDatas.videoScores"
-      />
-    </div>
+    <Teleport to=".video-shows-container">
+      <div class="video-shows-wrapper">
+        <BingeWatch
+          :video-titles="bingeWatchDatas.videoTitles"
+          :img-URLs="bingeWatchDatas.imgURLs"
+          :video-tags="bingeWatchDatas.videoTags"
+          :video-scores="bingeWatchDatas.videoScores"
+        />
+        <HotPlaying
+          :video-titles="hotPlayingDatas.videoTitles"
+          :img-URLs="hotPlayingDatas.imgURLs"
+          :video-tags="hotPlayingDatas.videoTags"
+          :video-scores="hotPlayingDatas.videoScores"
+        />
+        <BingeWeekly
+          :video-titles="bingeWeeklyDatas.videoTitles"
+          :img-URLs="bingeWeeklyDatas.imgURLs"
+          :video-tags="bingeWeeklyDatas.videoTags"
+          :video-episodes="bingeWeeklyDatas.videoEpisodes"
+          :video-scores="bingeWeeklyDatas.videoScores"
+        />
+        <BestMoviesInWeek
+          :video-titles="bestMoviesInWeekDatas.videoTitles"
+          :img-URLs="bestMoviesInWeekDatas.imgURLs"
+          :video-tags="bestMoviesInWeekDatas.videoTags"
+          :video-scores="bestMoviesInWeekDatas.videoScores"
+        />
+        <BestMoviesInMonth
+          :video-titles="bestMoviesInMonthDatas.videoTitles"
+          :img-URLs="bestMoviesInMonthDatas.imgURLs"
+          :video-tags="bestMoviesInMonthDatas.videoTags"
+          :video-scores="bestMoviesInMonthDatas.videoScores"
+        />
+        <NetflixHot
+          :video-titles="netflixHotDatas.videoTitles"
+          :img-URLs="netflixHotDatas.imgURLs"
+          :video-episodes="netflixHotDatas.videoEpisodes"
+          :video-scores="netflixHotDatas.videoScores"
+        />
+        <HotJanpaneseAndKorean
+          :video-titles="hotJanpaneseAndKoreanDatas.videoTitles"
+          :img-URLs="hotJanpaneseAndKoreanDatas.imgURLs"
+          :video-episodes="hotJanpaneseAndKoreanDatas.videoEpisodes"
+          :video-scores="hotJanpaneseAndKoreanDatas.videoScores"
+        />
+        <HotEuropeanAndAmerican
+          :video-titles="hotEuropeanAndAmericanDatas.videoTitles"
+          :img-URLs="hotEuropeanAndAmericanDatas.imgURLs"
+          :video-episodes="hotEuropeanAndAmericanDatas.videoEpisodes"
+          :video-scores="hotEuropeanAndAmericanDatas.videoScores"
+        />
+        <HotHongKongAndTaiwan
+          :video-titles="hotHongKongAndTaiwanDatas.videoTitles"
+          :img-URLs="hotHongKongAndTaiwanDatas.imgURLs"
+          :video-episodes="hotHongKongAndTaiwanDatas.videoEpisodes"
+          :video-scores="hotHongKongAndTaiwanDatas.videoScores"
+        />
+        <HotTVSeries
+          :video-titles="hotTVSeriesDatas.videoTitles"
+          :img-URLs="hotTVSeriesDatas.imgURLs"
+          :video-episodes="hotTVSeriesDatas.videoEpisodes"
+          :video-scores="hotTVSeriesDatas.videoScores"
+        />
+        <HotAnime
+          :video-titles="hotAnimeDatas.videoTitles"
+          :img-URLs="hotAnimeDatas.imgURLs"
+          :video-episodes="hotAnimeDatas.videoEpisodes"
+          :video-scores="hotAnimeDatas.videoScores"
+        />
+        <HotVariety
+          :video-titles="hotVarietyDatas.videoTitles"
+          :img-URLs="hotVarietyDatas.imgURLs"
+          :video-episodes="hotVarietyDatas.videoEpisodes"
+          :video-scores="hotVarietyDatas.videoScores"
+        />
+      </div>
+    </Teleport>
   </div>
 </template>
 
