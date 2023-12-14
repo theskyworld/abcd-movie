@@ -7,4 +7,5 @@ export interface VideoShowCardProps {
   isRow?: boolean;
   isDefault?: boolean;
   isColumn?: boolean;
+  rank?: number;
 }

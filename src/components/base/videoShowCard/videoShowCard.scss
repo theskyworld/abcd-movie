@@ -19,6 +19,23 @@
         transform: scale(1.1);
       }
     }
+    .rank {
+      width: 30px;
+      height: 50px;
+      border-radius: 5px;
+      // 旋转45度
+      transform: rotate(45deg) translate(-15px, 7px);
+      position: absolute;
+      left: 5px;
+      top: 3px;
+      font-size: 1.7em;
+      font-weight: 800;
+      color: #ffffff;
+      p {
+        // 反向旋转45度
+        transform: rotate(-45deg) translate(26px, -16px);
+      }
+    }
 
     .label {
       position: absolute;
@@ -75,6 +92,6 @@
 }
 
 .default {
-  width : 180px;
-  height : 260px;
+  width: 180px;
+  height: 260px;
 }
