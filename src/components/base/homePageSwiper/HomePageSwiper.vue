@@ -49,6 +49,7 @@ const onSwiper = (swiper: any) => {
   swiperInstance = swiper;
 };
 
+// 因为遍历时的index从0-1-2-3-...-8，而swiper的index从1-2-3...-0，所以需要对index进行额外处理，得到正确的i在swiper中使用
 function formatIndex(index: number) {
   if (index === 0) {
     return 1;
