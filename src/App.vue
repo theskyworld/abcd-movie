@@ -3,6 +3,7 @@ import NavBar from "@/components/navBar/NavBar.vue";
 import SideMenus from "@/components/base/sideMenus/SideMenus.vue";
 import { ref, onMounted } from "vue";
 import NetflixPage from "./pages/netflixPage/NetflixPage.vue";
+import Pagination from "@/components/base/pagination/Pagination.vue";
 
 const homePageSwiperContainerRef = ref();
 const fromHomePageRef = ref();
@@ -54,7 +55,8 @@ onMounted(() => {
     <div class="dynamic-parts-wrapper">
       <router-view />
     </div> -->
-    <NetflixPage />
+    <!-- <NetflixPage /> -->
+    <Pagination />
   </div>
 </template>
 
