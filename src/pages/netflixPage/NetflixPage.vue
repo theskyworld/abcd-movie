@@ -2,11 +2,11 @@
 import VideoShowCard from "@/components/base/videoShowCard/VideoShowCard.vue";
 import Pagination from "@/components/base/pagination/Pagination.vue";
 import getNetflixPageData from "@/server/getNetflixPageData.ts";
-import { ref, onBeforeMount } from "vue";
+import { ref, onBeforeMount, Ref } from "vue";
 
 const datas = ref([]);
 onBeforeMount(async () => {
-  datas.value = await getNetflixPageData();
+  datas.value = await getNetflixPageData(1);
 });
 </script>
 <template>
@@ -27,7 +27,14 @@ onBeforeMount(async () => {
       />
     </div>
     <div class="pagination-wrapper">
-      <Pagination />
+      <Pagination
+        :page-counts="30"
+        @getTargetPageData="
+          async (page: Ref<number>) => {
+            datas = await getNetflixPageData(page.value);
+          }
+        "
+      />
     </div>
   </div>
 </template>

@@ -1,18 +1,17 @@
 <script setup lang="ts">
-import { nextTick, ref } from "vue";
+import { nextTick, ref, watchEffect } from "vue";
 import { PaginationProps } from "./types";
 
 let i = 1,
   j = 1;
 const { pageCounts } = defineProps<PaginationProps>();
+const emits = defineEmits(["getTargetPageData"]);
 const curBtnNum = ref(1);
 const spansWrapperElemRef = ref();
 // 每次最多显示6个带数字的按钮,当前显示的按钮中最大的数字为6
 const curMaxBtnNum = ref(6);
 const curMinBtnNum = ref(1);
 let translateXVal = -30 * 1 - 10 * 1;
-
-// let toNextPage;
 
 async function toNextPage() {
   // 切换页码
@@ -86,6 +85,10 @@ function toTargetPage(num: number) {
   // 切换页码
   curBtnNum.value = num;
 }
+
+watchEffect(() => {
+  emits("getTargetPageData", curBtnNum);
+});
 </script>
 <template>
   <div class="pagination-container">
