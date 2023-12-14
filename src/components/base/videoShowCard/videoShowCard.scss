@@ -1,6 +1,4 @@
 .video-show-card-container {
-  min-width: 210px;
-  height : 356px;
   color: var(--color-main);
 
   .img-wrapper {
@@ -69,4 +67,14 @@
 .row {
   min-width: 270px;
   height: 200px;
+}
+
+.column {
+  min-width: 210px;
+  height: 356px;
+}
+
+.default {
+  width : 180px;
+  height : 260px;
 }

@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { VideoShowCardProps } from "./types";
-const { title, imgURL, tag, score, episode, isRow } =
+const { title, imgURL, tag, score, episode, isRow, isColumn, isDefault } =
   defineProps<VideoShowCardProps>();
 </script>
 <template>
-  <div class="video-show-card-container" :class="{ row: isRow }">
+  <div
+    class="video-show-card-container"
+    :class="{ row: isRow, column: isColumn, default: isDefault }"
+  >
     <div class="img-wrapper">
       <img :src="imgURL" :alt="title" />
       <span class="label" v-if="tag">{{ tag }}</span>
