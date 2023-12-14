@@ -119,6 +119,7 @@ function hideHiddenCards() {
         :tag="generateCurVideoShowCardProps(index).tag"
         :episode="generateCurVideoShowCardProps(index).episode"
         :score="generateCurVideoShowCardProps(index).score"
+        is-column
       />
     </div>
   </div>

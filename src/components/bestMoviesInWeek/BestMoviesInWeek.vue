@@ -55,6 +55,7 @@ function hideHiddenCards() {
         :imgURL="imgURLs[index]"
         :tag="videoTags[index]"
         :score="videoScores[index]"
+        is-column
       />
     </div>
   </div>
