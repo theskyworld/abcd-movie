@@ -59,11 +59,19 @@ function formatIndex(index: number) {
     return index + 1;
   }
 }
+
+// 每次卡片进行切换时，将当前卡片的真实index(swiper.realIndex，0-1-2-3...-8)赋值给curSlideindex
+const curSlideindex = ref(0);
 </script>
 <template>
   <div class="home-page-swiper-container">
     <div class="swiper-wrapper">
-      <Swiper v-bind="swiperOptions" class="mySwiper" @swiper="onSwiper">
+      <Swiper
+        v-bind="swiperOptions"
+        class="mySwiper"
+        @swiper="onSwiper"
+        @slide-change="(swiper) => (curSlideindex = swiper.realIndex)"
+      >
         <swiper-slide v-for="(img, index) in bigImgURLs" :key="index">
           <h2 class="video-title">{{ videoTitles[index] }}</h2>
           <img :src="img" :alt="videoTitles[index]" />
@@ -81,7 +89,7 @@ function formatIndex(index: number) {
         }
       "
     >
-      <div class="img-wrapper">
+      <div class="img-wrapper" :class="{ active: index === curSlideindex }">
         <img :src="img" alt="" />
       </div>
       <div class="video-info-wrapper">
