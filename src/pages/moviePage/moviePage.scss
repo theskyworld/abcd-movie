@@ -45,6 +45,8 @@
       font-size: 1.9em;
       font-weight: 700;
 
+      cursor: pointer;
+
       &.active::after {
         display: block;
         content: "";
@@ -67,5 +69,4 @@
       transform: translateY(3px);
     }
   }
-
 }
