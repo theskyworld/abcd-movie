@@ -4,6 +4,7 @@ import SideMenus from "@/components/base/sideMenus/SideMenus.vue";
 import { ref, onMounted } from "vue";
 import NetflixPage from "./pages/netflixPage/NetflixPage.vue";
 import Pagination from "@/components/base/pagination/Pagination.vue";
+import MovieSelectors from "@/components/base/movieSelectors/MovieSelectors.vue";
 
 const homePageSwiperContainerRef = ref();
 const fromHomePageRef = ref();
@@ -29,14 +30,14 @@ function intersectionObserverSwiper() {
 }
 
 onMounted(() => {
-  intersectionObserverSwiper();
+  // intersectionObserverSwiper();
 });
 </script>
 
 <template>
   <router-link to="/" />
 
-  <div class="app-container">
+  <!-- <div class="app-container">
     <div class="static-parts-wrapper">
       <div class="from-home-page" ref="fromHomePageRef">
         <div
@@ -55,7 +56,8 @@ onMounted(() => {
     <div class="dynamic-parts-wrapper">
       <router-view />
     </div>
-  </div>
+  </div> -->
+  <MovieSelectors />
 </template>
 
 <style scoped lang="scss">
