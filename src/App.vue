@@ -2,6 +2,7 @@
 import NavBar from "@/components/navBar/NavBar.vue";
 import SideMenus from "@/components/base/sideMenus/SideMenus.vue";
 import { ref, onMounted } from "vue";
+import NetflixPage from "./pages/netflixPage/NetflixPage.vue";
 
 const homePageSwiperContainerRef = ref();
 const fromHomePageRef = ref();
@@ -35,7 +36,7 @@ onMounted(() => {
   <router-link to="/" />
 
   <div class="app-container">
-    <div class="static-parts-wrapper">
+    <!-- <div class="static-parts-wrapper">
       <div class="from-home-page" ref="fromHomePageRef">
         <div
           class="home-page-swiper-container"
@@ -52,7 +53,8 @@ onMounted(() => {
     </div>
     <div class="dynamic-parts-wrapper">
       <router-view />
-    </div>
+    </div> -->
+    <NetflixPage />
   </div>
 </template>
 
