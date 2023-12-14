@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import VideoShowCard from "@/components/base/videoShowCard/VideoShowCard.vue";
 import getMovieHomeData from "@/server/getMovieHomeData.ts";
-import { ref, onBeforeMount } from "vue";
+import { ref, onBeforeMount, computed, reactive } from "vue";
 
 interface Data {
   videoTitles: string[];
@@ -15,12 +15,56 @@ const homeDatas = ref<Data>();
 const newDatas = ref<Data>();
 const rankDatas = ref<Data>();
 const updateDatas = ref<Data>();
+const dayRankDatas = ref<Data>();
+const weekRankDatas = ref<Data>();
+const monthRankDatas = ref<Data>();
+const curRank = ref("日榜");
 
+const curRankDatas = computed(() => {
+  switch (curRank.value) {
+    case "日榜":
+      return dayRankDatas.value;
+    case "周榜":
+      return weekRankDatas.value;
+    case "月榜":
+      return monthRankDatas.value;
+    default:
+      return dayRankDatas.value;
+  }
+});
 onBeforeMount(async () => {
   const datas = await getMovieHomeData();
   homeDatas.value = datas[0];
   newDatas.value = datas[1];
   rankDatas.value = datas[2];
+  dayRankDatas.value = {
+    videoTitles: rankDatas.value!.videoTitles.slice(0, 12),
+    imgURLs: rankDatas.value!.imgURLs.slice(0, 12),
+    videoTags: rankDatas.value?.videoTags!.slice(0, 12),
+  };
+  weekRankDatas.value = {
+    videoTitles: rankDatas.value!.videoTitles.slice(12, 24),
+    imgURLs: rankDatas.value!.imgURLs.slice(12, 24),
+    videoTags: rankDatas.value?.videoTags!.slice(12, 24),
+  };
+  monthRankDatas.value = {
+    videoTitles: rankDatas.value!.videoTitles.slice(24, 36),
+    imgURLs: rankDatas.value!.imgURLs.slice(24, 36),
+    videoTags: rankDatas.value?.videoTags!.slice(24, 36),
+  };
+  // curRankDatas.value = computed(() => {
+  //   switch (curRank.value) {
+  //     case "日榜":
+  //       return dayRankDatas.value;
+  //     case "周榜":
+  //       return weekRankDatas.value;
+  //     case "月榜":
+  //       return monthRankDatas.value;
+  //     default:
+  //       return dayRankDatas.value;
+  //   }
+  // });
+
   updateDatas.value = datas[3];
 });
 </script>
@@ -52,14 +96,33 @@ onBeforeMount(async () => {
       </div>
     </div>
     <div class="rank-wrapper">
-      <h3>排行榜</h3>
+      <div class="title-wrapper">
+        <h3>排行榜</h3>
+        <div class="ranks-select-wrapper">
+          <span
+            :class="{ curRank: curRank === '日榜' }"
+            @click="curRank = '日榜'"
+            >日榜</span
+          >
+          <span
+            :class="{ curRank: curRank === '周榜' }"
+            @click="curRank = '周榜'"
+            >周榜</span
+          >
+          <span
+            :class="{ curRank: curRank === '月榜' }"
+            @click="curRank = '月榜'"
+            >月榜</span
+          >
+        </div>
+      </div>
       <div class="video-show-card-wrapper">
         <VideoShowCard
-          v-for="(i, index) in rankDatas?.videoTitles.length"
+          v-for="(i, index) in curRankDatas?.videoTitles.length"
           :key="index"
-          :title="rankDatas!.videoTitles[index]"
-          :imgURL="rankDatas!.imgURLs[index]"
-          :tag="rankDatas!.videoTags![index]"
+          :title="curRankDatas!.videoTitles[index]"
+          :imgURL="curRankDatas!.imgURLs[index]"
+          :videoTags="curRankDatas!.videoTags![index]"
           is-default
         />
       </div>
