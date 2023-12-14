@@ -37,7 +37,7 @@ onMounted(() => {
   <router-link to="/" />
 
   <div class="app-container">
-    <!-- <div class="static-parts-wrapper">
+    <div class="static-parts-wrapper">
       <div class="from-home-page" ref="fromHomePageRef">
         <div
           class="home-page-swiper-container"
@@ -54,8 +54,7 @@ onMounted(() => {
     </div>
     <div class="dynamic-parts-wrapper">
       <router-view />
-    </div> -->
-    <NetflixPage />
+    </div>
   </div>
 </template>
 
@@ -119,15 +118,9 @@ onMounted(() => {
 }
 
 .dynamic-parts-wrapper {
-  // width: 1228px;
-  // height: 615px;
-  width: max-content;
-  height: max-content;
   position: absolute;
   left: 170px;
   top: 70px;
-  overflow-y: auto;
-  overflow-x: hidden;
-  @include scroll();
+  z-index: 10;
 }
 </style>
