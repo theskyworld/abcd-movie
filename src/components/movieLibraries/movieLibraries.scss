@@ -30,6 +30,7 @@
   height: 615px;
   color: var(--color-main);
   overflow-y: auto;
+  overflow-x: hidden;
   @include scroll();
   .video-show-card-wrapper {
     width: 100%;

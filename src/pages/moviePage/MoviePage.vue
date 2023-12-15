@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import MovieHome from "@/components/movieHome/MovieHome.vue";
+import MovieLibraries from "@/components/movieLibraries/MovieLibraries.vue";
 
 const activedTitle = ref("电影首页");
 </script>
@@ -23,7 +24,8 @@ const activedTitle = ref("电影首页");
       </h2>
     </div>
     <div class="content-wrapper">
-      <MovieHome />
+      <MovieHome v-if="activedTitle === '电影首页'" />
+      <MovieLibraries v-else />
     </div>
   </div>
 </template>
