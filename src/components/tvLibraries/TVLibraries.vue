@@ -2,7 +2,7 @@
 import TVSelectors from "@/components/base/tvSelectors/TVSelectors.vue";
 import VideoShowCard from "@/components/base/videoShowCard/VideoShowCard.vue";
 import { ref, watchEffect } from "vue";
-import getMovieLibrariesData from "@/server/getMovieLibrariesData.ts";
+import getTVLibrariesData from "@/server/getTVLibrariesData.ts";
 
 const page = ref(1);
 const kws = ref([
@@ -19,7 +19,7 @@ function changeKws(newKws: Array<any>) {
 }
 
 watchEffect(async () => {
-  datas.value = await getMovieLibrariesData(page.value, kws.value);
+  datas.value = await getTVLibrariesData(page.value);
 });
 </script>
 <template>
@@ -34,7 +34,7 @@ watchEffect(async () => {
         :title="datas[0][index]"
         :imgURL="datas[1][index]"
         :score="datas[2][index]"
-        :tag="datas[3][index]"
+        :episode="datas[3][index]"
         is-default
       />
     </div>
