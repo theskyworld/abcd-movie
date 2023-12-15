@@ -1,19 +1,31 @@
 <script setup lang="ts">
 import MovieSelectors from "@/components/base/movieSelectors/MovieSelectors.vue";
 import VideoShowCard from "@/components/base/videoShowCard/VideoShowCard.vue";
-import { ref, onBeforeMount } from "vue";
+import { ref, onBeforeMount, watchEffect } from "vue";
 import getMovieLibrariesData from "@/server/getMovieLibrariesData.ts";
 
 const page = ref(1);
-const datas = ref([]);
-onBeforeMount(async () => {
-  datas.value = await getMovieLibrariesData(page.value);
+const kws = ref([
+  "undefined",
+  "undefined",
+  "undefined",
+  "undefined",
+  "undefined",
+]);
+const datas = ref<any>([]);
+
+function changeKws(newKws: Array<any>) {
+  kws.value = newKws;
+}
+
+watchEffect(async () => {
+  datas.value = await getMovieLibrariesData(page.value, kws.value);
 });
 </script>
 <template>
   <div class="movie-libraries-container">
     <div class="movie-selectors-wrapper">
-      <MovieSelectors />
+      <MovieSelectors @doChangeKws="changeKws" />
     </div>
     <div class="video-show-card-wrapper">
       <VideoShowCard

@@ -2,6 +2,62 @@
 import { ref } from "vue";
 
 const thisYear = new Date().getFullYear();
+const kws = ref<Array<string | number>>([
+  "undefined",
+  "undefined",
+  "undefined",
+  "undefined",
+  "undefined",
+]);
+const selectedItems = ref<any>([]);
+const emits = defineEmits(["doChangeKws"]);
+
+// 存储每次点击选择器按钮之后的值，避免丢失之前的已点击值
+function addNewItems(index: number, newItem: string | number) {
+  selectedItems.value.push({ index, newItem });
+}
+
+// 纠正newItem和index，用于拼接合法的请求url
+function correctNewItem(newItem: string | number) {
+  switch (newItem) {
+    case "时间排序":
+      return "time";
+    case "人气排序":
+      return "hit";
+    case "评分排序":
+      return "score";
+    default:
+      return newItem;
+  }
+}
+
+function correctIndex(index: number) {
+  switch (index) {
+    case 0:
+      return 2;
+    case 1:
+      return 0;
+    case 2:
+      return 3;
+    case 3:
+      return 4;
+    case 4:
+      return 1;
+    default:
+      break;
+  }
+}
+
+// 点击选择器按钮后对kws进行更新，确保更新之后之前选择的内容依旧存在
+function addNewItemToKws() {
+  selectedItems.value.forEach((elem) => {
+    let index = elem.index;
+    index = correctIndex(index);
+    let newItem = elem.newItem;
+    newItem = correctNewItem(newItem);
+    kws.value[index] = newItem;
+  });
+}
 
 const movieSelectors = ref([
   {
@@ -326,7 +382,10 @@ function changeActiveItems(newItem, deleteIndex) {
         <li class="items" v-for="item in selector.content" :key="item.key">
           <span
             @click="
-              changeActiveItems(item.name, movieSelectors.indexOf(selector))
+              changeActiveItems(item.name, movieSelectors.indexOf(selector));
+              addNewItems(movieSelectors.indexOf(selector), item.name);
+              addNewItemToKws();
+              $emit('doChangeKws', kws);
             "
             :class="{
               active:
