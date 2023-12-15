@@ -1,0 +1,16 @@
+.netflix-page-skeleton-container {
+  width: 1228px;
+  height: 615px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  .video-show-card-wrapper {
+    margin : {
+      bottom: 20px;
+    }
+    .img {
+      margin : {
+        bottom: 10px;
+      }
+    }
+  }
+}

@@ -5,8 +5,10 @@ import getNetflixPageData from "@/server/getNetflixPageData.ts";
 import { ref, onBeforeMount, Ref } from "vue";
 
 const datas = ref([]);
+const isLoading = ref(true);
 onBeforeMount(async () => {
   datas.value = await getNetflixPageData(1);
+  isLoading.value = false;
 });
 </script>
 <template>
@@ -15,7 +17,7 @@ onBeforeMount(async () => {
       <h2>Netflix美剧</h2>
       <div class="placeholder"></div>
     </div>
-    <div class="video-show-card-wrapper">
+    <div class="video-show-card-wrapper" v-loading="isLoading">
       <VideoShowCard
         v-for="(i, index) in datas.videoTitles"
         :key="index"
