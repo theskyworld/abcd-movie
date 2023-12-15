@@ -1,0 +1,19 @@
+.loading-container {
+  width: max-content;
+  max-width: 300px;
+  height: 100px;
+  /* 让Loading基于其目标渲染元素进行水平和垂直居中布局，需要父元素为flex布局 */
+  /* https://juejin.cn/post/7202501888615399480#heading-14 */
+  align-self: center;
+  margin: auto;
+
+  .content-wrapper {
+    text-align: center;
+    width: max-content;
+    .title {
+      line-height: 20px;
+      font-size: 0.7em;
+      color: #cccccc;
+    }
+  }
+}
