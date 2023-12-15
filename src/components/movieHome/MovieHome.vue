@@ -33,6 +33,8 @@ const curRankDatas = computed(() => {
   }
 });
 
+const isLoading = ref(true);
+
 // 需要存在顶级await时才可以使用Suspense组件来实现骨架屏的加载，且不能在v-if或者v-show时使用
 onBeforeMount(async () => {
   const datas = await getMovieHomeData();
@@ -68,11 +70,12 @@ onBeforeMount(async () => {
   // });
 
   updateDatas.value = datas[3];
+  isLoading.value = false;
 });
 </script>
 <template>
   <div class="movie-home-container">
-    <div class="home-wrapper">
+    <div class="home-wrapper" v-loading="isLoading">
       <VideoShowCard
         v-for="(i, index) in homeDatas?.videoTitles.length"
         :key="index"
