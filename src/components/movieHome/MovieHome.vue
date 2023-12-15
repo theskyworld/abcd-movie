@@ -32,6 +32,8 @@ const curRankDatas = computed(() => {
       return dayRankDatas.value;
   }
 });
+
+// 需要存在顶级await时才可以使用Suspense组件来实现骨架屏的加载，且不能在v-if或者v-show时使用
 onBeforeMount(async () => {
   const datas = await getMovieHomeData();
   homeDatas.value = datas[0];
