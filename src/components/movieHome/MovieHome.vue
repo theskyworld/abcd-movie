@@ -127,7 +127,7 @@ onBeforeMount(async () => {
           :key="index"
           :title="curRankDatas!.videoTitles[index]"
           :imgURL="curRankDatas!.imgURLs[index]"
-          :videoTags="curRankDatas!.videoTags![index]"
+          :tag="curRankDatas!.videoTags![index]"
           :rank="index + 1"
           is-default
         />
