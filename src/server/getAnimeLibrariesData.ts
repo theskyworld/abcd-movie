@@ -1,9 +1,14 @@
 import { get } from "./base";
 
-export default function getAnimeLibrariesData(page: number) {
+export default function getAnimeLibrariesData(
+  page: number,
+  kws: Array<string>,
+) {
   // console.log(`/api/anime/anime-libraries?page=${page}&kws=${kws}`);
 
-  return get(`/api/anime/anime-libraries?page=${page}`).then((res) => {
-    return res.data.items;
-  });
+  return get(`/api/anime/anime-libraries?page=${page}&kws=${kws}`).then(
+    (res) => {
+      return res.data.items;
+    },
+  );
 }
