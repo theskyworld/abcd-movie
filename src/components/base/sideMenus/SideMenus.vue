@@ -30,7 +30,7 @@ const sideBarMenus = ref([
     key: "005",
     name: "动漫",
     icon: "#icon-dongman",
-    targetUrl: "/comic",
+    targetUrl: "/anime",
   },
   {
     key: "006",
