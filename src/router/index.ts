@@ -14,6 +14,10 @@ const routes = [
     path: "/movie",
     component: () => import("@/pages/moviePage/MoviePage.vue"),
   },
+  {
+    path: "/tv",
+    component: () => import("@/pages/tvPage/tvPage.vue"),
+  },
 ];
 
 const router = createRouter({
