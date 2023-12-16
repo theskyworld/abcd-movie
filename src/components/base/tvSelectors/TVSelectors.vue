@@ -23,7 +23,7 @@ function correctNewItem(newItem: string | number) {
     case "时间排序":
       return "time";
     case "人气排序":
-      return "hit";
+      return "hits";
     case "评分排序":
       return "score";
     default:
@@ -34,15 +34,15 @@ function correctNewItem(newItem: string | number) {
 function correctIndex(index: number) {
   switch (index) {
     case 0:
-      return 2;
-    case 1:
       return 0;
-    case 2:
+    case 1:
       return 3;
+    case 2:
+      return 1;
     case 3:
       return 4;
     case 4:
-      return 1;
+      return 2;
     default:
       break;
   }
@@ -232,67 +232,6 @@ const tvSelectors = ref([
       {
         key: "15",
         name: "巴西",
-      },
-    ],
-  },
-  {
-    title: "语言",
-    content: [
-      {
-        key: "1",
-        name: "全部",
-      },
-      {
-        key: "2",
-        name: "英语",
-      },
-      {
-        key: "3",
-        name: "法语",
-      },
-      {
-        key: "4",
-        name: "国语",
-      },
-      {
-        key: "5",
-        name: "粤语",
-      },
-      {
-        key: "6",
-        name: "日语",
-      },
-      {
-        key: "7",
-        name: "韩语",
-      },
-      {
-        key: "8",
-        name: "泰语",
-      },
-      {
-        key: "9",
-        name: "德语",
-      },
-      {
-        key: "10",
-        name: "俄语",
-      },
-      {
-        key: "11",
-        name: "闽南语",
-      },
-      {
-        key: "12",
-        name: "丹麦语",
-      },
-      {
-        key: "13",
-        name: "波兰语",
-      },
-      {
-        key: "14",
-        name: "瑞典语",
       },
     ],
   },

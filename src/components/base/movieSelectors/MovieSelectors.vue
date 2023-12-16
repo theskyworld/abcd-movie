@@ -23,7 +23,7 @@ function correctNewItem(newItem: string | number) {
     case "时间排序":
       return "time";
     case "人气排序":
-      return "hit";
+      return "hits";
     case "评分排序":
       return "score";
     default:
