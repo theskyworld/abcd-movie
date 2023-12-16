@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
+// TODO 添加在因更换选择条件而进行网络请求时，在请求过程中添加遮罩loading状态等，避免多次请求导致页面卡顿
+
 const thisYear = new Date().getFullYear();
 const kws = ref<Array<string | number>>([
   "undefined",

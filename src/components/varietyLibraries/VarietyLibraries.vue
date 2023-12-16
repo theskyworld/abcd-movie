@@ -2,7 +2,7 @@
 import VarietySelectors from "@/components/base/varietySelectors/VarietySelectors.vue";
 import VideoShowCard from "@/components/base/videoShowCard/VideoShowCard.vue";
 import { ref, onBeforeMount, watchEffect } from "vue";
-import getAnimeLibrariesData from "@/server/getAnimeLibrariesData.ts";
+import getVarietyLibrariesData from "@/server/getVarietyLibrariesData.ts";
 
 const page = ref(1);
 const kws = ref([
@@ -19,7 +19,7 @@ function changeKws(newKws: Array<any>) {
 }
 
 watchEffect(async () => {
-  datas.value = await getAnimeLibrariesData(page.value, kws.value);
+  datas.value = await getVarietyLibrariesData(page.value, kws.value);
 });
 </script>
 <template>
