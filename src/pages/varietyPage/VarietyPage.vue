@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import VarietyHome from "@/components/varietyHome/VarietyHome.vue";
+import VarietyLibraries from "@/components/varietyLibraries/VarietyLibraries.vue";
 import { ref } from "vue";
 const activedTitle = ref("综艺首页");
 </script>
@@ -23,7 +24,7 @@ const activedTitle = ref("综艺首页");
     </div>
     <div class="content-wrapper">
       <VarietyHome v-if="activedTitle === '综艺首页'" />
-      <!-- <MovieLibraries v-else /> -->
+      <VarietyLibraries v-else />
     </div>
   </div>
 </template>
