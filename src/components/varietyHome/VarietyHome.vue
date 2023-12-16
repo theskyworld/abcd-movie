@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import VideoShowCard from "@/components/base/videoShowCard/VideoShowCard.vue";
-import getMovieHomeData from "@/server/getMovieHomeData.ts";
+import getVarietyHomeData from "@/server/getVarietyHomeData.ts";
 import { ref, onBeforeMount, computed, reactive } from "vue";
 
 interface Data {
   videoTitles: string[];
   imgURLs: string[];
-  videoTags?: string[];
-  videoScores?: string[];
   videoEpisodes?: string[];
+  videoScores?: string[];
+  videoTags?: string[];
 }
 
 const homeDatas = ref<Data>();
@@ -37,24 +37,24 @@ const isLoading = ref(true);
 
 // 需要存在顶级await时才可以使用Suspense组件来实现骨架屏的加载，且不能在v-if或者v-show时使用
 onBeforeMount(async () => {
-  const datas = await getMovieHomeData();
+  const datas = await getVarietyHomeData();
   homeDatas.value = datas[0];
   newDatas.value = datas[1];
   rankDatas.value = datas[2];
   dayRankDatas.value = {
     videoTitles: rankDatas.value!.videoTitles.slice(0, 12),
     imgURLs: rankDatas.value!.imgURLs.slice(0, 12),
-    videoTags: rankDatas.value?.videoTags!.slice(0, 12),
+    videoEpisodes: rankDatas.value?.videoEpisodes!.slice(0, 12),
   };
   weekRankDatas.value = {
     videoTitles: rankDatas.value!.videoTitles.slice(12, 24),
     imgURLs: rankDatas.value!.imgURLs.slice(12, 24),
-    videoTags: rankDatas.value?.videoTags!.slice(12, 24),
+    videoEpisodes: rankDatas.value?.videoEpisodes!.slice(12, 24),
   };
   monthRankDatas.value = {
     videoTitles: rankDatas.value!.videoTitles.slice(24, 36),
     imgURLs: rankDatas.value!.imgURLs.slice(24, 36),
-    videoTags: rankDatas.value?.videoTags!.slice(24, 36),
+    videoEpisodes: rankDatas.value?.videoEpisodes!.slice(24, 36),
   };
   updateDatas.value = datas[3];
   isLoading.value = false;
@@ -68,7 +68,7 @@ onBeforeMount(async () => {
         :key="index"
         :title="homeDatas!.videoTitles[index]"
         :imgURL="homeDatas!.imgURLs[index]"
-        :tag="homeDatas!.videoTags![index]"
+        :episode="homeDatas!.videoEpisodes![index]"
         :score="homeDatas!.videoScores![index]"
         is-default
       />
@@ -81,7 +81,7 @@ onBeforeMount(async () => {
           :key="index"
           :title="newDatas!.videoTitles[index]"
           :imgURL="newDatas!.imgURLs[index]"
-          :tag="newDatas!.videoTags![index]"
+          :episode="newDatas!.videoEpisodes![index]"
           :score="newDatas!.videoScores![index]"
           is-default
         />
@@ -114,7 +114,7 @@ onBeforeMount(async () => {
           :key="index"
           :title="curRankDatas!.videoTitles[index]"
           :imgURL="curRankDatas!.imgURLs[index]"
-          :tag="curRankDatas!.videoTags![index]"
+          :episode="curRankDatas!.videoEpisodes![index]"
           :rank="index + 1"
           is-default
         />
@@ -128,7 +128,7 @@ onBeforeMount(async () => {
           :key="index"
           :title="updateDatas!.videoTitles[index]"
           :imgURL="updateDatas!.imgURLs[index]"
-          :tag="updateDatas!.videoTags![index]"
+          :episode="updateDatas!.videoEpisodes![index]"
           is-default
         />
       </div>
