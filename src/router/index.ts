@@ -16,7 +16,11 @@ const routes = [
   },
   {
     path: "/tv",
-    component: () => import("@/pages/tvPage/tvPage.vue"),
+    component: () => import("@/pages/tvPage/TVPage.vue"),
+  },
+  {
+    path: "/anime",
+    component: () => import("@/pages/animePage/AnimePage.vue"),
   },
 ];
 
