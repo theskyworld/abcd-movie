@@ -18,9 +18,15 @@ const routes = [
     path: "/tv",
     component: () => import("@/pages/tvPage/TVPage.vue"),
   },
+  // 动漫
   {
     path: "/anime",
     component: () => import("@/pages/animePage/AnimePage.vue"),
+  },
+  // 综艺
+  {
+    path: "/variety",
+    component: () => import("@/pages/varietyPage/VarietyPage.vue"),
   },
 ];
 

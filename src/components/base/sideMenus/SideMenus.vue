@@ -36,7 +36,7 @@ const sideBarMenus = ref([
     key: "006",
     name: "综艺记录",
     icon: "#icon-zongyi",
-    targetUrl: "/tvshow",
+    targetUrl: "/variety",
   },
   {
     key: "007",
