@@ -33,6 +33,11 @@ const routes = [
     path: "/search",
     component: () => import("@/pages/searchResPage/SearchResPage.vue"),
   },
+  // 播放页面
+  {
+    path: "/playing",
+    component: () => import("@/pages/playingPage/playingPage.vue"),
+  },
 ];
 
 const router = createRouter({
