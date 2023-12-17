@@ -28,6 +28,11 @@ const routes = [
     path: "/variety",
     component: () => import("@/pages/varietyPage/VarietyPage.vue"),
   },
+  // 搜索结果
+  {
+    path: "/search",
+    component: () => import("@/pages/searchResPage/SearchResPage.vue"),
+  },
 ];
 
 const router = createRouter({
