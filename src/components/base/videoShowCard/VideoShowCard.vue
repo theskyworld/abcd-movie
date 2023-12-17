@@ -1,6 +1,13 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import { VideoShowCardProps } from "./types";
+import { storeToRefs } from "pinia";
+import useMainStore from "@/store";
+import { useRouter } from "vue-router";
+
+const mainStore = useMainStore();
+const router = useRouter();
+
 const { title, imgURL, tag, score, episode, isRow, isColumn, isDefault, rank } =
   defineProps<VideoShowCardProps>();
 
@@ -16,11 +23,20 @@ const rankBgColor = computed(() => {
       return "#9E9E9E";
   }
 });
+
+async function toPlayingPage() {
+  mainStore.setPlayingKeyword(title);
+  await mainStore.getPlayingSearchResData();
+  router.push({
+    path: "/playing",
+  });
+}
 </script>
 <template>
   <div
     class="video-show-card-container"
     :class="{ row: isRow, column: isColumn, default: isDefault }"
+    @click="toPlayingPage"
   >
     <div class="img-wrapper">
       <img :src="imgURL" :alt="title" />
