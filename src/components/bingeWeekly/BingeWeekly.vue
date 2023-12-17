@@ -16,7 +16,8 @@ const weeks = [
   { date: "周日" },
 ];
 
-const curDay = ref(new Date().getDay());
+// 因为星期天，其获取的getDay()值为0,但后续的处理逻辑中需要7
+const curDay = ref(new Date().getDay() === 0 ? 7 : new Date().getDay());
 
 // 根据接收到的所有的titles等以及curDay,计算出当前的titles
 // 更改curDay可以动态切换当前展示的为哪天的数据
