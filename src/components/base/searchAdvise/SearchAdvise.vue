@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, Ref } from "vue";
+import { ref } from "vue";
 
 const searchAdvisers = ref([
   {
@@ -37,7 +37,7 @@ const searchAdvisers = ref([
 <template>
   <div class="search-advise-container">
     <h5>大家都在搜</h5>
-    <div class="content">
+    <div class="content-wrapper">
       <ul>
         <li
           v-for="{ id, content, isHot } in searchAdvisers"
