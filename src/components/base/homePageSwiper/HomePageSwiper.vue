@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Props } from "./types";
 
@@ -39,12 +39,12 @@ const swiperOptions = ref({
   effect: "fade",
 });
 
-const { imgList, videoTitles, videoTags } = defineProps<Props>();
+const { imgList, videoTitles } = defineProps<Props>();
 const bigImgURLs = ref(imgList[0]);
 const smallImgURLs = ref(imgList[1]);
 
+// 获取swiper实例
 let swiperInstance: any;
-
 const onSwiper = (swiper: any) => {
   swiperInstance = swiper;
 };
@@ -73,6 +73,7 @@ const curSlideindex = ref(0);
         @slide-change="(swiper) => (curSlideindex = swiper.realIndex)"
       >
         <swiper-slide v-for="(img, index) in bigImgURLs" :key="index">
+          <!-- 当前滑块中视频的标题 -->
           <h2 class="video-title">{{ videoTitles[index] }}</h2>
           <img :src="img" :alt="videoTitles[index]" />
         </swiper-slide>
@@ -90,7 +91,7 @@ const curSlideindex = ref(0);
       "
     >
       <div class="img-wrapper" :class="{ active: index === curSlideindex }">
-        <img :src="img" alt="" />
+        <img :src="img" :alt="videoTitles[index]" />
       </div>
       <div class="video-info-wrapper">
         <div class="title">
