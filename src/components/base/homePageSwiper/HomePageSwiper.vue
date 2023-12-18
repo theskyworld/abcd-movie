@@ -2,6 +2,11 @@
 import { ref } from "vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Props } from "./types";
+import useMainStore from "@/store";
+import { useRouter } from "vue-router";
+
+const mainStore = useMainStore();
+const router = useRouter();
 
 // 使用Navigation, Pagination, Autoplay模块
 import { Autoplay, Navigation, Pagination, EffectFade } from "swiper/modules";
@@ -62,6 +67,15 @@ function formatIndex(index: number) {
 
 // 每次卡片进行切换时，将当前卡片的真实index(swiper.realIndex，0-1-2-3...-8)赋值给curSlideindex
 const curSlideindex = ref(0);
+
+// 跳转到播放页面进行播放
+async function toPlayingPage(title: string) {
+  mainStore.setPlayingKeyword(title);
+  await mainStore.getPlayingSearchResData();
+  router.push({
+    path: "/playing",
+  });
+}
 </script>
 <template>
   <div class="home-page-swiper-container">
@@ -72,7 +86,11 @@ const curSlideindex = ref(0);
         @swiper="onSwiper"
         @slide-change="(swiper) => (curSlideindex = swiper.realIndex)"
       >
-        <swiper-slide v-for="(img, index) in bigImgURLs" :key="index">
+        <swiper-slide
+          @click="toPlayingPage(videoTitles[index])"
+          v-for="(img, index) in bigImgURLs"
+          :key="index"
+        >
           <!-- 当前滑块中视频的标题 -->
           <h2 class="video-title">{{ videoTitles[index] }}</h2>
           <img :src="img" :alt="videoTitles[index]" />

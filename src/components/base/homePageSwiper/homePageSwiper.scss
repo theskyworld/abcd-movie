@@ -1,6 +1,9 @@
 .home-page-swiper-container {
   position: relative;
   .swiper-wrapper {
+    div {
+      cursor: pointer;
+    }
     .video-title {
       width: 300px;
       text-align: center;
