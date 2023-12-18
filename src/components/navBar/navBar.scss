@@ -12,7 +12,9 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-
+    .search {
+      transform: translate(-83px, 8px);
+    }
     div {
       margin-right: 20px;
     }
