@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { AnimeSelector, SelectedItem } from "./types";
 
+const emits = defineEmits(["doChangeKws"]);
+
+// 用于计算年份中的最大值
 const thisYear = new Date().getFullYear();
 const kws = ref<Array<string | number>>([
   "undefined",
@@ -9,10 +13,9 @@ const kws = ref<Array<string | number>>([
   "undefined",
   "undefined",
 ]);
-const selectedItems = ref<any>([]);
-const emits = defineEmits(["doChangeKws"]);
 
 // 存储每次点击选择器按钮之后的值，避免丢失之前的已点击值
+const selectedItems = ref<any>([]);
 function addNewItems(index: number, newItem: string | number) {
   selectedItems.value.push({ index, newItem });
 }
@@ -30,8 +33,7 @@ function correctNewItem(newItem: string | number) {
       return newItem;
   }
 }
-
-function correctIndex(index: number) {
+function correctIndex(index: number): number {
   switch (index) {
     case 0:
       return 2;
@@ -44,22 +46,26 @@ function correctIndex(index: number) {
     case 4:
       return 1;
     default:
-      break;
+      return index;
   }
 }
 
 // 点击选择器按钮后对kws进行更新，确保更新之后之前选择的内容依旧存在
 function addNewItemToKws() {
-  selectedItems.value.forEach((elem) => {
+  selectedItems.value.forEach((elem: SelectedItem) => {
+    // 添加前对新的index和item进行处理
     let index = elem.index;
     index = correctIndex(index);
     let newItem = elem.newItem;
     newItem = correctNewItem(newItem);
+
+    // 添加
     kws.value[index] = newItem;
   });
 }
 
-const animeSelectors = ref([
+const animeSelectors = ref<Array<AnimeSelector>>([
+  // 剧情
   {
     title: "剧情",
     content: [
@@ -145,6 +151,7 @@ const animeSelectors = ref([
       },
     ],
   },
+  // 地区
   {
     title: "地区",
     content: [
@@ -170,6 +177,7 @@ const animeSelectors = ref([
       },
     ],
   },
+  // 语言
   {
     title: "语言",
     content: [
@@ -207,6 +215,7 @@ const animeSelectors = ref([
       },
     ],
   },
+  // 年份
   {
     title: "年份",
     content: [
@@ -280,6 +289,7 @@ const animeSelectors = ref([
       },
     ],
   },
+  // 排序
   {
     title: "排序",
     content: [
@@ -299,9 +309,10 @@ const animeSelectors = ref([
   },
 ]);
 
+// 当前已被选中的元素
 const activeItems = ref(["全部", "全部", "全部", "全部", "时间排序"]);
 
-function changeActiveItems(newItem, deleteIndex) {
+function changeActiveItems(newItem: string, deleteIndex: number) {
   // 删除deleteIndex位置处的元素，并替换为新的元素
   activeItems.value.splice(deleteIndex, 1, newItem);
 }
