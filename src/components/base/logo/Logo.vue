@@ -1,9 +1,8 @@
 <script setup lang="ts"></script>
 <template>
-  <div class="container">
+  <div class="logo-container">
     <h1>
-      <img src="@/assets/imgs/logo.png" alt="logo" />
-      <span>ABCD影视</span>
+      <img src="@/assets/imgs/ABCD影视.svg" alt="ABCD影视" />
     </h1>
   </div>
 </template>
