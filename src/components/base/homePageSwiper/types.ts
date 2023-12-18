@@ -1,5 +1,4 @@
-export interface Props {
+export interface HomePageSwiperProps {
   imgList: string[];
   videoTitles: string[];
-  videoTags: string[];
 }

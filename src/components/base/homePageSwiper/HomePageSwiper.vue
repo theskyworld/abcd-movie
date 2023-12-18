@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
-import { Props } from "./types";
+import { HomePageSwiperProps } from "./types";
 import useMainStore from "@/store";
 import { useRouter } from "vue-router";
 
@@ -44,7 +44,7 @@ const swiperOptions = ref({
   effect: "fade",
 });
 
-const { imgList, videoTitles } = defineProps<Props>();
+const { imgList, videoTitles } = defineProps<HomePageSwiperProps>();
 const bigImgURLs = ref(imgList[0]);
 const smallImgURLs = ref(imgList[1]);
 
