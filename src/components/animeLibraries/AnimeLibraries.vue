@@ -34,7 +34,7 @@ watchEffect(async () => {
         :title="datas[0][index]"
         :imgURL="datas[1][index]"
         :score="datas[2][index]"
-        :tag="datas[3][index]"
+        :episode="datas[3][index]"
         is-default
       />
     </div>
