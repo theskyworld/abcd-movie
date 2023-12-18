@@ -1,24 +1,4 @@
-<script setup lang="ts">
-import { ref } from "vue";
-
-const title = ref("加载中...");
-const imgURL = ref(
-  "https://s1.aigei.com/src/img/gif/fe/fe50b2f296c3445b922fe72d2dd82747.gif?imageMogr2/auto-orient/thumbnail/!132x132r/gravity/Center/crop/132x132/quality/85/&e=1735488000&token=P7S2Xpzfz11vAkASLTkfHN7Fw-oOZBecqeJaxypL:1S7zImqkNz_RquxH7OsXT3ETXkE=",
-);
-
-function setTitle(newTitle: string) {
-  title.value = newTitle;
-}
-
-function setImg(newImg: string) {
-  imgURL.value = newImg;
-}
-
-defineExpose({
-  setTitle,
-  setImg,
-});
-</script>
+<script setup lang="ts"></script>
 <template>
   <div class="loading-container">
     <svg
@@ -28,8 +8,8 @@ defineExpose({
       xmlns:xlink="http://www.w3.org/1999/xlink"
       x="0px"
       y="0px"
-      width="24px"
-      height="30px"
+      width="34px"
+      height="40px"
       viewBox="0 0 24 30"
       style="enable-background: new 0 0 50 50"
       xml:space="preserve"
