@@ -79,7 +79,7 @@ const sideBarMenus = ref<Array<SideBarMenu>>([
 </script>
 <template>
   <div class="side-menus-container">
-    <div class="menus-content">
+    <div class="content-wrapper">
       <ul>
         <li v-for="menu in sideBarMenus" :key="menu.key">
           <router-link :to="menu.targetUrl">
