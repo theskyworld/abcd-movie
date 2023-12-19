@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, Ref } from "vue";
+import { computed } from "vue";
 
 const { imgURL, title, watchPercent, watchTime } = defineProps([
   "id",
@@ -55,18 +55,18 @@ function formatWatchPercent(watchPercent: number) {
 }
 
 const formattedWatchPercent = computed(() => formatWatchPercent(watchPercent));
-const forMattedWatchTime = computed(() => formatWatchTime(watchTime));
+const formattedWatchTime = computed(() => formatWatchTime(watchTime));
 </script>
 <template>
   <div class="watch-history-card-container">
-    <div class="img">
+    <div class="img-wrapper">
       <img :src="imgURL" :alt="title" />
     </div>
-    <div class="watch-infos">
+    <div class="watch-infos-wrapper">
       <div class="title">{{ title }}</div>
       <div class="watch-details">
         <span class="watch-percent">{{ formattedWatchPercent }}</span>
-        <span class="watch-time">{{ forMattedWatchTime }}</span>
+        <span class="watch-time">{{ formattedWatchTime }}</span>
       </div>
     </div>
   </div>
