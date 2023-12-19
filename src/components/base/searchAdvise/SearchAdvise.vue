@@ -1,34 +1,35 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { SearchAdvise } from "./types";
 
-const searchAdvisers = ref([
+const searchAdvisers = ref<Array<SearchAdvise>>([
   {
-    id: 1,
+    id: "1",
     content: "涉过愤怒的海",
     isHot: true,
   },
   {
-    id: 2,
+    id: "2",
     content: "超异能族",
     isHot: true,
   },
   {
-    id: 3,
+    id: "3",
     content: "大力女子姜南顺",
     isHot: true,
   },
   {
-    id: 4,
+    id: "4",
     content: "蓝眼武士",
     isHot: true,
   },
   {
-    id: 5,
+    id: "5",
     content: "帝王计划怪兽遗产",
     isHot: false,
   },
   {
-    id: 6,
+    id: "6",
     content: "阿拉蒙之剑阿斯达年代记",
     isHot: false,
   },
