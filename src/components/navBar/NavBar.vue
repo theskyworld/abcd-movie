@@ -19,7 +19,7 @@ onMounted(() => {
   };
 });
 
-const imgURL = ref("https://m.ykimg.com/0541010160F63EBA04CD829CF4BB9E9C");
+const imgURL = ref("https://imgapi.xl0408.top/index.php");
 </script>
 <template>
   <div class="nav-bar-container">
@@ -48,7 +48,7 @@ const imgURL = ref("https://m.ykimg.com/0541010160F63EBA04CD829CF4BB9E9C");
         </div>
       </div>
       <div class="profile-wrapper">
-        <Profile :img-URL="imgURL" />
+        <Profile :imgURL="imgURL" />
       </div>
     </div>
   </div>
