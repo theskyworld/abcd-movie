@@ -1,10 +1,11 @@
 import { createApp, ref } from "vue";
 import Loading from "@/components/base/loading/Loading.vue";
 import NetflixPageSkeleton from "@/pages/netflixPage/NetflixPageSkeleton.vue";
+import MovieHomeSkeleton from "../components/movieHome/MovieHomeSkeleton.vue";
 
 export default function createDirective() {
   // 备选的作为loading的组件，根据使用指令时传入的参数来决定使用哪个组件
-  const Coms = ref([Loading, NetflixPageSkeleton]);
+  const Coms = ref([Loading, NetflixPageSkeleton, MovieHomeSkeleton]);
 
   function append(el: any, Com: any) {
     const comName = Com.__name;
