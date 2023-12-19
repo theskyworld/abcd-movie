@@ -122,5 +122,8 @@ onMounted(() => {
   left: 170px;
   top: 70px;
   z-index: 10;
+  margin: {
+    top: 10px;
+  }
 }
 </style>
