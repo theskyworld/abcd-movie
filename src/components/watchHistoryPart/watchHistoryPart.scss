@@ -16,7 +16,7 @@
     margin : {
       right: 18px;
     }
-    animation: lineHeight 2s ease-in-out alternate;
+    animation: lineHeight .7s ease-in-out alternate;
   }
 
   .right-content {
@@ -51,7 +51,7 @@
           width: 8px;
           height: 8px;
           border-radius: 50%;
-          background-color: #fc6a1b;
+          background-color: var(--color-hover);
           position: absolute;
           top: 23px;
           left: -22px;

@@ -5,7 +5,7 @@ import router from "@/router";
 import { createPinia } from "pinia";
 
 import loadingDirective from "@/utils/loadingDirective";
-import "//at.alicdn.com/t/c/font_4106328_4ck1cg47t1i.js";
+import "//at.alicdn.com/t/c/font_4106328_wk46u2ppb.js";
 
 const pinia = createPinia();
 createApp(App)
