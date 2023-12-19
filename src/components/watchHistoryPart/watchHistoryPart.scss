@@ -16,11 +16,11 @@
     margin : {
       right: 18px;
     }
-    animation: lineHeight .7s ease-in-out alternate;
+    animation: lineHeight 0.7s ease-in-out alternate;
   }
 
-  .right-content {
-    .title {
+  .right-content-wrapper {
+    .title-wrapper {
       display: flex;
       flex-direction: row;
       position: relative;
@@ -37,7 +37,7 @@
       }
     }
 
-    .main-content {
+    .main-content-wrapper {
       margin : {
         top: 20px;
       }
@@ -76,7 +76,7 @@
     }
   }
 
-  .bottom-btn {
+  .bottom-btn-wrapper {
     position: absolute;
     bottom: 5px;
     left: 40%;

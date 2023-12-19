@@ -44,8 +44,8 @@ const fadeDelay = ref(0.5);
 <template>
   <div class="watch-history-container">
     <div class="left-line"></div>
-    <div class="right-content">
-      <div class="title">
+    <div class="right-content-wrapper">
+      <div class="title-wrapper">
         <i>
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-history"></use>
@@ -53,7 +53,7 @@ const fadeDelay = ref(0.5);
         </i>
         <h5>观看历史</h5>
       </div>
-      <div class="main-content">
+      <div class="main-content-wrapper">
         <ul v-if="watchedVideos.length">
           <li
             v-for="{
@@ -76,7 +76,7 @@ const fadeDelay = ref(0.5);
         <div class="no-video" v-else>暂无记录</div>
       </div>
     </div>
-    <div class="bottom-btn">
+    <div class="bottom-btn-wrapper">
       <button v-if="watchedVideos.length">查看更多</button>
     </div>
   </div>
