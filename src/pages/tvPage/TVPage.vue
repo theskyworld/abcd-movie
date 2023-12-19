@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import tvLibraries from "@/components/tvLibraries/tvLibraries.vue";
+import PageLibraries from "@/components/pageLibraries/PageLibraries.vue";
 import PageHome from "../../components/pageHome/PageHome.vue";
 const activedTitle = ref("电视剧首页");
 </script>
@@ -28,7 +28,7 @@ const activedTitle = ref("电视剧首页");
         :episode="true"
         v-if="activedTitle === '电视剧首页'"
       />
-      <tvLibraries v-else />
+      <PageLibraries v-else :tv="true" getDatasFnName="getTVLibrariesData" />
     </div>
   </div>
 </template>

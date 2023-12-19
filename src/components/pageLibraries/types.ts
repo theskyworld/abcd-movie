@@ -1,6 +1,7 @@
 import { VideoSelectorData } from "@/components/base/videoSelector/types";
 
 export interface PageLibrariesProps {
-  videoSelectorsData: Array<VideoSelectorData>;
+  videoSelectorsData?: Array<VideoSelectorData>;
   getDatasFnName: string;
+  tv?: boolean;
 }

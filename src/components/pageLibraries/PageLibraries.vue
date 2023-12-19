@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import VideoShowCard from "@/components/base/videoShowCard/VideoShowCard.vue";
 import { ref, watchEffect } from "vue";
-import VideoSelector from "@/components/base/videoSelectors/VideoSelectors.vue";
+import VideoSelectors from "@/components/base/videoSelectors/VideoSelectors.vue";
+import TVSelectors from "@/components/base/tvSelectors/TVSelectors.vue";
 import { PageLibrariesProps } from "./types";
 
-const { videoSelectorsData, getDatasFnName } =
+const { videoSelectorsData, getDatasFnName, tv } =
   defineProps<PageLibrariesProps>();
 
 const page = ref(1);
@@ -34,7 +35,9 @@ watchEffect(async () => {
 <template>
   <div class="page-libraries-container">
     <div class="video-selectors-wrapper">
-      <VideoSelector
+      <TVSelectors v-if="tv" />
+      <VideoSelectors
+        v-else
         @doChangeKws="changeKws"
         :videoSelectors="videoSelectorsData"
       />
