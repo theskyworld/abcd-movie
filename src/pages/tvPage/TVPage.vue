@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import tvHome from "@/components/tvHome/tvHome.vue";
 import tvLibraries from "@/components/tvLibraries/tvLibraries.vue";
+import PageHome from "../../components/pageHome/PageHome.vue";
 const activedTitle = ref("电视剧首页");
 </script>
 <template>
@@ -23,7 +23,11 @@ const activedTitle = ref("电视剧首页");
       </h2>
     </div>
     <div class="content-wrapper">
-      <tvHome v-if="activedTitle === '电视剧首页'" />
+      <PageHome
+        getDatasFnName="getTVHomeData"
+        :episode="true"
+        v-if="activedTitle === '电视剧首页'"
+      />
       <tvLibraries v-else />
     </div>
   </div>
