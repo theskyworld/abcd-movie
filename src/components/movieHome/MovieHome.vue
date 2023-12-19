@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import VideoShowCard from "@/components/base/videoShowCard/VideoShowCard.vue";
 import getMovieHomeData from "@/server/getMovieHomeData.ts";
-import { ref, onBeforeMount, computed, reactive } from "vue";
+import { ref, onBeforeMount, computed } from "vue";
 
 interface Data {
   videoTitles: string[];
@@ -34,6 +34,7 @@ const curRankDatas = computed(() => {
 });
 
 const isLoading = ref(true);
+const loadingComName = ref("MovieHomeSkeleton");
 
 // 需要存在顶级await时才可以使用Suspense组件来实现骨架屏的加载，且不能在v-if或者v-show时使用
 onBeforeMount(async () => {
@@ -75,7 +76,7 @@ onBeforeMount(async () => {
 </script>
 <template>
   <div class="movie-home-container">
-    <div class="home-wrapper" v-loading="isLoading">
+    <div class="home-wrapper" v-loading:[loadingComName]="isLoading">
       <VideoShowCard
         v-for="(i, index) in homeDatas?.videoTitles.length"
         :key="index"
@@ -88,7 +89,10 @@ onBeforeMount(async () => {
     </div>
     <div class="new-wrapper">
       <h3>新片上线</h3>
-      <div class="video-show-card-wrapper">
+      <div
+        class="video-show-card-wrapper"
+        v-loading:[loadingComName]="isLoading"
+      >
         <VideoShowCard
           v-for="(i, index) in newDatas?.videoTitles.length"
           :key="index"
@@ -121,7 +125,10 @@ onBeforeMount(async () => {
           >
         </div>
       </div>
-      <div class="video-show-card-wrapper">
+      <div
+        class="video-show-card-wrapper"
+        v-loading:[loadingComName]="isLoading"
+      >
         <VideoShowCard
           v-for="(i, index) in curRankDatas?.videoTitles.length"
           :key="index"
@@ -135,7 +142,10 @@ onBeforeMount(async () => {
     </div>
     <div class="update-wrapper">
       <h3>最近更新</h3>
-      <div class="video-show-card-wrapper">
+      <div
+        class="video-show-card-wrapper"
+        v-loading:[loadingComName]="isLoading"
+      >
         <VideoShowCard
           v-for="(i, index) in updateDatas?.videoTitles.length"
           :key="index"
