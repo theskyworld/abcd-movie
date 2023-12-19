@@ -19,26 +19,31 @@ const loadingComName = ref("LoadingSkeleton");
       <h2>Netflix美剧</h2>
       <div class="placeholder"></div>
     </div>
-    <div class="video-show-card-wrapper" v-loading:[loadingComName]="isLoading">
-      <VideoShowCard
-        v-for="(i, index) in datas.videoTitles"
-        :key="index"
-        :title="datas.videoTitles[index]"
-        :imgURL="datas.imgURLs[index]"
-        :episode="datas.videoEpisodes[index]"
-        :score="datas.videoScores[index]"
-        is-default
-      />
-    </div>
-    <div class="pagination-wrapper">
-      <Pagination
-        :page-counts="30"
-        @getTargetPageData="
-          async (page: Ref<number>) => {
-            datas = await getNetflixPageData(page.value);
-          }
-        "
-      />
+    <div class="content-wrapper">
+      <div
+        class="video-show-card-wrapper"
+        v-loading:[loadingComName]="isLoading"
+      >
+        <VideoShowCard
+          v-for="(i, index) in datas.videoTitles"
+          :key="index"
+          :title="datas.videoTitles[index]"
+          :imgURL="datas.imgURLs[index]"
+          :episode="datas.videoEpisodes[index]"
+          :score="datas.videoScores[index]"
+          is-default
+        />
+      </div>
+      <div class="pagination-wrapper">
+        <Pagination
+          :page-counts="30"
+          @getTargetPageData="
+            async (page: Ref<number>) => {
+              datas = await getNetflixPageData(page.value);
+            }
+          "
+        />
+      </div>
     </div>
   </div>
 </template>
