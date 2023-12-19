@@ -101,13 +101,14 @@ onMounted(() => {
     }
     .video-shows-container {
       position: relative;
-      top: 20px;
+      top: 30px;
       left: 180px;
+      z-index: 5;
     }
   }
   .nav-bar-wrapper {
     position: fixed;
-    z-index: 1;
+    z-index: 9;
     top: 0;
   }
   .side-menus-wrapper {
