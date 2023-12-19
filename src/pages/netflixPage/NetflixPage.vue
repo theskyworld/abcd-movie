@@ -10,6 +10,8 @@ onBeforeMount(async () => {
   datas.value = await getNetflixPageData(1);
   isLoading.value = false;
 });
+
+const loadingComName = ref("LoadingSkeleton");
 </script>
 <template>
   <div class="netflix-page-container">
@@ -17,7 +19,7 @@ onBeforeMount(async () => {
       <h2>Netflix美剧</h2>
       <div class="placeholder"></div>
     </div>
-    <div class="video-show-card-wrapper" v-loading="isLoading">
+    <div class="video-show-card-wrapper" v-loading:[loadingComName]="isLoading">
       <VideoShowCard
         v-for="(i, index) in datas.videoTitles"
         :key="index"

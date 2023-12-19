@@ -1,9 +1,17 @@
 <script setup lang="ts">
 import AnimatedPlaceholder from "@/components/base/AnimatedPlaceholder.vue";
+import { ref } from "vue";
+
+// 决定要渲染的skeleton卡片的数量
+const cardCount = ref(12);
 </script>
 <template>
-  <div class="netflix-page-skeleton-container">
-    <div class="video-show-card-wrapper" v-for="(i, index) in 16" :key="index">
+  <div class="loading-skeleton-container">
+    <div
+      class="video-show-card-wrapper"
+      v-for="(i, index) in cardCount"
+      :key="index"
+    >
       <AnimatedPlaceholder
         class="img"
         width="180px"
@@ -15,5 +23,5 @@ import AnimatedPlaceholder from "@/components/base/AnimatedPlaceholder.vue";
   </div>
 </template>
 <style scoped lang="scss">
-@use "./netflixPageSkeleton.scss";
+@use "./loadingSkeleton.scss";
 </style>

@@ -34,7 +34,7 @@ const curRankDatas = computed(() => {
 });
 
 const isLoading = ref(true);
-const loadingComName = ref("MovieHomeSkeleton");
+const loadingComName = ref("LoadingSkeleton");
 
 // 需要存在顶级await时才可以使用Suspense组件来实现骨架屏的加载，且不能在v-if或者v-show时使用
 onBeforeMount(async () => {
