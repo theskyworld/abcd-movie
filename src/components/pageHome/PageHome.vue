@@ -1,15 +1,9 @@
 <script setup lang="ts">
 import VideoShowCard from "@/components/base/videoShowCard/VideoShowCard.vue";
-import getAnimeHomeData from "@/server/getAnimeHomeData.ts";
-import { ref, onBeforeMount, computed } from "vue";
+import { PageHomeProps, Data } from "./types";
+import { computed, onBeforeMount, ref } from "vue";
 
-interface Data {
-  videoTitles: string[];
-  imgURLs: string[];
-  videoEpisodes?: string[];
-  videoScores?: string[];
-  videoEpisodes?: string[];
-}
+const { getDatasFnName, episode, tag } = defineProps<PageHomeProps>();
 
 const homeDatas = ref<Data>();
 const newDatas = ref<Data>();
@@ -18,8 +12,9 @@ const updateDatas = ref<Data>();
 const dayRankDatas = ref<Data>();
 const weekRankDatas = ref<Data>();
 const monthRankDatas = ref<Data>();
-const curRank = ref("日榜");
 
+const curRank = ref("日榜");
+// 返回当前为日榜/周榜或月榜的数据
 const curRankDatas = computed(() => {
   switch (curRank.value) {
     case "日榜":
@@ -36,41 +31,80 @@ const curRankDatas = computed(() => {
 const isLoading = ref(true);
 const loadingComName = ref("LoadingSkeleton");
 
-// 需要存在顶级await时才可以使用Suspense组件来实现骨架屏的加载，且不能在v-if或者v-show时使用
 onBeforeMount(async () => {
-  const datas = await getAnimeHomeData();
+  // 根据父组件中传入的请求后端数据方法的方法名来动态加载对应的方法，请求数据
+  // import()中不理解'@'
+  const fn = () => import(`../../server/${getDatasFnName}.ts`);
+  const getDatasFn = (await fn()).default;
+
+  // 获取总的数据
+  const datas = await getDatasFn();
+
+  // 划分分类数据
   homeDatas.value = datas[0];
   newDatas.value = datas[1];
   rankDatas.value = datas[2];
+  updateDatas.value = datas[3];
+
   dayRankDatas.value = {
     videoTitles: rankDatas.value!.videoTitles.slice(0, 12),
     imgURLs: rankDatas.value!.imgURLs.slice(0, 12),
-    videoEpisodes: rankDatas.value?.videoEpisodes!.slice(0, 12),
   };
+  // 根据父组件传入的episode或者tag值的真假来确定使用videoEpisodes还是videoTags
+  if (episode) {
+    dayRankDatas.value.videoEpisodes = rankDatas.value?.videoEpisodes!.slice(
+      0,
+      12,
+    );
+  } else if (tag) {
+    dayRankDatas.value.videoTags = rankDatas.value?.videoTags!.slice(0, 12);
+  }
+
   weekRankDatas.value = {
     videoTitles: rankDatas.value!.videoTitles.slice(12, 24),
     imgURLs: rankDatas.value!.imgURLs.slice(12, 24),
-    videoEpisodes: rankDatas.value?.videoEpisodes!.slice(12, 24),
   };
+  // 根据父组件传入的episode或者tag值的真假来确定使用videoEpisodes还是videoTags
+  if (episode) {
+    weekRankDatas.value.videoEpisodes = rankDatas.value?.videoEpisodes!.slice(
+      12,
+      24,
+    );
+  } else if (tag) {
+    weekRankDatas.value.videoTags = rankDatas.value?.videoTags!.slice(12, 24);
+  }
+
   monthRankDatas.value = {
     videoTitles: rankDatas.value!.videoTitles.slice(24, 36),
     imgURLs: rankDatas.value!.imgURLs.slice(24, 36),
-    videoEpisodes: rankDatas.value?.videoEpisodes!.slice(24, 36),
   };
+  // 根据父组件传入的episode或者tag值的真假来确定使用videoEpisodes还是videoTags
+  if (episode) {
+    monthRankDatas.value.videoEpisodes = rankDatas.value?.videoEpisodes!.slice(
+      24,
+      36,
+    );
+  } else if (tag) {
+    monthRankDatas.value.videoTags = rankDatas.value?.videoTags!.slice(24, 36);
+  }
 
-  updateDatas.value = datas[3];
   isLoading.value = false;
 });
 </script>
 <template>
-  <div class="anime-home-container">
+  <div class="page-home-container">
     <div class="home-wrapper" v-loading:[loadingComName]="isLoading">
       <VideoShowCard
         v-for="(i, index) in homeDatas?.videoTitles.length"
         :key="index"
         :title="homeDatas!.videoTitles[index]"
         :imgURL="homeDatas!.imgURLs[index]"
-        :episode="homeDatas!.videoEpisodes![index]"
+        :episode="
+          homeDatas!.videoEpisodes
+            ? homeDatas!.videoEpisodes![index]
+            : undefined
+        "
+        :tag="homeDatas!.videoTags ? homeDatas!.videoTags![index] : undefined"
         :score="homeDatas!.videoScores![index]"
         is-default
       />
@@ -86,7 +120,12 @@ onBeforeMount(async () => {
           :key="index"
           :title="newDatas!.videoTitles[index]"
           :imgURL="newDatas!.imgURLs[index]"
-          :episode="newDatas!.videoEpisodes![index]"
+          :episode="
+            newDatas!.videoEpisodes
+              ? newDatas!.videoEpisodes![index]
+              : undefined
+          "
+          :tag="newDatas!.videoTags ? newDatas!.videoTags![index] : undefined"
           :score="newDatas!.videoScores![index]"
           is-default
         />
@@ -122,7 +161,16 @@ onBeforeMount(async () => {
           :key="index"
           :title="curRankDatas!.videoTitles[index]"
           :imgURL="curRankDatas!.imgURLs[index]"
-          :episode="curRankDatas!.videoEpisodes![index]"
+          :episode="
+            curRankDatas!.videoEpisodes
+              ? curRankDatas!.videoEpisodes![index]
+              : undefined
+          "
+          :tag="
+            curRankDatas!.videoTags
+              ? curRankDatas!.videoTags![index]
+              : undefined
+          "
           :rank="index + 1"
           is-default
         />
@@ -139,7 +187,14 @@ onBeforeMount(async () => {
           :key="index"
           :title="updateDatas!.videoTitles[index]"
           :imgURL="updateDatas!.imgURLs[index]"
-          :episode="updateDatas!.videoEpisodes![index]"
+          :episode="
+            updateDatas!.videoEpisodes
+              ? updateDatas!.videoEpisodes![index]
+              : undefined
+          "
+          :tag="
+            updateDatas!.videoTags ? updateDatas!.videoTags![index] : undefined
+          "
           is-default
         />
       </div>
@@ -147,5 +202,5 @@ onBeforeMount(async () => {
   </div>
 </template>
 <style scoped lang="scss">
-@use "./animeHome.scss";
+@use "./pageHome.scss";
 </style>

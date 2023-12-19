@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import AnimeHome from "@/components/animeHome/AnimeHome.vue";
 import AnimeLibraries from "@/components/animeLibraries/AnimeLibraries.vue";
+import PageHome from "@/components/pageHome/PageHome.vue";
 const activedTitle = ref("动漫首页");
 </script>
 <template>
@@ -23,7 +23,11 @@ const activedTitle = ref("动漫首页");
       </h2>
     </div>
     <div class="content-wrapper">
-      <AnimeHome v-if="activedTitle === '动漫首页'" />
+      <PageHome
+        getDatasFnName="getAnimeHomeData"
+        :episode="true"
+        v-if="activedTitle === '动漫首页'"
+      />
       <AnimeLibraries v-else />
     </div>
   </div>
