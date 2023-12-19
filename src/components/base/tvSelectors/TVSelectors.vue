@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { SelectedItem, TVSelectorData } from "./types";
 
 const thisYear = new Date().getFullYear();
 const kws = ref<Array<string | number>>([
@@ -44,13 +45,13 @@ function correctIndex(index: number) {
     case 4:
       return 2;
     default:
-      break;
+      return index;
   }
 }
 
 // 点击选择器按钮后对kws进行更新，确保更新之后之前选择的内容依旧存在
 function addNewItemToKws() {
-  selectedItems.value.forEach((elem) => {
+  selectedItems.value.forEach((elem: SelectedItem) => {
     let index = elem.index;
     index = correctIndex(index);
     let newItem = elem.newItem;
@@ -59,7 +60,7 @@ function addNewItemToKws() {
   });
 }
 
-const tvSelectors = ref([
+const tvSelectors = ref<Array<TVSelectorData>>([
   {
     title: "类型",
     content: [
@@ -329,7 +330,7 @@ const tvSelectors = ref([
 
 const activeItems = ref(["全部", "全部", "全部", "全部", "时间排序"]);
 
-function changeActiveItems(newItem, deleteIndex) {
+function changeActiveItems(newItem: string, deleteIndex: number) {
   // 删除deleteIndex位置处的元素，并替换为新的元素
   activeItems.value.splice(deleteIndex, 1, newItem);
 }
