@@ -1,4 +1,10 @@
-<script setup lang="ts"></script>
+<script lang="ts">
+// script内本来不存在内容，如果使用setup语法糖将不会解析该标签，导致当前组件导出后默认不存在__name属性
+// 在这里自定义添加组件名
+export default {
+  __name: "Loading",
+};
+</script>
 <template>
   <div class="loading-container">
     <svg
