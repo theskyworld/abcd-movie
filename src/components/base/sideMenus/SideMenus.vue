@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { SideBarMenu } from "./types";
 
-const sideBarMenus = ref([
+const sideBarMenus = ref<Array<SideBarMenu>>([
   {
     key: "001",
     name: "首页",
