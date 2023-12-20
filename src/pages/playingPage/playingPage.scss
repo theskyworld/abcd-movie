@@ -162,6 +162,7 @@
         @include scroll();
 
         span {
+          position: relative;
           display: inline-block;
           background-color: #32323c;
           width: max-content;
@@ -174,6 +175,16 @@
           }
           font-size: 0.8em;
           cursor: pointer;
+
+          // 正在播放中
+          .playing-animation {
+            position: absolute;
+            bottom: 0px;
+            left: 20px;
+          }
+          &.playing {
+            color : var(--color-hover);
+          }
 
           &:hover {
             color: var(--color-hover);

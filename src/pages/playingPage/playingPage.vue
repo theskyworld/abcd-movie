@@ -5,6 +5,7 @@ import useMainStore from "@/store";
 import { playM3u8 } from "@/assets/ts/m3u8Parser.ts";
 import { ref, onMounted, computed, watchEffect, watch } from "vue";
 import VideoLoadingAnimation from "@/components/base/videoLoadingAnimation/VideoLoadingAnimation.vue";
+import PlayingAnimation from "@/components/base/playingAnimation/PlayingAnimation.vue";
 
 const videoElem = ref();
 const mainStore = useMainStore();
@@ -103,11 +104,17 @@ watchEffect(async () => {
           <!-- 存在多集数 -->
           <span
             @click="setCurEpisodeIndex(index + 1)"
+            :class="{ playing: curEpisodeIndex === index + 1 }"
             v-else
             v-for="(i, index) in episodesAmount"
             :key="index"
-            >{{ episodeNames && episodeNames[index] }}</span
-          >
+            >{{ episodeNames && episodeNames[index] }}
+            <!-- 当前集数正在播放的动画 -->
+            <PlayingAnimation
+              class="playing-animation"
+              v-if="curEpisodeIndex === index + 1"
+            />
+          </span>
         </div>
       </div>
     </div>
