@@ -24,7 +24,8 @@ const rankBgColor = computed(() => {
   }
 });
 
-async function toPlayingPage() {
+// 传入title作为参数，避免在追剧周表中不同天数但同一次序下的卡片跳转播放页面时相同标题的问题
+async function toPlayingPage(title: string) {
   mainStore.setPlayingKeyword(title);
   await mainStore.getPlayingSearchResData();
   router.push({
@@ -36,7 +37,7 @@ async function toPlayingPage() {
   <div
     class="video-show-card-container"
     :class="{ row: isRow, column: isColumn, default: isDefault }"
-    @click="toPlayingPage"
+    @click="toPlayingPage(title)"
   >
     <div class="img-wrapper">
       <img :src="imgURL" :alt="title" />
