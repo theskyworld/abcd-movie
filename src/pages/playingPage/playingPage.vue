@@ -4,7 +4,8 @@ import { storeToRefs } from "pinia";
 import useMainStore from "@/store";
 import { playM3u8 } from "@/assets/ts/m3u8Parser.ts";
 import { ref, onMounted, computed, watchEffect, watch } from "vue";
-import { Swiper, SwiperSlide } from "swiper/vue";
+import VideoLoadingAnimation from "@/components/base/videoLoadingAnimation/VideoLoadingAnimation.vue";
+import isEmptyObj from "@/assets/ts/isEmptyObj.ts";
 
 const videoElem = ref();
 const mainStore = useMainStore();
@@ -15,6 +16,9 @@ const canClick = ref(true);
 
 const { playingKeyword, videoURL, routes } = storeToRefs(mainStore);
 
+// 决定加载视频url之前加载动画的是否展示
+const isLoadingURL = ref(true);
+
 watch(curURLIndex, async () => {
   canClick.value = false;
   await mainStore.getPlayingSearchResData(true, curURLIndex.value - 1);
@@ -22,6 +26,11 @@ watch(curURLIndex, async () => {
 });
 
 watchEffect(async () => {
+  if (isEmptyObj(videoURL.value)) {
+    isLoadingURL.value = true;
+  } else {
+    isLoadingURL.value = false;
+  }
   playM3u8(videoURL.value.url, videoElem.value);
 });
 </script>
@@ -30,6 +39,9 @@ watchEffect(async () => {
     <div class="top-content-wrapper">
       <div class="video-wrapper">
         <video ref="videoElem" class="videoElem" controls></video>
+        <div class="video-loading-animation-wrapper" v-if="isLoadingURL">
+          <VideoLoadingAnimation />
+        </div>
       </div>
       <div class="video-infos-wrapper">
         <div class="video-title-wrapper">

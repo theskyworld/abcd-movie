@@ -36,11 +36,11 @@ const rankBgColor = computed(() => {
 
 // 传入title作为参数，避免在追剧周表中不同天数但同一次序下的卡片跳转播放页面时相同标题的问题
 async function toPlayingPage(title: string) {
-  mainStore.setPlayingKeyword(title);
-  await mainStore.getPlayingSearchResData();
   router.push({
     path: "/playing",
   });
+  mainStore.setPlayingKeyword(title);
+  await mainStore.getPlayingSearchResData();
 }
 </script>
 <template>

@@ -70,11 +70,11 @@ const curSlideindex = ref(0);
 
 // 跳转到播放页面进行播放
 async function toPlayingPage(title: string) {
-  mainStore.setPlayingKeyword(title);
-  await mainStore.getPlayingSearchResData();
   router.push({
     path: "/playing",
   });
+  mainStore.setPlayingKeyword(title);
+  await mainStore.getPlayingSearchResData();
 }
 </script>
 <template>

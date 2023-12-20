@@ -43,11 +43,21 @@
     .video-wrapper {
       width: 75%;
       height: 100%;
+      position: relative;
       // 用于盖住视频标题前分隔小块的一部分
       z-index: 10;
       video {
         width: 100%;
         height: 100%;
+      }
+
+      .video-loading-animation-wrapper {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top : 0;
+        left: 0;
+        z-index : 11;
       }
     }
     .video-infos-wrapper {
