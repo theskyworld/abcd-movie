@@ -10,12 +10,13 @@ const playingStore = usePlayingStore(pinia);
 const useMainStore = defineStore("mainStore", {
   state: () => {
     const { keyword, serarchResDatas } = storeToRefs(searchStore);
-    const { playingKeyword, videoURLs } = storeToRefs(playingStore);
+    const { playingKeyword, videoURL, routes } = storeToRefs(playingStore);
     return {
       keyword,
       serarchResDatas,
       playingKeyword,
-      videoURLs,
+      videoURL,
+      routes,
     };
   },
   actions: {
@@ -28,8 +29,11 @@ const useMainStore = defineStore("mainStore", {
     setPlayingKeyword(keyword: string) {
       playingStore.setPlayingKeyword(keyword);
     },
-    async getPlayingSearchResData(isByClick: boolean = true) {
-      await playingStore.getPlayingSearchResData(isByClick);
+    async getPlayingSearchResData(
+      isByClick: boolean = true,
+      routeIndex?: number,
+    ) {
+      await playingStore.getPlayingSearchResData(isByClick, routeIndex);
     },
   },
 });

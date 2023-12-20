@@ -3,17 +3,22 @@ import VideoShowCard from "@/components/base/videoShowCard/VideoShowCard.vue";
 import { storeToRefs } from "pinia";
 import useMainStore from "@/store";
 import { playM3u8 } from "@/assets/ts/m3u8Parser.ts";
-import { ref, onMounted, computed, watchEffect } from "vue";
+import { ref, onMounted, computed, watchEffect, watch } from "vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 
 const videoElem = ref();
 const mainStore = useMainStore();
 const curURLIndex = ref(1);
 
-const { videoURLs } = storeToRefs(mainStore);
-watchEffect(() =>
-  playM3u8(videoURLs.value[curURLIndex.value - 1].url, videoElem.value),
-);
+const { playingKeyword, videoURL, routes } = storeToRefs(mainStore);
+
+watch(curURLIndex, async () => {
+  await mainStore.getPlayingSearchResData(true, curURLIndex.value - 1);
+});
+
+watchEffect(async () => {
+  playM3u8(videoURL.value.url, videoElem.value);
+});
 </script>
 <template>
   <div class="playing-page-container">
@@ -23,7 +28,7 @@ watchEffect(() =>
       </div>
       <div class="video-infos-wrapper">
         <div class="video-title-wrapper">
-          <h3>{{ videoURLs[0].title }}</h3>
+          <h3>{{ playingKeyword }}</h3>
         </div>
         <div class="video-labels-wrapper">
           <span>2023</span>
@@ -35,11 +40,7 @@ watchEffect(() =>
           <div class="routes">
             <!-- 写一个多选按钮，每个选项为线路的值 -->
             <select v-model="curURLIndex" name="urlRoutes" id="pet-select">
-              <option
-                v-for="(i, index) in videoURLs.length"
-                :key="index"
-                :value="i"
-              >
+              <option v-for="(i, index) in routes" :key="index" :value="i">
                 <p>线路{{ i }}</p>
               </option>
             </select>

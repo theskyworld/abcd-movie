@@ -5,11 +5,13 @@ import getSearchResData from "@/server/getSearchResData.ts";
 const usePlayingStore = defineStore("playingStore", {
   state: () => {
     const playingKeyword = ref("");
-    const videoURLs = ref([]);
+    const videoURL = ref({});
+    const routes = ref(0);
 
     return {
       playingKeyword,
-      videoURLs,
+      videoURL,
+      routes,
     };
   },
 
@@ -17,10 +19,21 @@ const usePlayingStore = defineStore("playingStore", {
     setPlayingKeyword(keyword: string) {
       this.playingKeyword = keyword;
     },
-    async getPlayingSearchResData(isByClick: boolean = true) {
+    async getPlayingSearchResData(
+      isByClick: boolean = true,
+      routeIndex?: number,
+    ) {
       if (this.playingKeyword) {
-        const res = await getSearchResData(this.playingKeyword, isByClick);
-        this.videoURLs = res[0].videoURLs;
+        const res = await getSearchResData(
+          this.playingKeyword,
+          isByClick,
+          routeIndex,
+        );
+        this.videoURL = res.videoURL;
+        // 只有初次请求URL（routeIndex默认为0）时才需要修改routes
+        if (!routeIndex) {
+          this.routes = res.routes;
+        }
       }
     },
   },
