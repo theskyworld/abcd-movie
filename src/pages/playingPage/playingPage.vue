@@ -5,33 +5,53 @@ import useMainStore from "@/store";
 import { playM3u8 } from "@/assets/ts/m3u8Parser.ts";
 import { ref, onMounted, computed, watchEffect, watch } from "vue";
 import VideoLoadingAnimation from "@/components/base/videoLoadingAnimation/VideoLoadingAnimation.vue";
-import isEmptyObj from "@/assets/ts/isEmptyObj.ts";
 
 const videoElem = ref();
 const mainStore = useMainStore();
+// 当前线路
 const curURLIndex = ref(1);
+// 当前集数
+const curEpisodeIndex = ref(1);
+
+function setCurEpisodeIndex(index: number) {
+  curEpisodeIndex.value = index;
+}
 
 // 避免多次迅速点击线路请求
 const canClick = ref(true);
 
 const { playingKeyword, videoURL, routes } = storeToRefs(mainStore);
 
+// 当前视频总的集数，如果为1，则表示为电影或短视频等
+const episodesAmount = computed(() => videoURL.value.episodesAmount) || ref(1);
+// 当前视频的播放url
+const episodeURL = computed(() => videoURL.value.episodeURL) || ref("");
+// 当前视频的所有集数的标题，例如正片，第一集，花絮等
+const episodeNames = computed(() => videoURL.value.episodeNames) || ref([]);
+
 // 决定加载视频url之前加载动画的是否展示
 const isLoadingURL = ref(true);
 
-watch(curURLIndex, async () => {
+watch([curURLIndex, curEpisodeIndex], async () => {
   canClick.value = false;
-  await mainStore.getPlayingSearchResData(true, curURLIndex.value - 1);
+  // 当前集数不变，获取新的线路播放url
+  await mainStore.getPlayingSearchResData(
+    true,
+    curURLIndex.value - 1,
+    curEpisodeIndex.value - 1,
+  );
   canClick.value = true;
 });
 
 watchEffect(async () => {
-  if (isEmptyObj(videoURL.value)) {
+  if (!episodeURL.value) {
     isLoadingURL.value = true;
   } else {
     isLoadingURL.value = false;
   }
-  playM3u8(videoURL.value.url, videoElem.value);
+  if (episodeURL.value) {
+    playM3u8(episodeURL.value, videoElem.value);
+  }
 });
 </script>
 <template>
@@ -55,7 +75,6 @@ watchEffect(async () => {
         <div class="video-url-routes-wrapper">
           <h4 class="title">选集播放</h4>
           <div class="routes">
-            <!-- 写一个多选按钮，每个选项为线路的值 -->
             <select
               v-show="canClick"
               v-model="curURLIndex"
@@ -77,9 +96,18 @@ watchEffect(async () => {
           </div>
         </div>
         <div class="video-episodes-wrapper">
-          <span>第01集</span>
-          <span>第02集</span>
-          <span>第03集</span>
+          <!-- 只存在一集 -->
+          <span v-if="episodesAmount === 1">{{
+            episodeNames && episodeNames[0]
+          }}</span>
+          <!-- 存在多集数 -->
+          <span
+            @click="setCurEpisodeIndex(index + 1)"
+            v-else
+            v-for="(i, index) in episodesAmount"
+            :key="index"
+            >{{ episodeNames && episodeNames[index] }}</span
+          >
         </div>
       </div>
     </div>

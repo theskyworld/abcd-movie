@@ -32,8 +32,13 @@ const useMainStore = defineStore("mainStore", {
     async getPlayingSearchResData(
       isByClick: boolean = true,
       routeIndex?: number,
+      episodeIndex?: number,
     ) {
-      await playingStore.getPlayingSearchResData(isByClick, routeIndex);
+      await playingStore.getPlayingSearchResData(
+        isByClick,
+        routeIndex,
+        episodeIndex,
+      );
     },
   },
 });

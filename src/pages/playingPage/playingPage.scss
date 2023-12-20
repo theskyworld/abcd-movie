@@ -55,9 +55,9 @@
         width: 100%;
         height: 100%;
         position: absolute;
-        top : 0;
+        top: 0;
         left: 0;
-        z-index : 11;
+        z-index: 11;
       }
     }
     .video-infos-wrapper {
@@ -107,7 +107,7 @@
       }
       .video-url-routes-wrapper {
         white-space: nowrap;
-        height : 1.2em;
+        height: 1.2em;
         flex-wrap: nowrap;
         display: flex;
         flex-direction: row;
@@ -124,11 +124,11 @@
         .routes {
           width: 70%;
           select {
-            color : var(--color-main);
+            color: var(--color-main);
             cursor: pointer;
             outline: none;
-            border-radius : 3px;
-            border-color : #32323C;
+            border-radius: 3px;
+            border-color: #32323c;
             background-color: transparent;
             transform: translateY(-3px);
             option {
@@ -136,14 +136,14 @@
               background-color: #25252b;
               p:hover {
                 cursor: pointer;
-                color : var(--color-hover)
+                color: var(--color-hover);
               }
             }
           }
           i img {
-            transform: translate(20px,1px);
-            width : .9em;
-            height : .9em;
+            transform: translate(20px, 1px);
+            width: 0.9em;
+            height: 0.9em;
           }
         }
       }
@@ -155,16 +155,23 @@
         width: calc(100% + 18px);
         transform: translateX(-18px);
         background-color: #16161a;
-        padding: 18px;
+        padding: 18px {
+          right: 0px;
+        }
+        overflow-y: auto;
+        @include scroll();
 
         span {
           display: inline-block;
           background-color: #32323c;
           width: max-content;
           height: max-content;
-          padding: 10px;
           border-radius: 8px;
-          margin-right: 10px;
+          padding: 10px;
+          margin : {
+            top: 10px;
+            right: 10px;
+          }
           font-size: 0.8em;
           cursor: pointer;
 
