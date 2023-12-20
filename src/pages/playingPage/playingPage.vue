@@ -10,10 +10,15 @@ const videoElem = ref();
 const mainStore = useMainStore();
 const curURLIndex = ref(1);
 
+// 避免多次迅速点击线路请求
+const canClick = ref(true);
+
 const { playingKeyword, videoURL, routes } = storeToRefs(mainStore);
 
 watch(curURLIndex, async () => {
+  canClick.value = false;
   await mainStore.getPlayingSearchResData(true, curURLIndex.value - 1);
+  canClick.value = true;
 });
 
 watchEffect(async () => {
@@ -39,11 +44,24 @@ watchEffect(async () => {
           <h4 class="title">选集播放</h4>
           <div class="routes">
             <!-- 写一个多选按钮，每个选项为线路的值 -->
-            <select v-model="curURLIndex" name="urlRoutes" id="pet-select">
-              <option v-for="(i, index) in routes" :key="index" :value="i">
+            <select
+              v-show="canClick"
+              v-model="curURLIndex"
+              name="urlRoutes"
+              id="pet-select"
+            >
+              <option
+                :disabled="!canClick"
+                v-for="(i, index) in routes"
+                :key="index"
+                :value="i"
+              >
                 <p>线路{{ i }}</p>
               </option>
             </select>
+            <i v-show="!canClick">
+              <img src="@/assets/imgs/loading.gif" alt="" />
+            </i>
           </div>
         </div>
         <div class="video-episodes-wrapper">
