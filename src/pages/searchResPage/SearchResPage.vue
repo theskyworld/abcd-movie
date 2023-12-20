@@ -6,7 +6,7 @@ import { storeToRefs } from "pinia";
 
 const mainStore = useMainStore();
 const { keyword, serarchResDatas } = storeToRefs(mainStore);
-const datas = computed(() => serarchResDatas?.value.current);
+const datas = computed(() => serarchResDatas?.value.curPageData);
 </script>
 
 <template>
@@ -22,7 +22,8 @@ const datas = computed(() => serarchResDatas?.value.current);
         v-for="(i, index) in datas.length"
         :key="index"
         :title="datas[index].title"
-        :imgURL="datas[index].videoURLs[0].pic"
+        :imgURL="datas[index].videoURL.pic"
+        :type="datas[index].type"
         is-default
       />
     </div>

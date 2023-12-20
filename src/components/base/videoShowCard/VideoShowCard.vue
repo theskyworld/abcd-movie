@@ -8,8 +8,18 @@ import { useRouter } from "vue-router";
 const mainStore = useMainStore();
 const router = useRouter();
 
-const { title, imgURL, tag, score, episode, isRow, isColumn, isDefault, rank } =
-  defineProps<VideoShowCardProps>();
+const {
+  title,
+  imgURL,
+  tag,
+  type,
+  score,
+  episode,
+  isRow,
+  isColumn,
+  isDefault,
+  rank,
+} = defineProps<VideoShowCardProps>();
 
 const rankBgColor = computed(() => {
   switch (rank) {
@@ -44,6 +54,7 @@ async function toPlayingPage(title: string) {
       <span class="rank" v-if="rank"
         ><p>{{ rank }}</p></span
       >
+      <span class="type" v-if="type">{{ type }}</span>
       <span class="label" v-if="tag">{{ tag }}</span>
       <span class="score" v-if="score">{{ score }}</span>
       <span class="episodes" v-if="episode">{{ episode }}</span>

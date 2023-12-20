@@ -37,6 +37,16 @@
       }
     }
 
+    .type {
+      position: absolute;
+      left: 5px;
+      top: 3px;
+      font-size: 10px;
+      padding: 2px;
+      border-radius: 3px;
+      background-color: var(--color-hover);
+    }
+
     .label {
       position: absolute;
       right: 5px;
