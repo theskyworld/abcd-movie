@@ -60,6 +60,7 @@ watchEffect(async () => {
     <div class="top-content-wrapper">
       <div class="video-wrapper">
         <video ref="videoElem" class="videoElem" controls></video>
+        <!-- TODO增加暂无片源时的处理逻辑以及对应的提示 -->
         <div class="video-loading-animation-wrapper" v-if="isLoadingURL">
           <VideoLoadingAnimation />
         </div>
