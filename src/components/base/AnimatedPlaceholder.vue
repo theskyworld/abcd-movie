@@ -32,10 +32,9 @@ defineProps({
   border-radius: v-bind(borderRadius);
   background-image: linear-gradient(
     to right,
-    #d6d7d8 0%,
-    #e2e3e4 10%,
-    #d6d7d8 20%,
-    #d6d7d8 100%
+    rgba(51, 51, 51, 0) 0,
+    rgba(51, 51, 51, 0.8) 50%,
+    rgba(51, 51, 51, 0) 100%
   );
   background-size: 200% 100%;
   box-shadow:
