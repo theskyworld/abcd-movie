@@ -60,7 +60,8 @@ watchEffect(async () => {
     <div class="top-content-wrapper">
       <div class="video-wrapper">
         <video ref="videoElem" class="videoElem" controls></video>
-        <!-- TODO增加暂无片源时的处理逻辑以及对应的提示 -->
+        <!-- TODO1.增加暂无片源时的处理逻辑以及对应的提示 -->
+        <!-- TODO2.需要解决相同名称但是不同类型的视频（例如播放夜幕降临的电视剧，但是由于存在相同名称的电影而纳入电视剧的线路中），导致在切换线路时可能切换到电影进行播放的情况 -->
         <div class="video-loading-animation-wrapper" v-if="isLoadingURL">
           <VideoLoadingAnimation />
         </div>
