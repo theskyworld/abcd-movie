@@ -4,9 +4,12 @@ import { ref, watchEffect } from "vue";
 import VideoSelectors from "@/components/base/videoSelectors/VideoSelectors.vue";
 import TVSelectors from "@/components/base/tvSelectors/TVSelectors.vue";
 import { PageLibrariesProps } from "./types";
+import Loading from "@/components/base/loading/Loading.vue";
 
 const { videoSelectorsData, getDatasFnName, tv } =
   defineProps<PageLibrariesProps>();
+
+const isLoading = ref(true);
 
 const page = ref(1);
 const kws = ref([
@@ -30,10 +33,16 @@ watchEffect(async () => {
 
   // 获取总的数据
   datas.value = await getDatasFn(page.value, kws.value);
+
+  if (isLoading.value) {
+    isLoading.value = false;
+  }
 });
+
+// Unhandled error during execution of render function
 </script>
 <template>
-  <div class="page-libraries-container">
+  <div v-if="!isLoading" class="page-libraries-container">
     <div class="video-selectors-wrapper">
       <TVSelectors v-if="tv" />
       <VideoSelectors
@@ -54,6 +63,7 @@ watchEffect(async () => {
       />
     </div>
   </div>
+  <Loading v-else />
 </template>
 <style scoped lang="scss">
 @use "./pageLibraries.scss";
