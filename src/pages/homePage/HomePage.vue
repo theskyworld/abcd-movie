@@ -15,8 +15,11 @@ import HotTVSeries from "@/components/hotTVSeries/HotTVSeries.vue";
 import HotAnime from "@/components/hotAnime/HotAnime.vue";
 import HotVariety from "@/components/hotVariety/HotVariety.vue";
 import getHomePageData from "@/server/getHomePageData.ts";
+import Loading from "@/components/base/loading/Loading.vue";
 
 import { ref, onBeforeMount } from "vue";
+
+const isLoading = ref(true);
 
 const swiperDatas: any = ref({});
 const bingeWatchDatas: any = ref({});
@@ -47,11 +50,12 @@ onBeforeMount(async () => {
   hotTVSeriesDatas.value = datas.items[10];
   hotAnimeDatas.value = datas.items[11];
   hotVarietyDatas.value = datas.items[12];
+  isLoading.value = false;
 });
 </script>
 
 <template>
-  <div class="home-page-container">
+  <div class="home-page-container" v-if="!isLoading">
     <!-- 将以下内容传送至App.vue中指定的容器下 -->
     <Teleport to=".home-page-swiper-container">
       <div class="home-page-swiper-wrapper">
@@ -66,80 +70,81 @@ onBeforeMount(async () => {
       <div class="video-shows-wrapper">
         <BingeWatch
           :video-titles="bingeWatchDatas.videoTitles"
-          :img-URLs="bingeWatchDatas.imgURLs"
+          :imgURLs="bingeWatchDatas.imgURLs"
           :video-tags="bingeWatchDatas.videoTags"
           :video-scores="bingeWatchDatas.videoScores"
         />
         <HotPlaying
           :video-titles="hotPlayingDatas.videoTitles"
-          :img-URLs="hotPlayingDatas.imgURLs"
+          :imgURLs="hotPlayingDatas.imgURLs"
           :video-tags="hotPlayingDatas.videoTags"
           :video-scores="hotPlayingDatas.videoScores"
         />
         <BingeWeekly
           :video-titles="bingeWeeklyDatas.videoTitles"
-          :img-URLs="bingeWeeklyDatas.imgURLs"
+          :imgURLs="bingeWeeklyDatas.imgURLs"
           :video-tags="bingeWeeklyDatas.videoTags"
           :video-episodes="bingeWeeklyDatas.videoEpisodes"
           :video-scores="bingeWeeklyDatas.videoScores"
         />
         <BestMoviesInWeek
           :video-titles="bestMoviesInWeekDatas.videoTitles"
-          :img-URLs="bestMoviesInWeekDatas.imgURLs"
+          :imgURLs="bestMoviesInWeekDatas.imgURLs"
           :video-tags="bestMoviesInWeekDatas.videoTags"
           :video-scores="bestMoviesInWeekDatas.videoScores"
         />
         <BestMoviesInMonth
           :video-titles="bestMoviesInMonthDatas.videoTitles"
-          :img-URLs="bestMoviesInMonthDatas.imgURLs"
+          :imgURLs="bestMoviesInMonthDatas.imgURLs"
           :video-tags="bestMoviesInMonthDatas.videoTags"
           :video-scores="bestMoviesInMonthDatas.videoScores"
         />
         <NetflixHot
           :video-titles="netflixHotDatas.videoTitles"
-          :img-URLs="netflixHotDatas.imgURLs"
+          :imgURLs="netflixHotDatas.imgURLs"
           :video-episodes="netflixHotDatas.videoEpisodes"
           :video-scores="netflixHotDatas.videoScores"
         />
         <HotJanpaneseAndKorean
           :video-titles="hotJanpaneseAndKoreanDatas.videoTitles"
-          :img-URLs="hotJanpaneseAndKoreanDatas.imgURLs"
+          :imgURLs="hotJanpaneseAndKoreanDatas.imgURLs"
           :video-episodes="hotJanpaneseAndKoreanDatas.videoEpisodes"
           :video-scores="hotJanpaneseAndKoreanDatas.videoScores"
         />
         <HotEuropeanAndAmerican
           :video-titles="hotEuropeanAndAmericanDatas.videoTitles"
-          :img-URLs="hotEuropeanAndAmericanDatas.imgURLs"
+          :imgURLs="hotEuropeanAndAmericanDatas.imgURLs"
           :video-episodes="hotEuropeanAndAmericanDatas.videoEpisodes"
           :video-scores="hotEuropeanAndAmericanDatas.videoScores"
         />
         <HotHongKongAndTaiwan
           :video-titles="hotHongKongAndTaiwanDatas.videoTitles"
-          :img-URLs="hotHongKongAndTaiwanDatas.imgURLs"
+          :imgURLs="hotHongKongAndTaiwanDatas.imgURLs"
           :video-episodes="hotHongKongAndTaiwanDatas.videoEpisodes"
           :video-scores="hotHongKongAndTaiwanDatas.videoScores"
         />
         <HotTVSeries
           :video-titles="hotTVSeriesDatas.videoTitles"
-          :img-URLs="hotTVSeriesDatas.imgURLs"
+          :imgURLs="hotTVSeriesDatas.imgURLs"
           :video-episodes="hotTVSeriesDatas.videoEpisodes"
           :video-scores="hotTVSeriesDatas.videoScores"
         />
         <HotAnime
           :video-titles="hotAnimeDatas.videoTitles"
-          :img-URLs="hotAnimeDatas.imgURLs"
+          :imgURLs="hotAnimeDatas.imgURLs"
           :video-episodes="hotAnimeDatas.videoEpisodes"
           :video-scores="hotAnimeDatas.videoScores"
         />
         <HotVariety
           :video-titles="hotVarietyDatas.videoTitles"
-          :img-URLs="hotVarietyDatas.imgURLs"
+          :imgURLs="hotVarietyDatas.imgURLs"
           :video-episodes="hotVarietyDatas.videoEpisodes"
           :video-scores="hotVarietyDatas.videoScores"
         />
       </div>
     </Teleport>
   </div>
+  <Loading v-else />
 </template>
 
 <style scoped lang="scss">
