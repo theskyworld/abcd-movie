@@ -1,12 +1,6 @@
 .loading-container {
-  margin: 0 0 2em;
-  height: 200px;
-  width: 20%;
-  text-align: center;
-  padding: 1em;
-  margin: 0 auto 1em;
+  width: min-content;
   display: inline-block;
-  vertical-align: top;
 
   svg path,
   svg rect {

@@ -63,7 +63,7 @@ watchEffect(async () => {
       />
     </div>
   </div>
-  <Loading v-else />
+  <Loading v-else class="loading-container" />
 </template>
 <style scoped lang="scss">
 @use "./pageLibraries.scss";

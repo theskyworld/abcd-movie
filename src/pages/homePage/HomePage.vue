@@ -144,7 +144,7 @@ onBeforeMount(async () => {
       </div>
     </Teleport>
   </div>
-  <Loading v-else />
+  <Loading class="loading-container" v-else />
 </template>
 
 <style scoped lang="scss">
