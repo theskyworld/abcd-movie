@@ -1,4 +1,4 @@
 export interface HomePageSwiperProps {
-  imgList: string[];
+  imgList: Array<string[]>;
   videoTitles: string[];
 }

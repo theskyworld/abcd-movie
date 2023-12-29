@@ -45,8 +45,13 @@ const swiperOptions = ref({
 });
 
 const { imgList, videoTitles } = defineProps<HomePageSwiperProps>();
-const bigImgURLs = ref(imgList[0]);
-const smallImgURLs = ref(imgList[1]);
+const bigImgURLs = ref<string[]>([]);
+const smallImgURLs = ref<string[]>([]);
+
+if (imgList) {
+  bigImgURLs.value = imgList[0];
+  smallImgURLs.value = imgList[1];
+}
 
 // 获取swiper实例
 let swiperInstance: any;
