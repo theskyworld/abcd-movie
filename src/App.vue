@@ -2,13 +2,14 @@
 import NavBar from "@/components/navBar/NavBar.vue";
 import SideMenus from "@/components/base/sideMenus/SideMenus.vue";
 import { ref, onMounted } from "vue";
-import NetflixPage from "./pages/netflixPage/NetflixPage.vue";
-import Pagination from "@/components/base/pagination/Pagination.vue";
 
+// 用于监听swiper的上下滚动
 const homePageSwiperContainerRef = ref();
+// 用于监听首页容器元素内容的上下滚动
 const fromHomePageRef = ref();
 const navBarWrapperRef = ref();
 
+// 根据swiper的是否滚动至视口之外来决定是否为navbar添加背景颜色
 function intersectionObserverSwiper() {
   const intersectionObserver = new IntersectionObserver((entries) => {
     fromHomePageRef.value.onscroll = () => {
@@ -34,6 +35,7 @@ onMounted(() => {
 </script>
 
 <template>
+  <!-- 默认跳转到首页 -->
   <router-link to="/" />
 
   <div class="app-container">

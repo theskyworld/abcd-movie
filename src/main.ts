@@ -5,6 +5,7 @@ import router from "@/router";
 import { createPinia } from "pinia";
 
 import loadingDirective from "@/utils/loadingDirective";
+// 使用iconfont
 import "//at.alicdn.com/t/c/font_4106328_wk46u2ppb.js";
 
 const pinia = createPinia();
