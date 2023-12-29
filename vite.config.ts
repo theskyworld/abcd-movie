@@ -9,6 +9,7 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
+    extensions: [".ts", ".js"], // 可以省略书写.js,.ts
   },
   server: {
     proxy: {

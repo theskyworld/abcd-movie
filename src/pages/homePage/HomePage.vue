@@ -14,7 +14,7 @@ import HotHongKongAndTaiwan from "@/components/hotHongKongAndTaiwan/HotHongKongA
 import HotTVSeries from "@/components/hotTVSeries/HotTVSeries.vue";
 import HotAnime from "@/components/hotAnime/HotAnime.vue";
 import HotVariety from "@/components/hotVariety/HotVariety.vue";
-import getHomePageData from "@/server/getHomePageData.ts";
+import getHomePageData from "@/server/getHomePageData";
 import LoadingWrapper from "@/components/base/loadingWrapper/LoadingWrapper.vue";
 
 import { ref, onBeforeMount } from "vue";
