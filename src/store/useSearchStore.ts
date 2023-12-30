@@ -6,9 +6,11 @@ const useSearchStore = defineStore("searchStore", {
   state: () => {
     const keyword = ref("");
     const serarchResDatas = ref([]);
+    const isLoading = ref(true);
     return {
       keyword,
       serarchResDatas,
+      isLoading,
     };
   },
 
@@ -18,7 +20,10 @@ const useSearchStore = defineStore("searchStore", {
     },
     async getSearchResData(isByClick: boolean = false) {
       if (this.keyword) {
+        this.isLoading = true;
         this.serarchResDatas = await getSearchResData(this.keyword, isByClick);
+        this.isLoading = false;
+        this.keyword = "";
       }
     },
   },

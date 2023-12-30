@@ -3,32 +3,36 @@ import VideoShowCard from "@/components/base/videoShowCard/VideoShowCard.vue";
 import { ref, onBeforeMount, watch, computed } from "vue";
 import useMainStore from "@/store";
 import { storeToRefs } from "pinia";
+import LoadingWrapper from "@/components/base/loadingWrapper/LoadingWrapper.vue";
 
 const mainStore = useMainStore();
-const { keyword, serarchResDatas } = storeToRefs(mainStore);
+const { keyword, serarchResDatas, isLoading } = storeToRefs(mainStore);
 const datas = computed(() => serarchResDatas?.value.curPageData);
+const isLoadingData = computed(() => isLoading.value);
 </script>
 
 <template>
-  <div class="search-res-page-container">
-    <div class="header-wrapper">
-      <p>搜索</p>
-      <p class="keyword">"{{ keyword }}"</p>
-      <p>,为你找到以下结果:</p>
+  <LoadingWrapper :flag="isLoadingData">
+    <div class="search-res-page-container">
+      <div class="header-wrapper">
+        <p>搜索</p>
+        <p class="keyword">"{{ keyword }}"</p>
+        <p>,为你找到以下结果:</p>
+      </div>
+      <div class="seperate-line"></div>
+      <div class="video-show-card-wrapper">
+        <VideoShowCard
+          v-for="(i, index) in datas.length"
+          :key="index"
+          :title="datas[index].title"
+          :imgURL="datas[index].videoURL.pic"
+          :type="datas[index].type"
+          is-default
+        />
+      </div>
+      <!-- <span v-else>没有找到</span> -->
     </div>
-    <div class="seperate-line"></div>
-    <div class="video-show-card-wrapper">
-      <VideoShowCard
-        v-for="(i, index) in datas.length"
-        :key="index"
-        :title="datas[index].title"
-        :imgURL="datas[index].videoURL.pic"
-        :type="datas[index].type"
-        is-default
-      />
-    </div>
-    <!-- <span v-else>没有找到</span> -->
-  </div>
+  </LoadingWrapper>
 </template>
 <style scoped lang="scss">
 @use "./searchResPage.scss";

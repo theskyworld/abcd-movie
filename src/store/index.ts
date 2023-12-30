@@ -9,7 +9,7 @@ const playingStore = usePlayingStore(pinia);
 
 const useMainStore = defineStore("mainStore", {
   state: () => {
-    const { keyword, serarchResDatas } = storeToRefs(searchStore);
+    const { keyword, serarchResDatas, isLoading } = storeToRefs(searchStore);
     const { playingKeyword, videoURL, routes } = storeToRefs(playingStore);
     return {
       keyword,
@@ -17,6 +17,7 @@ const useMainStore = defineStore("mainStore", {
       playingKeyword,
       videoURL,
       routes,
+      isLoading,
     };
   },
   actions: {
