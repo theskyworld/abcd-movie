@@ -10,7 +10,6 @@ const inputElemRef = ref();
 const router = useRouter();
 
 const mainStore = useMainStore();
-const { keyword } = storeToRefs(mainStore);
 
 onMounted(() => {
   inputElemRef.value.onfocus = () => {
@@ -21,14 +20,20 @@ onMounted(() => {
   };
 });
 
+const kw = ref("");
+
 async function toSearchResPage() {
   // 更新keyword
-  mainStore.setKeyword(keyword.value);
+  mainStore.setKeyword(kw.value);
   router.push({
-    path: `/search`,
+    name: "search",
+    params: {
+      kw: kw.value,
+    },
   });
   // 请求数据
   await mainStore.getSearchResData(false);
+  kw.value = "";
 }
 </script>
 <template>
@@ -38,7 +43,7 @@ async function toSearchResPage() {
       ref="inputElemRef"
       type="text"
       placeholder="搜索电影、电视剧、综艺、动漫"
-      v-model.lazy="keyword"
+      v-model.lazy="kw"
     />
     <i @click="toSearchResPage">
       <svg class="icon" aria-hidden="true">

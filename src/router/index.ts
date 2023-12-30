@@ -30,7 +30,8 @@ const routes = [
   },
   // 搜索结果
   {
-    path: "/search",
+    path: "/search/:kw",
+    name: "search",
     component: () => import("@/pages/searchResPage/SearchResPage.vue"),
   },
   // 播放页面

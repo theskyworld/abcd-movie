@@ -4,11 +4,13 @@ import { ref, onBeforeMount, watch, computed } from "vue";
 import useMainStore from "@/store";
 import { storeToRefs } from "pinia";
 import LoadingWrapper from "@/components/base/loadingWrapper/LoadingWrapper.vue";
+import { useRoute } from "vue-router";
 
 const mainStore = useMainStore();
 const { keyword, serarchResDatas, isLoading } = storeToRefs(mainStore);
 const datas = computed(() => serarchResDatas?.value.curPageData);
 const isLoadingData = computed(() => isLoading.value);
+const searchKey = computed(() => useRoute().params.kw);
 </script>
 
 <template>
@@ -16,7 +18,7 @@ const isLoadingData = computed(() => isLoading.value);
     <div class="search-res-page-container">
       <div class="header-wrapper">
         <p>搜索</p>
-        <p class="keyword">"{{ keyword }}"</p>
+        <p class="keyword">"{{ searchKey }}"</p>
         <p>,为你找到以下结果:</p>
       </div>
       <div class="seperate-line"></div>
@@ -30,7 +32,9 @@ const isLoadingData = computed(() => isLoading.value);
           is-default
         />
       </div>
-      <!-- <span v-else>没有找到</span> -->
+      <div class="not-found" v-if="!isLoadingData && datas.length === 0">
+        没有找到
+      </div>
     </div>
   </LoadingWrapper>
 </template>
