@@ -206,14 +206,12 @@
       }
     }
     .video-show-card-wrapper {
-      width: 100%;
+      width: 95%;
       margin-top: 30px;
       height: max-content;
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-      div {
-        margin-bottom: 20px;
-      }
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      grid-gap: 30px;
     }
   }
 }

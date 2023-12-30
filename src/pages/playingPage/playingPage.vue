@@ -3,9 +3,17 @@ import VideoShowCard from "@/components/base/videoShowCard/VideoShowCard.vue";
 import { storeToRefs } from "pinia";
 import useMainStore from "@/store";
 import { playM3u8 } from "@/assets/ts/m3u8Parser.ts";
-import { ref, onMounted, computed, watchEffect, watch } from "vue";
+import {
+  ref,
+  onMounted,
+  computed,
+  watchEffect,
+  watch,
+  onBeforeMount,
+} from "vue";
 import VideoLoadingAnimation from "@/components/base/videoLoadingAnimation/VideoLoadingAnimation.vue";
 import PlayingAnimation from "@/components/base/playingAnimation/PlayingAnimation.vue";
+import getPlayingRecommendData from "@/server/getPlayingRecommendData";
 
 const videoElem = ref();
 const mainStore = useMainStore();
@@ -54,6 +62,12 @@ watchEffect(async () => {
     playM3u8(episodeURL.value, videoElem.value);
   }
 });
+
+const recommendDatas = ref<Array<Array<string>>>([]);
+
+onBeforeMount(async () => {
+  recommendDatas.value = await getPlayingRecommendData();
+});
 </script>
 <template>
   <div class="playing-page-container">
@@ -70,11 +84,11 @@ watchEffect(async () => {
         <div class="video-title-wrapper">
           <h3>{{ playingKeyword }}</h3>
         </div>
-        <div class="video-labels-wrapper">
+        <!-- <div class="video-labels-wrapper">
           <span>2023</span>
           <span>欧美</span>
           <span>剧情/动作</span>
-        </div>
+        </div> -->
         <div class="video-url-routes-wrapper">
           <h4 class="title">选集播放</h4>
           <div class="routes">
@@ -125,7 +139,14 @@ watchEffect(async () => {
         <h4>相关推荐</h4>
       </div>
       <div class="video-show-card-wrapper">
-        <VideoShowCard />
+        <VideoShowCard
+          v-for="(i, index) in recommendDatas[0].length"
+          :key="index"
+          :title="recommendDatas[0][index]"
+          :imgURL="recommendDatas[1][index]"
+          :tag="recommendDatas[2][index]"
+          is-column
+        />
       </div>
     </div>
   </div>
