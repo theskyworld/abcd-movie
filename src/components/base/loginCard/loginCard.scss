@@ -1,0 +1,199 @@
+@import url(https://fonts.googleapis.com/css?family=Poppins:wght@300;700&display=swap);
+
+$theme-color: #fa17fa;
+
+.login-card-container {
+  background-color: white;
+  border: solid 1px #ddd;
+  box-shadow: 0 10px 50px -30px black;
+  width: 800px;
+  height: 500px;
+  border-radius: 30px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: auto auto;
+
+  & a {
+    text-decoration: none;
+    color: $theme-color;
+  }
+
+  & .column {
+    padding: 4rem;
+    text-align: center;
+    // 设置右栏注册栏
+    &:last-child {
+      background-image: url(https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 40px;
+      text-align: center;
+
+      // 设置右栏背景图片浅迷雾效果
+      &::after {
+        content: "";
+        position: absolute;
+        background: linear-gradient(90deg, white, rgba(100%, 100%, 100%, 20%));
+        inset: 0;
+      }
+
+      * {
+        z-index: 1;
+      }
+
+      // 右栏Sign Up按钮样式
+      & a {
+        display: inline-block;
+        padding: 12px 30px;
+        font-size: 16px;
+        border: solid 2px $theme-color;
+        color: black;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-weight: 600;
+
+        &:hover {
+          background-color: $theme-color;
+          color: white;
+        }
+      }
+    }
+
+    & h1 {
+      margin-bottom: 15px;
+    }
+  }
+
+  & form {
+    margin-top: 3rem;
+
+    & p {
+      text-align: start;
+    }
+    // 为其所有子元素分别设置1rem的margin-top值
+    & > * {
+      margin-top: 1rem;
+    }
+    & button {
+      background-color: $theme-color;
+      color: white;
+      border: none;
+      padding: 20px 40px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s;
+      font-size: 18px;
+
+      &:active {
+        scale: 0.95;
+        background-color: darken($theme-color, 10%);
+      }
+    }
+
+    & .form-element {
+      width: 100%;
+      border: none;
+      background-color: #f1f1f1;
+      padding: 20px 30px;
+      font-size: 18px;
+      border-radius: 50px;
+      transition: box-shadow 0.5s;
+
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px $theme-color;
+      }
+    }
+
+    & .form-checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-left: 5px;
+    }
+
+    & input[type="checkbox"] {
+      accent-color: $theme-color;
+      width: 16px;
+      height: 16px;
+    }
+
+    & input[type="checkbox"],
+    & label {
+      cursor: pointer;
+    }
+  }
+
+  .flex {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .social-buttons {
+    display: flex;
+    gap: 1rem;
+
+    & a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 50px;
+      font-size: 22px;
+      color: white;
+      background-color: green;
+      transition: scale 0.2s;
+
+      &.facebook {
+        background-color: #3b5998;
+      }
+
+      &.twitter {
+        background-color: #55acee;
+      }
+
+      &.github {
+        background-color: #111;
+      }
+
+      &:hover {
+        scale: 0.95;
+      }
+    }
+  }
+}
+
+// 响应式
+
+@media (max-width: 992px) {
+  .login-card {
+    display: block;
+    width: 500px;
+    text-align: center;
+
+    & .column {
+      &:last-child {
+        display: none;
+      }
+    }
+  }
+
+  .flex {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .social-buttons {
+    justify-content: center;
+  }
+}
