@@ -1,45 +1,29 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import getSearchHotData from "@/server/getSearchHotData";
+import { computed, onBeforeMount, ref } from "vue";
 import { SearchAdvise } from "./types";
 
-const searchAdvisers = ref<Array<SearchAdvise>>([
-  {
-    id: "1",
-    content: "涉过愤怒的海",
-    isHot: true,
-  },
-  {
-    id: "2",
-    content: "超异能族",
-    isHot: true,
-  },
-  {
-    id: "3",
-    content: "大力女子姜南顺",
-    isHot: true,
-  },
-  {
-    id: "4",
-    content: "蓝眼武士",
-    isHot: true,
-  },
-  {
-    id: "5",
-    content: "帝王计划怪兽遗产",
-    isHot: false,
-  },
-  {
-    id: "6",
-    content: "阿拉蒙之剑阿斯达年代记",
-    isHot: false,
-  },
-]);
+const searchHotData = ref([""]);
+
+onBeforeMount(async () => {
+  searchHotData.value = await getSearchHotData();
+});
+
+const searchAdvisers = computed(() => {
+  return searchHotData.value.map((data, index) => {
+    return {
+      id: index + 1 + "",
+      content: data,
+      isHot: index < 4,
+    };
+  });
+});
 </script>
 <template>
   <div class="search-advise-container">
     <h5>大家都在搜</h5>
     <div class="content-wrapper">
-      <ul>
+      <ul v-if="searchAdvisers.length > 0">
         <li
           v-for="{ id, content, isHot } in searchAdvisers"
           :key="id"
