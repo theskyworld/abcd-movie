@@ -6,8 +6,11 @@ import TVSelectors from "@/components/base/tvSelectors/TVSelectors.vue";
 import { PageLibrariesProps } from "./types";
 import LoadingWrapper from "@/components/base/loadingWrapper/LoadingWrapper.vue";
 
-const { videoSelectorsData, getDatasFnName, tv } =
-  defineProps<PageLibrariesProps>();
+const {
+  videoSelectorsData = [],
+  getDatasFnName,
+  tv,
+} = defineProps<PageLibrariesProps>();
 
 const isLoading = ref(true);
 
