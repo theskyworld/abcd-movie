@@ -174,14 +174,18 @@
             top: 10px;
             right: 10px;
           }
+          text-align: center;
           font-size: 0.8em;
           cursor: pointer;
 
-          // 正在播放中
+          // 正在播放中动画
           .playing-animation {
             position: absolute;
             bottom: 0px;
-            left: 20px;
+            float: left;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
           }
           &.playing {
             color : var(--color-hover);
