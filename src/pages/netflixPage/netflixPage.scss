@@ -72,6 +72,10 @@
       div {
         margin-bottom: 20px;
       }
+
+      .video-show-card {
+        animation: flyIn 0.5s ease-in-out;
+      }
     }
     .pagination-wrapper {
       margin : {
@@ -80,5 +84,16 @@
         left: 30%;
       }
     }
+  }
+}
+
+@keyframes flyIn {
+  from {
+    opacity: 0;
+    transform: translateY(3em);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
