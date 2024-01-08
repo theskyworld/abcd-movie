@@ -37,7 +37,7 @@ const routes = [
   // 播放页面
   {
     path: "/playing",
-    component: () => import("@/pages/playingPage/playingPage.vue"),
+    component: () => import("@/pages/PlayingPage/PlayingPage.vue"),
   },
 ];
 
