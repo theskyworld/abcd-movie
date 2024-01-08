@@ -115,9 +115,10 @@ onBeforeMount(async () => {
         </div>
         <div class="video-episodes-wrapper">
           <!-- 只存在一集 -->
-          <span v-if="episodesAmount === 1">{{
-            episodeNames && episodeNames[0]
-          }}</span>
+          <span v-if="episodesAmount === 1"
+            >{{ episodeNames && episodeNames[0] }}
+            <PlayingAnimation class="playing-animation" />
+          </span>
           <!-- 存在多集数 -->
           <span
             @click="setCurEpisodeIndex(index + 1)"
