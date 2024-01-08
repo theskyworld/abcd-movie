@@ -14,6 +14,7 @@ import {
 import VideoLoadingAnimation from "@/components/base/videoLoadingAnimation/VideoLoadingAnimation.vue";
 import PlayingAnimation from "@/components/base/playingAnimation/PlayingAnimation.vue";
 import getPlayingRecommendData from "@/server/getPlayingRecommendData";
+import LoadingWrapper from "@/components/base/loadingWrapper/LoadingWrapper.vue";
 
 const videoElem = ref();
 const mainStore = useMainStore();
@@ -138,16 +139,18 @@ onBeforeMount(async () => {
       <div class="title-wrapper">
         <h4>相关推荐</h4>
       </div>
-      <div class="video-show-card-wrapper">
-        <VideoShowCard
-          v-for="(i, index) in recommendDatas[0].length"
-          :key="index"
-          :title="recommendDatas[0][index]"
-          :imgURL="recommendDatas[1][index]"
-          :tag="recommendDatas[2][index]"
-          is-column
-        />
-      </div>
+      <LoadingWrapper :flag="!recommendDatas.length">
+        <div class="video-show-card-wrapper">
+          <VideoShowCard
+            v-for="(i, index) in recommendDatas[0].length"
+            :key="index"
+            :title="recommendDatas[0][index]"
+            :imgURL="recommendDatas[1][index]"
+            :tag="recommendDatas[2][index]"
+            is-column
+          />
+        </div>
+      </LoadingWrapper>
     </div>
   </div>
 </template>
