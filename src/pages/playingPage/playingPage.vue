@@ -2,19 +2,13 @@
 import VideoShowCard from "@/components/base/videoShowCard/VideoShowCard.vue";
 import { storeToRefs } from "pinia";
 import useMainStore from "@/store";
-import { playM3u8 } from "@/assets/ts/m3u8Parser.ts";
-import {
-  ref,
-  onMounted,
-  computed,
-  watchEffect,
-  watch,
-  onBeforeMount,
-} from "vue";
+import { playM3u8 } from "@/assets/ts/m3u8Parser";
+import { ref, computed, watchEffect, watch, onBeforeMount } from "vue";
 import VideoLoadingAnimation from "@/components/base/videoLoadingAnimation/VideoLoadingAnimation.vue";
 import PlayingAnimation from "@/components/base/playingAnimation/PlayingAnimation.vue";
 import getPlayingRecommendData from "@/server/getPlayingRecommendData";
 import LoadingWrapper from "@/components/base/loadingWrapper/LoadingWrapper.vue";
+import type { VideoURL } from "./types";
 
 const videoElem = ref();
 const mainStore = useMainStore();
@@ -33,11 +27,14 @@ const canClick = ref(true);
 const { playingKeyword, videoURL, routes } = storeToRefs(mainStore);
 
 // 当前视频总的集数，如果为1，则表示为电影或短视频等
-const episodesAmount = computed(() => videoURL.value.episodesAmount) || ref(1);
+const episodesAmount =
+  computed(() => (videoURL.value as VideoURL).episodesAmount) || ref(1);
 // 当前视频的播放url
-const episodeURL = computed(() => videoURL.value.episodeURL) || ref("");
+const episodeURL =
+  computed(() => (videoURL.value as VideoURL).episodeURL) || ref("");
 // 当前视频的所有集数的标题，例如正片，第一集，花絮等
-const episodeNames = computed(() => videoURL.value.episodeNames) || ref([]);
+const episodeNames =
+  computed(() => (videoURL.value as VideoURL).episodeNames) || ref([]);
 
 // 决定加载视频url之前加载动画的是否展示
 const isLoadingURL = ref(true);
