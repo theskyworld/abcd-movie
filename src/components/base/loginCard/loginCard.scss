@@ -7,7 +7,7 @@ $theme-color: #fa17fa;
   border: solid 1px #ddd;
   box-shadow: 0 10px 50px -30px black;
   width: 800px;
-  height: 500px;
+  height: 550px;
   border-radius: 30px;
   overflow: hidden;
   display: grid;
@@ -48,6 +48,7 @@ $theme-color: #fa17fa;
   }
 
   .column {
+    height: 100%;
     padding: 4rem;
     text-align: center;
     .guide {
@@ -72,18 +73,32 @@ $theme-color: #fa17fa;
           margin-top: 1rem;
         }
 
-        .form-element {
+        .form-item {
           width: 100%;
-          border: none;
-          background-color: #f1f1f1;
-          padding: 20px 30px;
-          font-size: 18px;
-          border-radius: 50px;
-          transition: box-shadow 0.5s;
+          .form-element {
+            width: 100%;
+            border: none;
+            background-color: #f1f1f1;
+            padding: 20px 30px;
+            font-size: 18px;
+            border-radius: 50px;
+            transition: box-shadow 0.5s;
 
-          &:focus {
-            outline: none;
-            box-shadow: 0 0 0 2px $theme-color;
+            &:focus {
+              outline: none;
+              box-shadow: 0 0 0 2px $theme-color;
+            }
+          }
+          .message {
+            width: 200px;
+            position: relative;
+            color: red;
+            font-size: 0.8em;
+            left: 30px;
+            top: 5px;
+            // 自动换行
+            white-space: pre-wrap;
+            text-align: left;
           }
         }
 
