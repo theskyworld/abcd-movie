@@ -2,6 +2,7 @@
 import NavBar from "@/components/navBar/NavBar.vue";
 import SideMenus from "@/components/base/sideMenus/SideMenus.vue";
 import { ref, onMounted } from "vue";
+import LoginCard from "./components/base/loginCard/LoginCard.vue";
 
 // 用于监听swiper的上下滚动
 const homePageSwiperContainerRef = ref();
@@ -30,7 +31,7 @@ function intersectionObserverSwiper() {
 }
 
 onMounted(() => {
-  intersectionObserverSwiper();
+  // intersectionObserverSwiper();
 });
 </script>
 
@@ -38,7 +39,7 @@ onMounted(() => {
   <!-- 默认跳转到首页 -->
   <router-link to="/" />
 
-  <div class="app-container">
+  <!-- <div class="app-container">
     <div class="static-parts-wrapper">
       <div class="from-home-page" ref="fromHomePageRef">
         <div
@@ -57,7 +58,8 @@ onMounted(() => {
     <div class="dynamic-parts-wrapper">
       <router-view />
     </div>
-  </div>
+  </div> -->
+  <LoginCard />
 </template>
 
 <style scoped lang="scss">
