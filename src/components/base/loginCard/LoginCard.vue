@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { createApp, ref, watch } from "vue";
+import { post, put } from "@/server/base";
+import Notification from "../notification/Notification.vue";
+import { AxiosResponse } from "axios";
 
 const isRegister = ref(false);
 const isLogin = ref(true);
@@ -47,8 +50,9 @@ function toLogin() {
   isRegister.value = false;
   curActive.value = "login";
   // 清空输入框
-  emailLoginVal.value = "";
-  passwordLoginVal.value = "";
+  emailRegisterVal.value = "";
+  passwordRegisterVal.value = "";
+  usernameVal.value = "";
   // 重置有效值
   isEmailLoginValid.value = true;
   isPasswordLoginValid.value = true;
@@ -58,13 +62,58 @@ function toRegister() {
   isLogin.value = false;
   curActive.value = "register";
   // 清空输入框
-  emailRegisterVal.value = "";
-  passwordRegisterVal.value = "";
-  usernameVal.value = "";
+  emailLoginVal.value = "";
+  passwordLoginVal.value = "";
   // 重置有效值
   isEmailRegisterValid.value = true;
   isPasswordRegisterValid.value = true;
   isUsernameValid.value = true;
+}
+
+function showNotification(content: string, type: string) {
+  // 将Notification组件挂载到body上
+  const notificationContainerElem = document.createElement("div");
+  notificationContainerElem.style.position = "absolute";
+  notificationContainerElem.style.top = "0";
+  notificationContainerElem.style.left = "50%";
+  notificationContainerElem.style.zIndex = "10000";
+  const app = createApp(Notification, {
+    content,
+    type,
+  });
+  app.mount(notificationContainerElem);
+  // 添加到body最前面
+  document.body.prepend(notificationContainerElem);
+}
+
+function register() {
+  if (
+    isEmailRegisterValid.value &&
+    isPasswordRegisterValid.value &&
+    isUsernameValid.value &&
+    emailRegisterVal.value &&
+    passwordRegisterVal.value &&
+    usernameVal.value
+  ) {
+    post("api/user/register", {
+      username: usernameVal.value,
+      email: emailRegisterVal.value,
+      password: passwordRegisterVal.value,
+    })
+      .then((res: AxiosResponse) => {
+        if (res.status >= 200 && res.status < 300) {
+          showNotification("注册成功,即将前往登录", "success");
+          // 为登录界面中的邮箱地址和密码填值
+          emailLoginVal.value = emailRegisterVal.value;
+          passwordLoginVal.value = passwordRegisterVal.value;
+          // 前往登录
+          setTimeout(toLogin, 3000);
+        }
+      })
+      .catch((err) => {
+        showNotification(err.response.data.err.message, "error");
+      });
+  }
 }
 
 watch(emailLoginVal, () => {
@@ -169,7 +218,7 @@ watch(usernameVal, () => {
             </div>
           </div>
           <div class="flex">
-            <button type="button">注册</button>
+            <button type="button" @click="register">注册</button>
           </div>
         </form>
       </div>
