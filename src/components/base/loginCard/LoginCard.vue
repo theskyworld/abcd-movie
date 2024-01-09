@@ -3,7 +3,9 @@ import { createApp, ref, watch } from "vue";
 import { post, put } from "@/server/base";
 import Notification from "../notification/Notification.vue";
 import { AxiosResponse } from "axios";
+import useStorage from "@/utils/useStorage";
 
+const { setStorage } = useStorage();
 const isRegister = ref(false);
 const isLogin = ref(true);
 const isEmailLoginValid = ref(true);
@@ -116,6 +118,30 @@ function register() {
   }
 }
 
+function login() {
+  if (
+    isEmailLoginValid.value &&
+    isPasswordLoginValid.value &&
+    emailLoginVal.value &&
+    passwordLoginVal.value
+  ) {
+    post("api/user/login", {
+      email: emailLoginVal.value,
+      password: passwordLoginVal.value,
+    })
+      .then((res: AxiosResponse) => {
+        if (res.status >= 200 && res.status < 300) {
+          showNotification("登录成功", "success");
+          // 在本地存储token
+          setStorage("token", res.data.token);
+        }
+      })
+      .catch((err) => {
+        showNotification(err.response.data.err.message, "error");
+      });
+  }
+}
+
 watch(emailLoginVal, () => {
   isEmailLoginValid.value = validateEmail(emailLoginVal.value);
 });
@@ -165,12 +191,8 @@ watch(usernameVal, () => {
               {{ passwordMessage }}
             </div>
           </div>
-          <div class="form-checkbox-item">
-            <input type="checkbox" id="remember" checked />
-            <label for="remember">记住</label>
-          </div>
           <div class="flex">
-            <button type="button">登录</button>
+            <button @click="login" type="button">登录</button>
           </div>
         </form>
       </div>
