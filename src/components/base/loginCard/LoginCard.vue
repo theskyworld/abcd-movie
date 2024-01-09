@@ -4,8 +4,11 @@ import { post, put } from "@/server/base";
 import Notification from "../notification/Notification.vue";
 import { AxiosResponse } from "axios";
 import useStorage from "@/utils/useStorage";
+import throttle from "lodash/throttle";
 
 const { setStorage } = useStorage();
+const isLoginDisabled = ref(false);
+const isRegisterDisabled = ref(false);
 const isRegister = ref(false);
 const isLogin = ref(true);
 const isEmailLoginValid = ref(true);
@@ -97,6 +100,7 @@ function register() {
     passwordRegisterVal.value &&
     usernameVal.value
   ) {
+    isRegisterDisabled.value = true;
     post("api/user/register", {
       username: usernameVal.value,
       email: emailRegisterVal.value,
@@ -108,12 +112,14 @@ function register() {
           // 为登录界面中的邮箱地址和密码填值
           emailLoginVal.value = emailRegisterVal.value;
           passwordLoginVal.value = passwordRegisterVal.value;
+          isRegisterDisabled.value = false;
           // 前往登录
           setTimeout(toLogin, 3000);
         }
       })
       .catch((err) => {
         showNotification(err.response.data.err.message, "error");
+        isRegisterDisabled.value = false;
       });
   }
 }
@@ -125,6 +131,7 @@ function login() {
     emailLoginVal.value &&
     passwordLoginVal.value
   ) {
+    isLoginDisabled.value = true;
     post("api/user/login", {
       email: emailLoginVal.value,
       password: passwordLoginVal.value,
@@ -134,13 +141,18 @@ function login() {
           showNotification("登录成功", "success");
           // 在本地存储token
           setStorage("token", res.data.token);
+          isLoginDisabled.value = false;
         }
       })
       .catch((err) => {
         showNotification(err.response.data.err.message, "error");
+        isLoginDisabled.value = false;
       });
   }
 }
+
+const throttledLogin = throttle(login, 3000, { leading: true });
+const throttledRegister = throttle(register, 3000, { leading: true });
 
 watch(emailLoginVal, () => {
   isEmailLoginValid.value = validateEmail(emailLoginVal.value);
@@ -192,7 +204,13 @@ watch(usernameVal, () => {
             </div>
           </div>
           <div class="flex">
-            <button @click="login" type="button">登录</button>
+            <button
+              :disabled="isLoginDisabled"
+              @click="throttledLogin"
+              type="button"
+            >
+              登录
+            </button>
           </div>
         </form>
       </div>
@@ -240,7 +258,13 @@ watch(usernameVal, () => {
             </div>
           </div>
           <div class="flex">
-            <button type="button" @click="register">注册</button>
+            <button
+              :disabled="isRegisterDisabled"
+              type="button"
+              @click="throttledRegister"
+            >
+              注册
+            </button>
           </div>
         </form>
       </div>

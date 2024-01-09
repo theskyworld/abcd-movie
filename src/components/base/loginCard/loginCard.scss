@@ -28,6 +28,10 @@ $theme-color: #fa17fa;
       background-color: $theme-color;
       color: white;
     }
+
+    &[disabled] {
+      cursor: not-allowed;
+    }
   }
 
   .image {
