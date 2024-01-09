@@ -1,0 +1,12 @@
+.notification-container {
+  .notification {
+    width: min-content;
+    height: 30px;
+    border-radius: 3px;
+    line-height: 30px;
+    padding: 0 10px;
+    // 水平居中
+    margin: auto;
+    margin-top : 20px;
+  }
+}
