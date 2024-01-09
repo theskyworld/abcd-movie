@@ -1,9 +1,12 @@
 <script setup lang="ts">
-import { createApp, ref, watch } from "vue";
+import { createApp, nextTick, ref, watch } from "vue";
 import { post, put } from "@/server/base";
 import Notification from "../notification/Notification.vue";
 import { AxiosResponse } from "axios";
+import SlideVerify, { SlideVerifyInstance } from "vue3-slide-verify";
+import "vue3-slide-verify/dist/style.css";
 import useStorage from "@/utils/useStorage";
+// @ts-ignore
 import throttle from "lodash/throttle";
 
 const { setStorage } = useStorage();
@@ -29,6 +32,33 @@ const usernameMessage = ref("用户名为必填项");
 
 const curActive = ref("login");
 
+const text = ref("向右滑动");
+const msg = ref("");
+const slideVerifyInstance = ref<SlideVerifyInstance>();
+const accuracy = ref(3);
+const isVerifing = ref(false);
+const verifyTarget = ref("");
+
+function onAgain() {
+  msg.value = "再试一次";
+  slideVerifyInstance.value?.refresh();
+}
+function onSuccess(times: number) {
+  msg.value = `验证通过,耗时${(times / 1000).toFixed(1)}s,${
+    verifyTarget.value === "login" ? "登录中" : "注册中"
+  }...`;
+  setTimeout(() => {
+    if (verifyTarget.value === "login") {
+      login();
+    } else if (verifyTarget.value === "register") {
+      register();
+    }
+    isVerifing.value = false;
+  }, 1000);
+}
+function onFail() {
+  msg.value = "验证失败";
+}
 function validateEmail(email: string) {
   const reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
   return reg.test(email);
@@ -150,9 +180,18 @@ function login() {
       });
   }
 }
+function verify(target: string) {
+  isVerifing.value = true;
+  if (target === "login") {
+    isLoginDisabled.value = true;
+    verifyTarget.value = "login";
+  } else if (target === "register") {
+    isRegisterDisabled.value = true;
+    verifyTarget.value = "register";
+  }
+}
 
-const throttledLogin = throttle(login, 3000, { leading: true });
-const throttledRegister = throttle(register, 3000, { leading: true });
+const throttledVerify = throttle(verify, 3000, { leading: true });
 
 watch(emailLoginVal, () => {
   isEmailLoginValid.value = validateEmail(emailLoginVal.value);
@@ -206,7 +245,7 @@ watch(usernameVal, () => {
           <div class="flex">
             <button
               :disabled="isLoginDisabled"
-              @click="throttledLogin"
+              @click="throttledVerify('login')"
               type="button"
             >
               登录
@@ -261,13 +300,25 @@ watch(usernameVal, () => {
             <button
               :disabled="isRegisterDisabled"
               type="button"
-              @click="throttledRegister"
+              @click="throttledVerify('register')"
             >
               注册
             </button>
           </div>
         </form>
       </div>
+    </div>
+    <div class="verify-wrapper" v-if="isVerifing">
+      <slide-verify
+        class="silde_box"
+        ref="slideVerifyInstance"
+        :slider-text="text"
+        :accuracy="accuracy"
+        @again="onAgain"
+        @success="onSuccess"
+        @fail="onFail"
+      ></slide-verify>
+      <div class="msg">{{ msg }}</div>
     </div>
   </div>
 </template>

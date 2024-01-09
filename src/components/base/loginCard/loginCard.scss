@@ -12,6 +12,7 @@ $theme-color: #fa17fa;
   overflow: hidden;
   display: grid;
   grid-template-columns: auto auto;
+  position: relative;
 
   button {
     display: inline-block;
@@ -133,6 +134,25 @@ $theme-color: #fa17fa;
     // 如果为左侧的部分，迷雾效果由左到右
     &:last-child::after {
       background: linear-gradient(90deg, white, rgba(100%, 100%, 100%, 20%));
+    }
+  }
+  .verify-wrapper {
+    position: absolute;
+    // 水平垂直居中
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 30;
+
+    .silde_box {
+      width: min-content;
+      position: relative;
+    }
+    .msg {
+      position: absolute;
+      color: red;
+      font-size: 12px;
+      left: 70px;
     }
   }
 }
