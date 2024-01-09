@@ -3,6 +3,8 @@ import NavBar from "@/components/navBar/NavBar.vue";
 import SideMenus from "@/components/base/sideMenus/SideMenus.vue";
 import { ref, onMounted } from "vue";
 import LoginCard from "./components/base/loginCard/LoginCard.vue";
+import { storeToRefs } from "pinia";
+import useMainStore from "@/store";
 
 // 用于监听swiper的上下滚动
 const homePageSwiperContainerRef = ref();
@@ -31,15 +33,17 @@ function intersectionObserverSwiper() {
 }
 
 onMounted(() => {
-  // intersectionObserverSwiper();
+  intersectionObserverSwiper();
 });
+
+const { isInLogin } = storeToRefs(useMainStore());
 </script>
 
 <template>
   <!-- 默认跳转到首页 -->
   <router-link to="/" />
 
-  <!-- <div class="app-container">
+  <div class="app-container">
     <div class="static-parts-wrapper">
       <div class="from-home-page" ref="fromHomePageRef">
         <div
@@ -54,12 +58,14 @@ onMounted(() => {
       <div class="side-menus-wrapper">
         <SideMenus />
       </div>
+      <div class="login-card-wraper" v-if="isInLogin">
+        <LoginCard />
+      </div>
     </div>
     <div class="dynamic-parts-wrapper">
       <router-view />
     </div>
-  </div> -->
-  <LoginCard />
+  </div>
 </template>
 
 <style scoped lang="scss">
@@ -119,6 +125,16 @@ onMounted(() => {
     position: absolute;
     z-index: 10;
     top: 60px;
+  }
+
+  .login-card-wraper {
+    position: absolute;
+    top: 50px;
+    left: 300px;
+    width: 800px;
+    height: 550px;
+    z-index: 50;
+    opacity: 0.9;
   }
 }
 

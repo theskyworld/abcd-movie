@@ -8,6 +8,7 @@ import "vue3-slide-verify/dist/style.css";
 import useStorage from "@/utils/useStorage";
 // @ts-ignore
 import throttle from "lodash/throttle";
+import useMainStore from "@/store";
 
 const { setStorage } = useStorage();
 const isLoginDisabled = ref(false);
@@ -172,6 +173,11 @@ function login() {
           // 在本地存储token
           setStorage("token", res.data.token);
           isLoginDisabled.value = false;
+          // 设置为已登录
+          setStorage("isLogin", "true");
+          useMainStore().setIsInLogin();
+          // 将登录卡片隐藏
+          useMainStore().setIsInLogin();
         }
       })
       .catch((err) => {

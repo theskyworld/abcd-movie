@@ -2,15 +2,21 @@ import { createPinia, defineStore } from "pinia";
 import { storeToRefs } from "pinia";
 import usePlayingStore from "./usePlayingStore";
 import useSearchStore from "./useSearchStore";
+import useNavStore from "./useNavStore";
+import useLoginStore from "./useLoginStore";
 
 const pinia = createPinia();
 const searchStore = useSearchStore(pinia);
 const playingStore = usePlayingStore(pinia);
+const navStore = useNavStore(pinia);
+const loginStore = useLoginStore(pinia);
 
 const useMainStore = defineStore("mainStore", {
   state: () => {
     const { keyword, serarchResDatas, isLoading } = storeToRefs(searchStore);
     const { playingKeyword, videoURL, routes } = storeToRefs(playingStore);
+    const { isInLogin } = storeToRefs(navStore);
+    const { isLogin } = storeToRefs(loginStore);
     return {
       keyword,
       serarchResDatas,
@@ -18,6 +24,8 @@ const useMainStore = defineStore("mainStore", {
       videoURL,
       routes,
       isLoading,
+      isInLogin,
+      isLogin,
     };
   },
   actions: {
@@ -41,6 +49,8 @@ const useMainStore = defineStore("mainStore", {
         episodeIndex,
       );
     },
+    setIsInLogin: navStore.setIsInLogin,
+    setIsLogin: loginStore.setIsLogin,
   },
 });
 

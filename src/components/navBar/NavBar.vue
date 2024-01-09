@@ -5,10 +5,13 @@ import Search from "../search/Search.vue";
 import WatchHistoryPart from "../WatchHistoryPart/WatchHistoryPart.vue";
 import Profile from "@/components/base/profile/Profile.vue";
 import { ref, onMounted } from "vue";
+import { storeToRefs } from "pinia";
+import useMainStore from "@/store";
 
 const watchHistoryToggleElemRef = ref();
 const watchHistoryElemRef = ref();
 const isShowWatchHistory = ref(false);
+const { isLogin } = storeToRefs(useMainStore());
 
 onMounted(() => {
   watchHistoryToggleElemRef.value.onmouseover = () => {
@@ -47,8 +50,9 @@ const imgURL = ref("https://imgapi.xl0408.top/index.php");
           <WatchHistoryPart />
         </div>
       </div>
-      <div class="profile-wrapper">
-        <Profile :imgURL="imgURL" />
+      <div class="profile-wrapper" @click="useMainStore().setIsInLogin()">
+        <span v-if="!isLogin" style="color: var(--color-hover)">登录</span>
+        <Profile :imgURL="imgURL" v-else />
       </div>
     </div>
   </div>
