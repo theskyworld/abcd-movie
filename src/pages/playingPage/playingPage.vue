@@ -28,13 +28,13 @@ const { playingKeyword, videoURL, routes } = storeToRefs(mainStore);
 
 // 当前视频总的集数，如果为1，则表示为电影或短视频等
 const episodesAmount =
-  computed(() => (videoURL.value as VideoURL).episodesAmount) || ref(1);
+  computed(() => (videoURL.value as VideoURL)?.episodesAmount) || ref(1);
 // 当前视频的播放url
 const episodeURL =
-  computed(() => (videoURL.value as VideoURL).episodeURL) || ref("");
+  computed(() => (videoURL.value as VideoURL)?.episodeURL) || ref("");
 // 当前视频的所有集数的标题，例如正片，第一集，花絮等
 const episodeNames =
-  computed(() => (videoURL.value as VideoURL).episodeNames) || ref([]);
+  computed(() => (videoURL.value as VideoURL)?.episodeNames) || ref([]);
 
 // 决定加载视频url之前加载动画的是否展示
 const isLoadingURL = ref(true);
