@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import PageLibraries from "@/components/pageLibraries/PageLibraries.vue";
 import { ref } from "vue";
-import { VideoSelectorData } from "@/components/base/videoSelector/types";
+import { VideoSelectorData } from "@/components/base/videoSelectors/types";
 import PageHome from "../../components/pageHome/PageHome.vue";
 const activedTitle = ref("综艺首页");
 
