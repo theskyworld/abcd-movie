@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import VideoShowCard from "@/components/base/videoShowCard/VideoShowCard.vue";
-import { BingeWeeklyProps } from "./types.d.ts";
+import { BingeWeeklyProps } from "./types.d";
 
 const { videoTitles, imgURLs, videoTags, videoEpisodes, videoScores } =
   defineProps<BingeWeeklyProps>();
