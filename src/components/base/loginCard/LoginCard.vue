@@ -179,6 +179,8 @@ function login() {
           useMainStore().setIsLogin(false);
           // 将登录卡片隐藏
           useMainStore().setIsInLogin();
+          // 刷新首页
+          location.reload();
         }
       })
       .catch((err) => {

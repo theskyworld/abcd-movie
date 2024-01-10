@@ -7,10 +7,13 @@ import Profile from "@/components/base/profile/Profile.vue";
 import { ref, onMounted } from "vue";
 import { storeToRefs } from "pinia";
 import useMainStore from "@/store";
+import ProfileCard from "../base/profileCard/ProfileCard.vue";
 
 const watchHistoryToggleElemRef = ref();
+const profileCardToggleElemRef = ref();
 const watchHistoryElemRef = ref();
 const isShowWatchHistory = ref(false);
+const isShowProfileCard = ref(false);
 const { isLogin } = storeToRefs(useMainStore());
 
 onMounted(() => {
@@ -20,6 +23,14 @@ onMounted(() => {
   watchHistoryToggleElemRef.value.onmouseleave = () => {
     isShowWatchHistory.value = false;
   };
+  if (profileCardToggleElemRef.value) {
+    profileCardToggleElemRef.value.onmouseover = () => {
+      isShowProfileCard.value = true;
+    };
+    profileCardToggleElemRef.value.onmouseleave = () => {
+      isShowProfileCard.value = false;
+    };
+  }
 });
 
 const imgURL = ref("https://imgapi.xl0408.top/index.php");
@@ -50,9 +61,19 @@ const imgURL = ref("https://imgapi.xl0408.top/index.php");
           <WatchHistoryPart />
         </div>
       </div>
-      <div class="profile-wrapper" @click="useMainStore().setIsInLogin()">
-        <span v-if="!isLogin" style="color: var(--color-hover)">登录</span>
-        <Profile :imgURL="imgURL" v-else />
+      <div class="profile-wrapper">
+        <span
+          @click="useMainStore().setIsInLogin()"
+          v-if="!isLogin"
+          style="color: var(--color-hover)"
+          >登录</span
+        >
+        <div v-else ref="profileCardToggleElemRef">
+          <Profile :imgURL="imgURL" />
+        </div>
+        <div class="profile-card-wrapper" v-if="isShowProfileCard">
+          <ProfileCard />
+        </div>
       </div>
     </div>
   </div>
