@@ -35,6 +35,7 @@ const curActive = ref("login");
 
 const text = ref("向右滑动");
 const msg = ref("");
+const bgImgs = ref(["https://t.mwm.moe/fj"]);
 const slideVerifyInstance = ref<SlideVerifyInstance>();
 const accuracy = ref(3);
 const isVerifing = ref(false);
@@ -175,7 +176,7 @@ function login() {
           isLoginDisabled.value = false;
           // 设置为已登录
           setStorage("isLogin", "true");
-          useMainStore().setIsInLogin();
+          useMainStore().setIsLogin(false);
           // 将登录卡片隐藏
           useMainStore().setIsInLogin();
         }
@@ -336,6 +337,7 @@ watch(usernameVal, () => {
         @again="onAgain"
         @success="onSuccess"
         @fail="onFail"
+        :imgs="bgImgs"
       ></slide-verify>
       <div class="msg">{{ msg }}</div>
     </div>
