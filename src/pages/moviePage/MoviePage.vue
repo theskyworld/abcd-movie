@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import PageLibraries from "@/components/pageLibraries/PageLibraries.vue";
 import PageHome from "../../components/pageHome/PageHome.vue";
-import { VideoSelectorData } from "@/components/base/videoSelector/types";
+import { VideoSelectorData } from "@/components/base/videoSelectors/types";
 
 const activedTitle = ref("电影首页");
 
