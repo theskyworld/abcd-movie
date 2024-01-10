@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import getSearchResData from "@/server/getSearchResData.ts";
+import getSearchResData from "@/server/getSearchResData";
 
 const useSearchStore = defineStore("searchStore", {
   state: () => {
