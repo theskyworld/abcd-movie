@@ -8,7 +8,7 @@ import { useRoute } from "vue-router";
 
 const mainStore = useMainStore();
 const { keyword, serarchResDatas, isLoading } = storeToRefs(mainStore);
-const datas = computed(() => serarchResDatas?.value.curPageData);
+const datas = computed(() => (serarchResDatas?.value as any).curPageData);
 const isLoadingData = computed(() => isLoading.value);
 const searchKey = computed(() => useRoute().params.kw);
 </script>
