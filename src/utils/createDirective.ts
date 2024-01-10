@@ -41,7 +41,7 @@ export default function createDirective() {
         // Com组件名称
         // console.log(Com.__name);
         // 将Loading组件实例添加到目标元素对象上，方便以后使用，例如进行Loading组件在目标元素上的挂载和移除
-        const comName = Com!.__name;
+        const comName: string = Com!.__name || "";
         if (!el[comName]) {
           el[comName] = {};
         }
@@ -63,7 +63,7 @@ export default function createDirective() {
             return item;
           }
         });
-        const comName = Com.__name;
+        const comName = Com!.__name;
 
         // 决定Loading的是否移除或添加
         if (binding.value !== binding.oldValue) {
