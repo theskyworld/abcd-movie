@@ -16,7 +16,7 @@ const useMainStore = defineStore("mainStore", {
     const { keyword, serarchResDatas, isLoading } = storeToRefs(searchStore);
     const { playingKeyword, videoURL, routes } = storeToRefs(playingStore);
     const { isInLogin } = storeToRefs(navStore);
-    const { isLogin } = storeToRefs(loginStore);
+    const { isLogin, loginedUser } = storeToRefs(loginStore);
     return {
       keyword,
       serarchResDatas,
@@ -26,6 +26,7 @@ const useMainStore = defineStore("mainStore", {
       isLoading,
       isInLogin,
       isLogin,
+      loginedUser,
     };
   },
   actions: {

@@ -5,6 +5,7 @@ import { ref, onMounted } from "vue";
 import LoginCard from "./components/base/loginCard/LoginCard.vue";
 import { storeToRefs } from "pinia";
 import useMainStore from "@/store";
+import ProfileCard from "@/components/base/profileCard/ProfileCard.vue";
 
 // 用于监听swiper的上下滚动
 const homePageSwiperContainerRef = ref();

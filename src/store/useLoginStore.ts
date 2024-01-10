@@ -9,8 +9,10 @@ const useLoginStore = defineStore("loginStore", {
     const isLogin = ref(
       Boolean(getStorage("isLogin")) && Boolean(getStorage("token")),
     );
+    const loginedUser = ref(JSON.parse(getStorage("user") || "{}"));
     return {
       isLogin,
+      loginedUser,
     };
   },
   actions: {
