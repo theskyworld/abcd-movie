@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import VideoShowCard from "@/components/base/videoShowCard/VideoShowCard.vue";
 import Pagination from "@/components/base/pagination/Pagination.vue";
-import getNetflixPageData from "@/server/getNetflixPageData.ts";
+import getNetflixPageData from "@/server/getNetflixPageData";
 import { ref, onBeforeMount, Ref, onMounted, onUpdated } from "vue";
 import useStorage from "@/utils/useStorage";
 import Loading from "@/components/base/loading/Loading.vue";
@@ -12,7 +12,12 @@ const curPage = ref(1);
 
 const videoShowCardElemsRef = ref();
 const contentWrapperElemRef = ref();
-const datas = ref<Data | {}>({});
+const datas = ref<Data>({
+  imgURLs: [],
+  videoTitles: [],
+  videoScores: [],
+  videoEpisodes: [],
+});
 const isLoading = ref(true);
 
 onBeforeMount(async () => {
