@@ -187,13 +187,26 @@ function login() {
   }
 }
 function verify(target: string) {
-  isVerifing.value = true;
-  if (target === "login") {
-    isLoginDisabled.value = true;
-    verifyTarget.value = "login";
-  } else if (target === "register") {
-    isRegisterDisabled.value = true;
-    verifyTarget.value = "register";
+  if (
+    (isEmailLoginValid.value &&
+      isPasswordLoginValid.value &&
+      emailLoginVal.value &&
+      passwordLoginVal.value) ||
+    (isEmailRegisterValid.value &&
+      isPasswordRegisterValid.value &&
+      isUsernameValid.value &&
+      emailRegisterVal.value &&
+      passwordRegisterVal.value &&
+      usernameVal.value)
+  ) {
+    isVerifing.value = true;
+    if (target === "login") {
+      isLoginDisabled.value = true;
+      verifyTarget.value = "login";
+    } else if (target === "register") {
+      isRegisterDisabled.value = true;
+      verifyTarget.value = "register";
+    }
   }
 }
 
