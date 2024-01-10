@@ -1,12 +1,7 @@
+// @ts-nocheck
 import Hls from "hls.js";
 
-// const videoElem = document.getElementById("video");
-// const videoSrc = ".m3u8";
-
-// const url = '';  //包含m3ub链接的url
-// const m3u8Url = decodeURIComponent(url);  //解析url得到m3u8链接
-
-export function playM3u8(videoSrc: string, videoElem) {
+export function playM3u8(videoSrc: string, videoElem: any) {
   if (Hls.isSupported()) {
     const hls = new Hls();
     hls.loadSource(videoSrc);
@@ -15,38 +10,36 @@ export function playM3u8(videoSrc: string, videoElem) {
       videoElem.play();
     });
     document.title = videoSrc;
-  } else if (videoElem.canPlayType("application/vnd.apple.mpegurl")) {
-    videoElem.src = videoSrc;
-    videoElem.addEventListener("canplay", function () {
-      videoElem.play();
-    });
-    videoElem.volume = 0.3;
-    document.title = "医馆笑传";
   }
 }
 
-export function playPause(videoElem) {
+// 播放暂停
+export function playPause(videoElem: any) {
   videoElem.paused ? videoElem.play() : videoElem.pause();
 }
 
-export function volumeUp(videoElem) {
+// 音量+
+export function volumeUp(videoElem: any) {
   if (videoElem.volume <= 0.9) videoElem.volume += 0.1;
 }
 
-export function volumeDown(videoElem) {
+// 音量-
+export function volumeDown(videoElem: any) {
   if (videoElem.volume >= 0.1) videoElem.volume -= 0.1;
 }
 
-export function seekRight(videoElem) {
+// 前进
+export function seekRight(videoElem: any) {
   videoElem.currentTime += 5;
 }
 
-export function seekLeft(videoElem) {
+// 后退
+export function seekLeft(videoElem: any) {
   videoElem.currentTime -= 5;
 }
 
 // 全屏
-export function vidFullscreen(videoElem) {
+export function vidFullscreen(videoElem: any) {
   if (videoElem.requestFullscreen) {
     videoElem.requestFullscreen();
   } else if (videoElem.mozRequestFullScreen) {
