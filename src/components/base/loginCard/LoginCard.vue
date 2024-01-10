@@ -173,9 +173,11 @@ function login() {
           showNotification("登录成功", "success");
           // 在本地存储token
           setStorage("token", res.data.token);
-          isLoginDisabled.value = false;
+          // 存储user
+          setStorage("user", JSON.stringify(res.data.user));
           // 设置为已登录
           setStorage("isLogin", "true");
+          isLoginDisabled.value = false;
           useMainStore().setIsLogin(false);
           // 将登录卡片隐藏
           useMainStore().setIsInLogin();
