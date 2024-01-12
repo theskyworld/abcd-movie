@@ -1,4 +1,4 @@
-import { VideoSelectorData } from "@/components/base/videoSelector/types";
+import { VideoSelectorData } from "@/components/base/videoSelectors/types";
 
 export interface PageLibrariesProps {
   videoSelectorsData?: Array<VideoSelectorData>;
