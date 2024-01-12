@@ -1,4 +1,3 @@
-import { onMounted } from 'vue';
 <script setup lang="ts">
 import Logo from "../base/logo/Logo.vue";
 import Search from "../search/Search.vue";
