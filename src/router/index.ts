@@ -1,5 +1,4 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-import getHomePageData from "../server/getHomePageData";
 
 const routes = [
   {
@@ -55,7 +54,7 @@ const routes = [
   // 播放页面
   {
     path: "/playing",
-    component: () => import("@/pages/PlayingPage/PlayingPage.vue"),
+    component: () => import("@/pages/playingPage/playingPage.vue"),
   },
 ];
 
