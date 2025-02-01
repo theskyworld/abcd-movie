@@ -4,7 +4,7 @@ import { storeToRefs } from "pinia";
 import useMainStore from "@/store";
 import { playM3u8 } from "@/assets/ts/m3u8Parser";
 import { ref, computed, watchEffect, watch, onBeforeMount } from "vue";
-import VideoLoadingAnimation from "@/components/base/videoLoadingAnimation/VideoLoadingAnimation.vue";
+import VideoLoadingAnimation from "@/components/base/videoLoadingAnimation/videoLoadingAnimation.vue";
 import PlayingAnimation from "@/components/base/playingAnimation/PlayingAnimation.vue";
 import getPlayingRecommendData from "@/server/getPlayingRecommendData";
 import LoadingWrapper from "@/components/base/loadingWrapper/LoadingWrapper.vue";

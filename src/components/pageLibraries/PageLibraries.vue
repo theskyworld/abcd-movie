@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import VideoShowCard from "@/components/base/videoShowCard/VideoShowCard.vue";
 import { ref, watchEffect } from "vue";
-import VideoSelectors from "@/components/base/videoSelectors/VideoSelectors.vue";
+import VideoSelectors from "@/components/base/videoSelectors/videoSelectors.vue";
 import TVSelectors from "@/components/base/tvSelectors/TVSelectors.vue";
 import { PageLibrariesProps } from "./types";
 import LoadingWrapper from "@/components/base/loadingWrapper/LoadingWrapper.vue";
