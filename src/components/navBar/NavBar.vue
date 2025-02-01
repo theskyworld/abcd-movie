@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Logo from "../base/logo/Logo.vue";
 import Search from "../search/Search.vue";
-import WatchHistoryPart from "../WatchHistoryPart/WatchHistoryPart.vue";
+import WatchHistoryPart from "../watchHistoryPart/WatchHistoryPart.vue";
 import Profile from "@/components/base/profile/Profile.vue";
 import { ref, onMounted } from "vue";
 import { storeToRefs } from "pinia";
