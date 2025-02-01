@@ -11,13 +11,13 @@ export default defineConfig({
     },
     extensions: [".ts", ".js"], // 可以省略书写.js,.ts
   },
-  server: {
-    proxy: {
-      "/api": {
-        target: "http://111.229.145.94:3001",
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ""),
-      },
-    },
-  },
+  // server: {
+  //   proxy: {
+  //     "/api": {
+  //       target: "http://111.229.145.94:3001",
+  //       changeOrigin: true,
+  //       rewrite: (path) => path.replace(/^\/api/, ""),
+  //     },
+  //   },
+  // },
 });
