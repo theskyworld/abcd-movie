@@ -2,7 +2,7 @@ import axios from "axios";
 
 const instance = axios.create({
   // baseURL应当为"/api",对应于跨域请求中的配置
-  baseURL: "https://111.229.145.94:3001",
+  baseURL: "http://111.229.145.94:3001",
   // baseURL: "https://api.abcdys.site",
 });
 
