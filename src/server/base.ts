@@ -3,6 +3,7 @@ import axios from "axios";
 const instance = axios.create({
   // baseURL应当为"/api",对应于跨域请求中的配置
   baseURL: "https://api.abcdmovie.site",
+  // baseURL: "https://api.abcdys.site",
 });
 
 export function get(url: string) {
