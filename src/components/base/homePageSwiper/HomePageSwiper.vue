@@ -105,6 +105,7 @@ async function toPlayingPage(title: string) {
     <div
       class="swiper-small-wrapper"
       v-for="(img, index) in smallImgURLs"
+      :style="{ left: index * (70 + 10) + 170 + 'px' }"
       :key="index"
       @mouseenter="
         () => {

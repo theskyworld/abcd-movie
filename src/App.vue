@@ -107,7 +107,7 @@ const { isInLogin } = storeToRefs(useMainStore());
     .home-page-swiper-container {
       position: relative;
       width: 100%;
-      height: 66%;
+      // height: 66%;
       z-index: 1;
     }
     .video-shows-container {
