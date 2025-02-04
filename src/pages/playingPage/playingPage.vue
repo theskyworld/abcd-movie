@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import VideoShowCard from "@/components/base/videoShowCard/VideoShowCard.vue";
-import { storeToRefs } from "pinia";
-import useMainStore from "@/store";
 import { playM3u8 } from "@/assets/ts/m3u8Parser";
-import { ref, computed, watchEffect, watch, onBeforeMount } from "vue";
-import VideoLoadingAnimation from "@/components/base/videoLoadingAnimation/videoLoadingAnimation.vue";
-import PlayingAnimation from "@/components/base/playingAnimation/PlayingAnimation.vue";
-import getPlayingRecommendData from "@/server/getPlayingRecommendData";
 import LoadingWrapper from "@/components/base/loadingWrapper/LoadingWrapper.vue";
+import PlayingAnimation from "@/components/base/playingAnimation/PlayingAnimation.vue";
+import VideoLoadingAnimation from "@/components/base/videoLoadingAnimation/videoLoadingAnimation.vue";
+import VideoShowCard from "@/components/base/videoShowCard/VideoShowCard.vue";
+import getPlayingRecommendData from "@/server/getPlayingRecommendData";
+import useMainStore from "@/store";
+import { storeToRefs } from "pinia";
+import { computed, onBeforeMount, ref, watch, watchEffect } from "vue";
 import type { VideoURL } from "./types";
 
 const videoElem = ref();
@@ -137,7 +137,7 @@ onBeforeMount(async () => {
       <div class="title-wrapper">
         <h4>相关推荐</h4>
       </div>
-      <LoadingWrapper :flag="!recommendDatas.length">
+      <LoadingWrapper :flag="!recommendDatas?.length">
         <div class="video-show-card-wrapper">
           <VideoShowCard
             v-for="(i, index) in recommendDatas[0].length"
