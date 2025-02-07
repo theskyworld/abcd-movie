@@ -1,6 +1,6 @@
 <template>
   <div class="video-loading-animation-container">
-    <p>ABCD影视</p>
+    <p>MovieBoy</p>
   </div>
 </template>
 <style scoped lang="scss">

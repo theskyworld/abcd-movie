@@ -5,7 +5,7 @@ const routes = [
     path: "/",
     component: () => import("@/pages/homePage/HomePage.vue"),
     meta: {
-      title: "ABCD影视",
+      title: "MovieBoy影视",
     },
   },
   {

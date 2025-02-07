@@ -2,7 +2,7 @@
 <template>
   <div class="logo-container">
     <h1>
-      <img src="@/assets/imgs/ABCD影视.svg" alt="ABCD影视" />
+      <img src="@/assets/imgs/movieBoy.svg" alt="MovieBoy" />
     </h1>
   </div>
 </template>
