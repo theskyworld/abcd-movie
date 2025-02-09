@@ -1,5 +1,5 @@
 .binge-watch-container {
-  width: 1200px;
+  width: 86vw;
   height: max-content;
   overflow: hidden;
   .title-wrapper {
@@ -34,12 +34,15 @@
   .video-show-card-wrapper {
     width: 100%;
     height: max-content;
-    display: flex;
+    // 子元素不换行
+    white-space: nowrap;
     flex-direction: row;
     transition: transform .5s ease;
-
+    .wrapper {
+      width: max-content;
+    }
     div {
-      margin-right: 30px;
+      margin-right: 31px;
     }
   }
 }

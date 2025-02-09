@@ -26,8 +26,8 @@
   }
 }
 .netflix-page-container {
-  width: 1228px;
-  height: 615px;
+  width: 90vw;
+  height: 83vh;
   color: var(--color-main);
 
   .title-wrapper {
@@ -60,7 +60,7 @@
   }
 
   .content-wrapper {
-    height: 530px;
+    height: calc(100% - 85px);
     overflow-y: auto;
     @include scroll();
     .video-show-card-wrapper {

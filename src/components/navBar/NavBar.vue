@@ -15,22 +15,22 @@ const isShowWatchHistory = ref(false);
 const isShowProfileCard = ref(false);
 const { isLogin } = storeToRefs(useMainStore());
 
-onMounted(() => {
-  watchHistoryToggleElemRef.value.onmouseover = () => {
-    isShowWatchHistory.value = true;
-  };
-  watchHistoryToggleElemRef.value.onmouseleave = () => {
-    isShowWatchHistory.value = false;
-  };
-  if (profileCardToggleElemRef.value) {
-    profileCardToggleElemRef.value.onmouseover = () => {
-      isShowProfileCard.value = true;
-    };
-    profileCardToggleElemRef.value.onmouseleave = () => {
-      isShowProfileCard.value = false;
-    };
-  }
-});
+// onMounted(() => {
+//   watchHistoryToggleElemRef.value.onmouseover = () => {
+//     isShowWatchHistory.value = true;
+//   };
+//   watchHistoryToggleElemRef.value.onmouseleave = () => {
+//     isShowWatchHistory.value = false;
+//   };
+//   if (profileCardToggleElemRef.value) {
+//     profileCardToggleElemRef.value.onmouseover = () => {
+//       isShowProfileCard.value = true;
+//     };
+//     profileCardToggleElemRef.value.onmouseleave = () => {
+//       isShowProfileCard.value = false;
+//     };
+//   }
+// });
 
 const imgURL = ref("https://imgapi.xl0408.top/index.php");
 </script>
@@ -61,12 +61,7 @@ const imgURL = ref("https://imgapi.xl0408.top/index.php");
         </div>
       </div>
       <div class="profile-wrapper">
-        <span
-          @click="useMainStore().setIsInLogin()"
-          v-if="!isLogin"
-          style="color: var(--color-hover)"
-          >登录</span
-        >
+        <span v-if="!isLogin" style="color: var(--color-hover)">登录</span>
         <div v-else ref="profileCardToggleElemRef">
           <Profile :imgURL="imgURL" />
         </div>

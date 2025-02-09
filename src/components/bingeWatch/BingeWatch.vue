@@ -2,12 +2,14 @@
 import VideoShowCard from "@/components/base/videoShowCard/VideoShowCard.vue";
 import { onMounted, ref } from "vue";
 import { BingeWatchProps } from "./types";
+import useMediaQuery from "@/utils/useMediaQuery";
 const { videoTitles, imgURLs, videoTags, videoScores } =
   defineProps<BingeWatchProps>();
 
 const videoShowCardWrapperElemRef = ref();
 const curCardsIndex = ref(1);
 const allCardsIndex = ref(Math.ceil(videoTitles.length / 4));
+const seperateNum = ref(4);
 
 // 控制因数量过多而被隐藏的卡片的显示和隐藏
 function showHiddenCards() {
@@ -45,15 +47,24 @@ function hideHiddenCards() {
       </span>
     </div>
     <div class="video-show-card-wrapper" ref="videoShowCardWrapperElemRef">
-      <VideoShowCard
-        v-for="(i, index) in videoTitles.length"
-        :key="index"
-        :title="videoTitles[index]"
-        :imgURL="imgURLs[index]"
-        :tag="videoTags[index]"
-        :score="videoScores[index]"
-        is-row
-      />
+      <div class="wrapper">
+        <div
+          :style="{
+            width: `calc((86vw - 31px*4) / 4)`,
+            display: 'inline-block',
+          }"
+          v-for="(i, index) in videoTitles.length"
+          :key="index"
+        >
+          <VideoShowCard
+            :title="videoTitles[index]"
+            :imgURL="imgURLs[index]"
+            :tag="videoTags[index]"
+            :score="videoScores[index]"
+            is-row
+          />
+        </div>
+      </div>
     </div>
   </div>
 </template>

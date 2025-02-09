@@ -48,15 +48,24 @@ function hideHiddenCards() {
       </div>
     </div>
     <div class="video-show-card-wrapper" ref="videoShowCardWrapperElemRef">
-      <VideoShowCard
-        v-for="(i, index) in videoTitles.length"
-        :key="index"
-        :title="videoTitles[index]"
-        :imgURL="imgURLs[index]"
-        :score="videoScores[index]"
-        :episode="videoEpisodes[index]"
-        is-row
-      />
+      <div class="wrapper">
+        <div
+          v-for="(i, index) in videoTitles.length"
+          :key="index"
+          :style="{
+            width: 'calc((86vw - 31px*4) / 4)',
+            display: 'inline-block',
+          }"
+        >
+          <VideoShowCard
+            :title="videoTitles[index]"
+            :imgURL="imgURLs[index]"
+            :score="videoScores[index]"
+            :episode="videoEpisodes[index]"
+            is-row
+          />
+        </div>
+      </div>
     </div>
   </div>
 </template>

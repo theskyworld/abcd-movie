@@ -39,13 +39,12 @@ async function toSearchResPage() {
 <template>
   <div class="search-container">
     <input
-      @keyup.enter="toSearchResPage"
       ref="inputElemRef"
       type="text"
       placeholder="搜索电影、电视剧、综艺、动漫"
       v-model.lazy="kw"
     />
-    <i @click="toSearchResPage">
+    <i>
       <svg class="icon" aria-hidden="true">
         <use xlink:href="#icon-search"></use>
       </svg>
