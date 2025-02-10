@@ -133,7 +133,7 @@ onBeforeMount(async () => {
         </div>
       </div>
     </div>
-    <div class="bottom-content-wrapper">
+    <!-- <div class="bottom-content-wrapper">
       <div class="title-wrapper">
         <h4>相关推荐</h4>
       </div>
@@ -149,7 +149,7 @@ onBeforeMount(async () => {
           />
         </div>
       </LoadingWrapper>
-    </div>
+    </div> -->
   </div>
 </template>
 
