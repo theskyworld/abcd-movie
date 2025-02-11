@@ -1,13 +1,11 @@
 <script setup lang="ts">
-import { playM3u8 } from "@/assets/ts/m3u8Parser";
-import LoadingWrapper from "@/components/base/loadingWrapper/LoadingWrapper.vue";
 import PlayingAnimation from "@/components/base/playingAnimation/PlayingAnimation.vue";
-import VideoLoadingAnimation from "@/components/base/videoLoadingAnimation/videoLoadingAnimation.vue";
-import VideoShowCard from "@/components/base/videoShowCard/VideoShowCard.vue";
 import getPlayingRecommendData from "@/server/getPlayingRecommendData";
 import useMainStore from "@/store";
 import { storeToRefs } from "pinia";
 import { computed, onBeforeMount, ref, watch, watchEffect } from "vue";
+import "vue3-video-play/dist/style.css";
+import { videoPlay } from "vue3-video-play/lib/index.js";
 import type { VideoURL } from "./types";
 
 const videoElem = ref();
@@ -57,12 +55,27 @@ watchEffect(async () => {
     isLoadingURL.value = false;
   }
   if (episodeURL.value) {
-    playM3u8(episodeURL.value, videoElem.value);
+    // playM3u8(episodeURL.value, videoElem.value);
   }
 });
 
 const recommendDatas = ref<Array<Array<string>>>([]);
-
+const videoOptions = computed(() => ({
+  src: (videoURL.value as VideoURL)?.episodeURL,
+  color: "#fa17fa",
+  type: "m3u8",
+  width: "100%",
+  height: "100%",
+  controlBtns: [
+    "audioTrack",
+    "speedRate",
+    "setting",
+    "volume",
+    "pip",
+    "pageFullScreen",
+    "fullScreen",
+  ],
+}));
 onBeforeMount(async () => {
   recommendDatas.value = await getPlayingRecommendData();
 });
@@ -71,12 +84,12 @@ onBeforeMount(async () => {
   <div class="playing-page-container">
     <div class="top-content-wrapper">
       <div class="video-wrapper">
-        <video ref="videoElem" class="videoElem" controls></video>
+        <videoPlay v-bind="videoOptions" class="video" />
         <!-- TODO1.增加暂无片源时的处理逻辑以及对应的提示 -->
         <!-- TODO2.需要解决相同名称但是不同类型的视频（例如播放夜幕降临的电视剧，但是由于存在相同名称的电影而纳入电视剧的线路中），导致在切换线路时可能切换到电影进行播放的情况 -->
-        <div class="video-loading-animation-wrapper" v-if="isLoadingURL">
+        <!-- <div class="video-loading-animation-wrapper" v-if="isLoadingURL">
           <VideoLoadingAnimation />
-        </div>
+        </div> -->
       </div>
       <div class="video-infos-wrapper">
         <div class="video-title-wrapper">
