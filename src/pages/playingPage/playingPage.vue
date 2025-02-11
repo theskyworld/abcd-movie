@@ -4,8 +4,8 @@ import getPlayingRecommendData from "@/server/getPlayingRecommendData";
 import useMainStore from "@/store";
 import { storeToRefs } from "pinia";
 import { computed, onBeforeMount, ref, watch, watchEffect } from "vue";
-import "vue3-video-play/dist/style.css";
-import { videoPlay } from "vue3-video-play/lib/index.js";
+import "abcd-video/dist/style.css";
+import { videoPlay } from "abcd-video/lib/index.js";
 import type { VideoURL } from "./types";
 
 const videoElem = ref();
