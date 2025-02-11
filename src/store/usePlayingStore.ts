@@ -1,6 +1,6 @@
+import getSearchResData from "@/server/getSearchResData";
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import getSearchResData from "@/server/getSearchResData";
 
 const usePlayingStore = defineStore("playingStore", {
   state: () => {
@@ -25,6 +25,8 @@ const usePlayingStore = defineStore("playingStore", {
       episodeIndex?: number,
     ) {
       if (this.playingKeyword) {
+        this.routes = 0;
+        this.videoURL = {};
         const res = await getSearchResData(
           this.playingKeyword,
           isByClick,
